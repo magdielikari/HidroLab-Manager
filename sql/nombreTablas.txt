@@ -24,4 +24,4 @@ cArea
 caracterizacion
 reporte
 general
-cliente
+clientes
