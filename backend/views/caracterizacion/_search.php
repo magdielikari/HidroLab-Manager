@@ -34,8 +34,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'Equipos_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app\messages\es-MX\models.php', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app\messages\es-MX\models.php', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('models', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

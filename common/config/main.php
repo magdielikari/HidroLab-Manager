@@ -9,7 +9,7 @@ return [
         	'translations' => [
             	'models' => [
                 	'class' => 'yii\i18n\PhpMessageSource',
-                	'basePath' => '@app/messages',
+                	'basePath' => '@common/messages',
                 	'sourceLanguage' => 'es-MX',
                 	'fileMap' => [
                    		'models' => 'models.php',

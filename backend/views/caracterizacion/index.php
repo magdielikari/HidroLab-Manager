@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\CaracterizacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app\messages\es-MX\models.php', 'Caracterizacions');
+$this->title = Yii::t('models', 'Caracterizacions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="caracterizacion-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app\messages\es-MX\models.php', 'Create Caracterizacion'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('models', 'Create Caracterizacion'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
