@@ -44,13 +44,4 @@ class CostoMuestra extends \yii\db\ActiveRecord
             'total' => Yii::t('models', 'Total'),
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\CostoMuestraQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\CostoMuestraQuery(get_called_class());
-    }
 }

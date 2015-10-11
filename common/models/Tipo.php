@@ -104,13 +104,4 @@ class Tipo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Subtipo::className(), ['id' => 'SubTipo_id'])->viaTable('tipo_has_subtipo', ['Tipo_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\TipoQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\TipoQuery(get_called_class());
-    }
 }

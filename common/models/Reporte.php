@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "reporte".
  *
- * @property integer $id
+ * @property string $id
  * @property integer $Plantilla_id
  * @property string $General_id
  *
@@ -30,8 +30,8 @@ class Reporte extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'Plantilla_id', 'General_id'], 'required'],
-            [['id', 'Plantilla_id', 'General_id'], 'integer']
+            [['Plantilla_id', 'General_id'], 'required'],
+            [['Plantilla_id', 'General_id'], 'integer']
         ];
     }
 
@@ -61,14 +61,5 @@ class Reporte extends \yii\db\ActiveRecord
     public function getGeneral()
     {
         return $this->hasOne(General::className(), ['id' => 'General_id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\ReporteQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\ReporteQuery(get_called_class());
     }
 }

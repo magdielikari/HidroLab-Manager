@@ -48,13 +48,4 @@ class CostoParametro extends \yii\db\ActiveRecord
             'Parametros_id' => Yii::t('models', 'Parametros ID'),
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\CostoParametroQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\CostoParametroQuery(get_called_class());
-    }
 }

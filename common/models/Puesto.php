@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $Nombre
  *
- * @property User[] $users
+ * @property Vendedor[] $vendedors
  */
 class Puesto extends \yii\db\ActiveRecord
 {
@@ -46,17 +46,8 @@ class Puesto extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsers()
+    public function getVendedors()
     {
-        return $this->hasMany(User::className(), ['puesto_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\PuestoQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\PuestoQuery(get_called_class());
+        return $this->hasMany(Vendedor::className(), ['Puesto_id' => 'id']);
     }
 }

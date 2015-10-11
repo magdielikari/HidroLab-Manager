@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "ordenCompra".
+ * This is the model class for table "ordencompra".
  *
  * @property string $id
  * @property string $nOrden
@@ -13,15 +13,17 @@ use Yii;
  * @property string $observaciones
  * @property string $estado
  * @property string $peticion_id
+ *
+ * @property Peticion $peticion
  */
-class OrdenCompra extends \yii\db\ActiveRecord
+class Ordencompra extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'ordenCompra';
+        return 'ordencompra';
     }
 
     /**
@@ -54,11 +56,10 @@ class OrdenCompra extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return \common\models\query\OrdenCompraQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getPeticion()
     {
-        return new \common\models\query\OrdenCompraQuery(get_called_class());
+        return $this->hasOne(Peticion::className(), ['id' => 'peticion_id']);
     }
 }

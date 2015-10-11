@@ -18,7 +18,7 @@ use Yii;
  * @property General[] $generals
  * @property Limites[] $limites
  * @property Plantilla[] $plantillas
- * @property User[] $users
+ * @property Vendedor[] $vendedors
  */
 class Departamento extends \yii\db\ActiveRecord
 {
@@ -112,17 +112,8 @@ class Departamento extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsers()
+    public function getVendedors()
     {
-        return $this->hasMany(User::className(), ['departamento_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\DepartamentoQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\DepartamentoQuery(get_called_class());
+        return $this->hasMany(Vendedor::className(), ['Departamento_id' => 'id']);
     }
 }

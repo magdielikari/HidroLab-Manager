@@ -12,6 +12,7 @@ use Yii;
  * @property integer $Vendedor_id
  * @property integer $Departamento_id
  *
+ * @property Vendedor $vendedor
  * @property Departamento $departamento
  * @property Reporte[] $reportes
  */
@@ -31,9 +32,9 @@ class Plantilla extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'Vendedor_id', 'Departamento_id'], 'required'],
-            [['id', 'Vendedor_id', 'Departamento_id'], 'integer'],
-            [['reporte'], 'string']
+            [['reporte'], 'string'],
+            [['Vendedor_id', 'Departamento_id'], 'required'],
+            [['Vendedor_id', 'Departamento_id'], 'integer']
         ];
     }
 
@@ -53,6 +54,14 @@ class Plantilla extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getVendedor()
+    {
+        return $this->hasOne(Vendedor::className(), ['id' => 'Vendedor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getDepartamento()
     {
         return $this->hasOne(Departamento::className(), ['id' => 'Departamento_id']);
@@ -64,14 +73,5 @@ class Plantilla extends \yii\db\ActiveRecord
     public function getReportes()
     {
         return $this->hasMany(Reporte::className(), ['Plantilla_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\PlantillaQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\PlantillaQuery(get_called_class());
     }
 }

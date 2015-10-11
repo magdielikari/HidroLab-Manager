@@ -25,7 +25,6 @@ use Yii;
  * @property Limites[] $limites
  * @property RamaHasCaracterizacion[] $ramaHasCaracterizacions
  * @property Rama[] $ramas
- * @property User[] $users
  */
 class Caracterizacion extends \yii\db\ActiveRecord
 {
@@ -131,22 +130,5 @@ class Caracterizacion extends \yii\db\ActiveRecord
     public function getRamas()
     {
         return $this->hasMany(Rama::className(), ['id' => 'Rama_id'])->viaTable('rama_has_caracterizacion', ['Caracterizacion_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsers()
-    {
-        return $this->hasMany(User::className(), ['Caracterizacion_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\CaracterizacionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\CaracterizacionQuery(get_called_class());
     }
 }

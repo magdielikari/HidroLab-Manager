@@ -101,13 +101,4 @@ class Decreto extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Limites::className(), ['Decreto_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\DecretoQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\DecretoQuery(get_called_class());
-    }
 }

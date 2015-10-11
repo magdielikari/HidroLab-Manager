@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "track".
  *
- * @property integer $id
+ * @property string $id
  * @property string $session
  * @property string $date
  * @property string $ip
@@ -31,9 +31,9 @@ class Track extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'required'],
-            [['id', 'user_id'], 'integer'],
             [['date'], 'safe'],
+            [['user_id'], 'required'],
+            [['user_id'], 'integer'],
             [['session'], 'string', 'max' => 100],
             [['ip'], 'string', 'max' => 15]
         ];
@@ -59,14 +59,5 @@ class Track extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\TrackQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\TrackQuery(get_called_class());
     }
 }

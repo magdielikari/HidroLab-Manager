@@ -42,13 +42,4 @@ class Migration extends \yii\db\ActiveRecord
             'apply_time' => Yii::t('models', 'Apply Time'),
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\MigrationQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\MigrationQuery(get_called_class());
-    }
 }

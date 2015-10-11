@@ -123,13 +123,4 @@ class Limites extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Parametros::className(), ['Limites_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\LimitesQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\LimitesQuery(get_called_class());
-    }
 }

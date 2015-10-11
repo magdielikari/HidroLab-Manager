@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $nombre
+ * @property string $celular_id
  */
 class CArea extends \yii\db\ActiveRecord
 {
@@ -26,8 +27,8 @@ class CArea extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'nombre'], 'integer']
+            [['nombre', 'celular_id'], 'integer'],
+            [['celular_id'], 'required']
         ];
     }
 
@@ -39,15 +40,7 @@ class CArea extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'nombre' => Yii::t('models', 'Nombre'),
+            'celular_id' => Yii::t('models', 'Celular ID'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\CAreaQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\CAreaQuery(get_called_class());
     }
 }

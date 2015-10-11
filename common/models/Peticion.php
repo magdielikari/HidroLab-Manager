@@ -111,13 +111,4 @@ class Peticion extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Muestras::className(), ['id' => 'Muestras_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\PeticionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\PeticionQuery(get_called_class());
-    }
 }

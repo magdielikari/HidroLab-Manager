@@ -95,13 +95,4 @@ class Muestras extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Peticion::className(), ['Muestras_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\MuestrasQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\MuestrasQuery(get_called_class());
-    }
 }

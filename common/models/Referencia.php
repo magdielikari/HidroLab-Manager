@@ -59,13 +59,4 @@ class Referencia extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Peticion::className(), ['referencia_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\ReferenciaQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\ReferenciaQuery(get_called_class());
-    }
 }

@@ -5,20 +5,22 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "diaLaborables".
+ * This is the model class for table "dialaborables".
  *
  * @property string $id
  * @property string $dias
  * @property string $referencia_id
+ *
+ * @property Referencia $referencia
  */
-class DiaLaborables extends \yii\db\ActiveRecord
+class Dialaborables extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'diaLaborables';
+        return 'dialaborables';
     }
 
     /**
@@ -46,11 +48,10 @@ class DiaLaborables extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return \common\models\query\DiaLaborablesQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getReferencia()
     {
-        return new \common\models\query\DiaLaborablesQuery(get_called_class());
+        return $this->hasOne(Referencia::className(), ['id' => 'referencia_id']);
     }
 }

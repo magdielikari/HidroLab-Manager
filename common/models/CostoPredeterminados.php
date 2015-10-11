@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "costoPredeterminados".
+ * This is the model class for table "costopredeterminados".
  *
  * @property string $id
  * @property string $nombre
@@ -14,15 +14,20 @@ use Yii;
  * @property integer $vencimiento
  * @property string $modena
  * @property string $tipo
+ *
+ * @property CostopredeterminadosHasCostomuestra[] $costopredeterminadosHasCostomuestras
+ * @property Costomuestra[] $costoMuestras
+ * @property CostopredeterminadosHasCostoparametro[] $costopredeterminadosHasCostoparametros
+ * @property Costoparametro[] $costoParametros
  */
-class CostoPredeterminados extends \yii\db\ActiveRecord
+class Costopredeterminados extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'costoPredeterminados';
+        return 'costopredeterminados';
     }
 
     /**
@@ -57,11 +62,34 @@ class CostoPredeterminados extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return \common\models\query\CostoPredeterminadosQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getCostopredeterminadosHasCostomuestras()
     {
-        return new \common\models\query\CostoPredeterminadosQuery(get_called_class());
+        return $this->hasMany(CostopredeterminadosHasCostomuestra::className(), ['costoPredeterminados_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostoMuestras()
+    {
+        return $this->hasMany(Costomuestra::className(), ['id' => 'costoMuestra_id'])->viaTable('costopredeterminados_has_costomuestra', ['costoPredeterminados_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostopredeterminadosHasCostoparametros()
+    {
+        return $this->hasMany(CostopredeterminadosHasCostoparametro::className(), ['costoPredeterminados_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostoParametros()
+    {
+        return $this->hasMany(Costoparametro::className(), ['id' => 'CostoParametro_id'])->viaTable('costopredeterminados_has_costoparametro', ['costoPredeterminados_id' => 'id']);
     }
 }

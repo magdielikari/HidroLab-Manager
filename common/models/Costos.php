@@ -97,13 +97,4 @@ class Costos extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Peticion::className(), ['costos_id' => 'id', 'costos_General_id' => 'General_id', 'costos_CostoParametro_id' => 'CostoParametro_id', 'costos_CostoParametro_Parametros_id' => 'CostoParametro_Parametros_id', 'costos_costoMuestra_id' => 'costoMuestra_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\CostosQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\CostosQuery(get_called_class());
-    }
 }

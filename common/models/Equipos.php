@@ -96,13 +96,4 @@ class Equipos extends \yii\db\ActiveRecord
     {
         return $this->hasMany(General::className(), ['id' => 'General_id'])->viaTable('equipos_has_general', ['Equipos_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\EquiposQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \common\models\query\EquiposQuery(get_called_class());
-    }
 }
