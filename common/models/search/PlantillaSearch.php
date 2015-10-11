@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\Plantilla;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * PlantillaSearch represents the model behind the search form about `common\models\Plantilla`.
  */
-class CAreaSearch extends CArea
+class PlantillaSearch extends Plantilla
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'Vendedor_id', 'Departamento_id'], 'integer'],
+            [['reporte'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = Plantilla::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,9 +57,11 @@ class CAreaSearch extends CArea
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'Vendedor_id' => $this->Vendedor_id,
+            'Departamento_id' => $this->Departamento_id,
         ]);
+
+        $query->andFilterWhere(['like', 'reporte', $this->reporte]);
 
         return $dataProvider;
     }

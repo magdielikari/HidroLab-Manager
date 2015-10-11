@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\OrdenCompra;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * OrdenCompraSearch represents the model behind the search form about `common\models\OrdenCompra`.
  */
-class CAreaSearch extends CArea
+class OrdenCompraSearch extends OrdenCompra
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'peticion_id'], 'integer'],
+            [['nOrden', 'ubicacion', 'observaciones', 'estado'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = OrdenCompra::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,9 +57,13 @@ class CAreaSearch extends CArea
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'peticion_id' => $this->peticion_id,
         ]);
+
+        $query->andFilterWhere(['like', 'nOrden', $this->nOrden])
+            ->andFilterWhere(['like', 'ubicacion', $this->ubicacion])
+            ->andFilterWhere(['like', 'observaciones', $this->observaciones])
+            ->andFilterWhere(['like', 'estado', $this->estado]);
 
         return $dataProvider;
     }

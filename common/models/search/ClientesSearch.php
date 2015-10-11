@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\Clientes;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * ClientesSearch represents the model behind the search form about `common\models\Clientes`.
  */
-class CAreaSearch extends CArea
+class ClientesSearch extends Clientes
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'Contador'], 'integer'],
+            [['Nombre', 'Direccion', 'Email', 'Encargado', 'NRif', 'CRif', 'Siglas'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = Clientes::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,9 +57,16 @@ class CAreaSearch extends CArea
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'Contador' => $this->Contador,
         ]);
+
+        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
+            ->andFilterWhere(['like', 'Direccion', $this->Direccion])
+            ->andFilterWhere(['like', 'Email', $this->Email])
+            ->andFilterWhere(['like', 'Encargado', $this->Encargado])
+            ->andFilterWhere(['like', 'NRif', $this->NRif])
+            ->andFilterWhere(['like', 'CRif', $this->CRif])
+            ->andFilterWhere(['like', 'Siglas', $this->Siglas]);
 
         return $dataProvider;
     }

@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\Dialaborables;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * DialaborablesSearch represents the model behind the search form about `common\models\Dialaborables`.
  */
-class CAreaSearch extends CArea
+class DialaborablesSearch extends Dialaborables
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'referencia_id'], 'integer'],
+            [['dias'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = Dialaborables::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,8 +57,8 @@ class CAreaSearch extends CArea
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'dias' => $this->dias,
+            'referencia_id' => $this->referencia_id,
         ]);
 
         return $dataProvider;

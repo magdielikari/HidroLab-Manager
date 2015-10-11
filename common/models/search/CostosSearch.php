@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\Costos;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * CostosSearch represents the model behind the search form about `common\models\Costos`.
  */
-class CAreaSearch extends CArea
+class CostosSearch extends Costos
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'rendimiento', 'General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'costoMuestra_id'], 'integer'],
+            [['cAnalisis', 'cMuestreo', 'cInforme', 'cAdministrativo', 'utilidad'], 'number'],
         ];
     }
 
@@ -40,7 +41,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = Costos::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,8 +57,16 @@ class CAreaSearch extends CArea
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'cAnalisis' => $this->cAnalisis,
+            'cMuestreo' => $this->cMuestreo,
+            'cInforme' => $this->cInforme,
+            'cAdministrativo' => $this->cAdministrativo,
+            'utilidad' => $this->utilidad,
+            'rendimiento' => $this->rendimiento,
+            'General_id' => $this->General_id,
+            'CostoParametro_id' => $this->CostoParametro_id,
+            'CostoParametro_Parametros_id' => $this->CostoParametro_Parametros_id,
+            'costoMuestra_id' => $this->costoMuestra_id,
         ]);
 
         return $dataProvider;

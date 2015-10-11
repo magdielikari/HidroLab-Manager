@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\CArea;
-use common\models\search\CAreaSearch;
+use common\models\Tipo;
+use common\models\search\TipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CAreaController implements the CRUD actions for CArea model.
+ * TipoController implements the CRUD actions for Tipo model.
  */
-class CAreaController extends Controller
+class TipoController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class CAreaController extends Controller
     }
 
     /**
-     * Lists all CArea models.
+     * Lists all Tipo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CAreaSearch();
+        $searchModel = new TipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,29 +42,28 @@ class CAreaController extends Controller
     }
 
     /**
-     * Displays a single CArea model.
+     * Displays a single Tipo model.
      * @param integer $id
-     * @param string $celular_id
      * @return mixed
      */
-    public function actionView($id, $celular_id)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $celular_id),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new CArea model.
+     * Creates a new Tipo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CArea();
+        $model = new Tipo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'celular_id' => $model->celular_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -73,18 +72,17 @@ class CAreaController extends Controller
     }
 
     /**
-     * Updates an existing CArea model.
+     * Updates an existing Tipo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @param string $celular_id
      * @return mixed
      */
-    public function actionUpdate($id, $celular_id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($id, $celular_id);
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'celular_id' => $model->celular_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -93,30 +91,28 @@ class CAreaController extends Controller
     }
 
     /**
-     * Deletes an existing CArea model.
+     * Deletes an existing Tipo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @param string $celular_id
      * @return mixed
      */
-    public function actionDelete($id, $celular_id)
+    public function actionDelete($id)
     {
-        $this->findModel($id, $celular_id)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the CArea model based on its primary key value.
+     * Finds the Tipo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @param string $celular_id
-     * @return CArea the loaded model
+     * @return Tipo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $celular_id)
+    protected function findModel($id)
     {
-        if (($model = CArea::findOne(['id' => $id, 'celular_id' => $celular_id])) !== null) {
+        if (($model = Tipo::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
