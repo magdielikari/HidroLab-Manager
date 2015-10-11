@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\CArea */
 
-$this->title = Yii::t('app\messages\es-MX\models.php', 'Create Carea');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app\messages\es-MX\models.php', 'Careas'), 'url' => ['index']];
+$this->title = Yii::t('models', 'Create Carea');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Careas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="carea-create">

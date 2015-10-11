@@ -25,3 +25,5 @@ $this->title = $name;
     </p>
 
 </div>
+
+<?php var_dump(Yii::$app->controller->id); ?>
