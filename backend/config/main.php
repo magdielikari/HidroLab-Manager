@@ -13,6 +13,11 @@ return [
 	'bootstrap' => ['log'],
 	'modules' => [],
 	'components' => [
+		'urlManager'=> [
+			'class'=>'yii\web\UrlManager',
+			'enablePrettyUrl'=>true,
+			'showScriptName'=>false
+		],
 		'user' => [
 			'identityClass' => 'common\models\User',
 			'enableAutoLogin' => true,
