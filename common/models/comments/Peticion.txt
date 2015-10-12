@@ -1,0 +1,18 @@
+fPeticion: Son los dias validos para la entrega del reporte luego de 
+que llegan las muestras al codificador.
+
+Cadena: Las peticiones tiene un codigo interno para identificarlas. Ejemplo: GMV-02-001-2015
+donde: GMV, es el codigo del cliente. 02, es el departamento -aire en este caso-
+001, el numero de peticiones en un año echas por este cliente y 
+2015 el año que solicito la cotizacion
+
+fVencimiento: Dias que para los cuales la cotizacion es validad 
+si la fecha actual supera este limite se debe hacer otra cotizacion
+
+fCreacion: Es en el momento que se creo la cotizacion necesaria para el calcular la fvencimiento
+
+referecia_id: relacion uno a uno con el año. 
+Claro toda cotizacion se puede hacer solo en un unico año
+
+General_id, Muestras_id, costo_id, costos_general, costos_costoparametro_id, etc... 
+son de relaciones unicas identificada ya que no permiten valores null.
