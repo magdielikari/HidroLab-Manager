@@ -18,8 +18,8 @@ class ClientesSearch extends Clientes
     public function rules()
     {
         return [
-            [['id', 'Contador'], 'integer'],
-            [['Nombre', 'Direccion', 'Email', 'Encargado', 'NRif', 'CRif', 'Siglas'], 'safe'],
+            [['id', 'contador'], 'integer'],
+            [['nombre', 'direccion', 'email', 'encargado', 'nRif', 'cRif', 'siglas'], 'safe'],
         ];
     }
 
@@ -57,16 +57,16 @@ class ClientesSearch extends Clientes
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'Contador' => $this->Contador,
+            'contador' => $this->contador,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Direccion', $this->Direccion])
-            ->andFilterWhere(['like', 'Email', $this->Email])
-            ->andFilterWhere(['like', 'Encargado', $this->Encargado])
-            ->andFilterWhere(['like', 'NRif', $this->NRif])
-            ->andFilterWhere(['like', 'CRif', $this->CRif])
-            ->andFilterWhere(['like', 'Siglas', $this->Siglas]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'direccion', $this->direccion])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'encargado', $this->encargado])
+            ->andFilterWhere(['like', 'nRif', $this->nRif])
+            ->andFilterWhere(['like', 'cRif', $this->cRif])
+            ->andFilterWhere(['like', 'siglas', $this->siglas]);
 
         return $dataProvider;
     }

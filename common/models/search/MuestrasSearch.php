@@ -19,7 +19,7 @@ class MuestrasSearch extends Muestras
     {
         return [
             [['id', 'horas', 'General_id'], 'integer'],
-            [['Nombre', 'tipo'], 'safe'],
+            [['nombre', 'tipo'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class MuestrasSearch extends Muestras
             'General_id' => $this->General_id,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'tipo', $this->tipo]);
 
         return $dataProvider;

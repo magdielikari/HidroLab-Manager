@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'liminf',
-            'Limsup',
-            'Existente',
+            'limsup',
+            'existente',
             'Departamento_id',
             'Decreto_id',
             'Tipo_id',

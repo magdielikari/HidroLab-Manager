@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'nombre',
-            'Preservacion',
-            'Siglas',
-            'Laboratorio',
-            // 'Opacidad',
-            // 'Metodo',
-            // 'Tipo',
+            'preservacion',
+            'siglas',
+            'laboratorio',
+            // 'opacidad',
+            // 'metodo',
+            // 'tipo',
             // 'Equipos_id',
 
             ['class' => 'yii\grid\ActionColumn'],

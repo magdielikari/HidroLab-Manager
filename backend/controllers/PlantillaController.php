@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Plantilla;
-use common\models\search\PlantillaSearch;
+use common\models\search\ParametrosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,7 +32,7 @@ class PlantillaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PlantillaSearch();
+        $searchModel = new ParametrosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -3,9 +3,9 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\Cliente]].
+ * This is the ActiveQuery class for [[\common\models\Clientes]].
  *
- * @see \common\models\Cliente
+ * @see \common\models\Clientes
  */
 class ClientesQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class ClientesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\Cliente[]|array
+     * @return \common\models\Clientes[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class ClientesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\Cliente|array|null
+     * @return \common\models\Clientes|array|null
      */
     public function one($db = null)
     {

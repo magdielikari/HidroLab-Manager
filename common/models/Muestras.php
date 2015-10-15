@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "muestras".
  *
  * @property string $id
- * @property string $Nombre
+ * @property string $nombre
  * @property string $tipo
  * @property integer $horas
  * @property string $General_id
@@ -37,7 +37,7 @@ class Muestras extends \yii\db\ActiveRecord
         return [
             [['horas', 'General_id'], 'integer'],
             [['General_id'], 'required'],
-            [['Nombre'], 'string', 'max' => 45],
+            [['nombre'], 'string', 'max' => 45],
             [['tipo'], 'string', 'max' => 1]
         ];
     }
@@ -49,7 +49,7 @@ class Muestras extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
+            'nombre' => Yii::t('models', 'Nombre'),
             'tipo' => Yii::t('models', 'Tipo'),
             'horas' => Yii::t('models', 'Horas'),
             'General_id' => Yii::t('models', 'General ID'),
@@ -94,5 +94,14 @@ class Muestras extends \yii\db\ActiveRecord
     public function getPeticions()
     {
         return $this->hasMany(Peticion::className(), ['Muestras_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\MuestrasQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\MuestrasQuery(get_called_class());
     }
 }

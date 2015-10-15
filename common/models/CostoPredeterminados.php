@@ -66,7 +66,7 @@ class Costopredeterminados extends \yii\db\ActiveRecord
      */
     public function getCostopredeterminadosHasCostomuestras()
     {
-        return $this->hasMany(CostopredeterminadosHasCostomuestra::className(), ['costoPredeterminados_id' => 'id']);
+        return $this->hasMany(CostopredeterminadosHasCostomuestra::className(), ['CostoPredeterminados_id' => 'id']);
     }
 
     /**
@@ -74,7 +74,7 @@ class Costopredeterminados extends \yii\db\ActiveRecord
      */
     public function getCostoMuestras()
     {
-        return $this->hasMany(Costomuestra::className(), ['id' => 'costoMuestra_id'])->viaTable('costopredeterminados_has_costomuestra', ['costoPredeterminados_id' => 'id']);
+        return $this->hasMany(Costomuestra::className(), ['id' => 'CostoMuestra_id'])->viaTable('costopredeterminados_has_costomuestra', ['CostoPredeterminados_id' => 'id']);
     }
 
     /**
@@ -82,7 +82,7 @@ class Costopredeterminados extends \yii\db\ActiveRecord
      */
     public function getCostopredeterminadosHasCostoparametros()
     {
-        return $this->hasMany(CostopredeterminadosHasCostoparametro::className(), ['costoPredeterminados_id' => 'id']);
+        return $this->hasMany(CostopredeterminadosHasCostoparametro::className(), ['CostoPredeterminados_id' => 'id']);
     }
 
     /**
@@ -90,6 +90,15 @@ class Costopredeterminados extends \yii\db\ActiveRecord
      */
     public function getCostoParametros()
     {
-        return $this->hasMany(Costoparametro::className(), ['id' => 'CostoParametro_id'])->viaTable('costopredeterminados_has_costoparametro', ['costoPredeterminados_id' => 'id']);
+        return $this->hasMany(Costoparametro::className(), ['id' => 'CostoParametro_id'])->viaTable('costopredeterminados_has_costoparametro', ['CostoPredeterminados_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\CostopredeterminadosQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\CostopredeterminadosQuery(get_called_class());
     }
 }

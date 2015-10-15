@@ -19,17 +19,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre') ?>
 
-    <?= $form->field($model, 'Preservacion') ?>
+    <?= $form->field($model, 'preservacion') ?>
 
-    <?= $form->field($model, 'Siglas') ?>
+    <?= $form->field($model, 'siglas') ?>
 
-    <?= $form->field($model, 'Laboratorio') ?>
+    <?= $form->field($model, 'laboratorio') ?>
 
-    <?php // echo $form->field($model, 'Opacidad') ?>
+    <?php // echo $form->field($model, 'opacidad') ?>
 
-    <?php // echo $form->field($model, 'Metodo') ?>
+    <?php // echo $form->field($model, 'metodo') ?>
 
-    <?php // echo $form->field($model, 'Tipo') ?>
+    <?php // echo $form->field($model, 'tipo') ?>
 
     <?php // echo $form->field($model, 'Equipos_id') ?>
 

@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "decreto".
  *
  * @property integer $id
- * @property string $Nombre
- * @property string $Gaceta
- * @property string $Fecha
+ * @property string $nombre
+ * @property string $gaceta
+ * @property string $fecha
  *
  * @property DecretoHasTipo[] $decretoHasTipos
  * @property Tipo[] $tipos
@@ -35,9 +35,9 @@ class Decreto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Fecha'], 'safe'],
-            [['Nombre'], 'string', 'max' => 90],
-            [['Gaceta'], 'string', 'max' => 6]
+            [['fecha'], 'safe'],
+            [['nombre'], 'string', 'max' => 90],
+            [['gaceta'], 'string', 'max' => 6]
         ];
     }
 
@@ -48,9 +48,9 @@ class Decreto extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
-            'Gaceta' => Yii::t('models', 'Gaceta'),
-            'Fecha' => Yii::t('models', 'Fecha'),
+            'nombre' => Yii::t('models', 'Nombre'),
+            'gaceta' => Yii::t('models', 'Gaceta'),
+            'fecha' => Yii::t('models', 'Fecha'),
         ];
     }
 
@@ -100,5 +100,14 @@ class Decreto extends \yii\db\ActiveRecord
     public function getLimites()
     {
         return $this->hasMany(Limites::className(), ['Decreto_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\DecretoQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\DecretoQuery(get_called_class());
     }
 }

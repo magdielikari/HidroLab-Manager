@@ -19,7 +19,7 @@ class CaracterizacionSearch extends Caracterizacion
     {
         return [
             [['id', 'Equipos_id'], 'integer'],
-            [['nombre', 'Preservacion', 'Siglas', 'Laboratorio', 'Opacidad', 'Metodo', 'Tipo'], 'safe'],
+            [['nombre', 'preservacion', 'siglas', 'laboratorio', 'opacidad', 'metodo', 'tipo'], 'safe'],
         ];
     }
 
@@ -61,12 +61,12 @@ class CaracterizacionSearch extends Caracterizacion
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'Preservacion', $this->Preservacion])
-            ->andFilterWhere(['like', 'Siglas', $this->Siglas])
-            ->andFilterWhere(['like', 'Laboratorio', $this->Laboratorio])
-            ->andFilterWhere(['like', 'Opacidad', $this->Opacidad])
-            ->andFilterWhere(['like', 'Metodo', $this->Metodo])
-            ->andFilterWhere(['like', 'Tipo', $this->Tipo]);
+            ->andFilterWhere(['like', 'preservacion', $this->preservacion])
+            ->andFilterWhere(['like', 'siglas', $this->siglas])
+            ->andFilterWhere(['like', 'laboratorio', $this->laboratorio])
+            ->andFilterWhere(['like', 'opacidad', $this->opacidad])
+            ->andFilterWhere(['like', 'metodo', $this->metodo])
+            ->andFilterWhere(['like', 'tipo', $this->tipo]);
 
         return $dataProvider;
     }

@@ -12,21 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Direccion')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'direccion')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'Email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'encargado')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'NRif')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nRif')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'CRif')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cRif')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Siglas')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'siglas')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Contador')->textInput() ?>
+    <?= $form->field($model, 'contador')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('models', 'Create') : Yii::t('models', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

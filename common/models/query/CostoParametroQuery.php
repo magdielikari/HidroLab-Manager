@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\CostoParametro]].
+ * This is the ActiveQuery class for [[\common\models\Costoparametro]].
  *
- * @see \common\models\CostoParametro
+ * @see \common\models\Costoparametro
  */
-class CostoParametroQuery extends \yii\db\ActiveQuery
+class CostoparametroQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CostoParametroQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoParametro[]|array
+     * @return \common\models\Costoparametro[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CostoParametroQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoParametro|array|null
+     * @return \common\models\Costoparametro|array|null
      */
     public function one($db = null)
     {

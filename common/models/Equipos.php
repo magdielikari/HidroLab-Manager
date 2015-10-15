@@ -8,12 +8,12 @@ use Yii;
  * This is the model class for table "equipos".
  *
  * @property integer $id
- * @property string $Nombre
- * @property string $Serial
- * @property string $Modelo
- * @property string $Estado
- * @property string $Propietario
- * @property string $Equiposcol
+ * @property string $nombre
+ * @property string $serial
+ * @property string $modelo
+ * @property string $estado
+ * @property string $propietario
+ * @property string $equiposcol
  *
  * @property Caracterizacion[] $caracterizacions
  * @property CaracterizacionHasEquipos[] $caracterizacionHasEquipos
@@ -37,7 +37,7 @@ class Equipos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nombre', 'Serial', 'Modelo', 'Estado', 'Propietario', 'Equiposcol'], 'string', 'max' => 45]
+            [['nombre', 'serial', 'modelo', 'estado', 'propietario', 'equiposcol'], 'string', 'max' => 45]
         ];
     }
 
@@ -48,12 +48,12 @@ class Equipos extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
-            'Serial' => Yii::t('models', 'Serial'),
-            'Modelo' => Yii::t('models', 'Modelo'),
-            'Estado' => Yii::t('models', 'Estado'),
-            'Propietario' => Yii::t('models', 'Propietario'),
-            'Equiposcol' => Yii::t('models', 'Equiposcol'),
+            'nombre' => Yii::t('models', 'Nombre'),
+            'serial' => Yii::t('models', 'Serial'),
+            'modelo' => Yii::t('models', 'Modelo'),
+            'estado' => Yii::t('models', 'Estado'),
+            'propietario' => Yii::t('models', 'Propietario'),
+            'equiposcol' => Yii::t('models', 'Equiposcol'),
         ];
     }
 
@@ -95,5 +95,14 @@ class Equipos extends \yii\db\ActiveRecord
     public function getGenerals()
     {
         return $this->hasMany(General::className(), ['id' => 'General_id'])->viaTable('equipos_has_general', ['Equipos_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\EquiposQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\EquiposQuery(get_called_class());
     }
 }

@@ -74,4 +74,13 @@ class Plantilla extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Reporte::className(), ['Plantilla_id' => 'id']);
     }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\PlantillaQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\PlantillaQuery(get_called_class());
+    }
 }

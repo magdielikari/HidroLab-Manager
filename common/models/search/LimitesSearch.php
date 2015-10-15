@@ -19,8 +19,8 @@ class LimitesSearch extends Limites
     {
         return [
             [['id', 'Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'integer'],
-            [['liminf', 'Limsup'], 'number'],
-            [['Existente'], 'safe'],
+            [['liminf', 'limsup'], 'number'],
+            [['existente'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class LimitesSearch extends Limites
         $query->andFilterWhere([
             'id' => $this->id,
             'liminf' => $this->liminf,
-            'Limsup' => $this->Limsup,
+            'limsup' => $this->limsup,
             'Departamento_id' => $this->Departamento_id,
             'Decreto_id' => $this->Decreto_id,
             'Tipo_id' => $this->Tipo_id,
@@ -68,7 +68,7 @@ class LimitesSearch extends Limites
             'Rama_id' => $this->Rama_id,
         ]);
 
-        $query->andFilterWhere(['like', 'Existente', $this->Existente]);
+        $query->andFilterWhere(['like', 'existente', $this->existente]);
 
         return $dataProvider;
     }

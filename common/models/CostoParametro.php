@@ -5,22 +5,27 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "costoParametro".
+ * This is the model class for table "costoparametro".
  *
- * @property integer $id
+ * @property string $id
  * @property double $tMateriales
  * @property double $tEquipos
  * @property double $tMano
  * @property string $Parametros_id
+ *
+ * @property Parametros $parametros
+ * @property CostopredeterminadosHasCostoparametro[] $costopredeterminadosHasCostoparametros
+ * @property Costopredeterminados[] $costoPredeterminados
+ * @property Costos[] $costos
  */
-class CostoParametro extends \yii\db\ActiveRecord
+class Costoparametro extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'costoParametro';
+        return 'costoparametro';
     }
 
     /**
@@ -47,5 +52,46 @@ class CostoParametro extends \yii\db\ActiveRecord
             'tMano' => Yii::t('models', 'T Mano'),
             'Parametros_id' => Yii::t('models', 'Parametros ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParametros()
+    {
+        return $this->hasOne(Parametros::className(), ['id' => 'Parametros_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostopredeterminadosHasCostoparametros()
+    {
+        return $this->hasMany(CostopredeterminadosHasCostoparametro::className(), ['CostoParametro_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostoPredeterminados()
+    {
+        return $this->hasMany(Costopredeterminados::className(), ['id' => 'CostoPredeterminados_id'])->viaTable('costopredeterminados_has_costoparametro', ['CostoParametro_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostos()
+    {
+        return $this->hasMany(Costos::className(), ['CostoParametro_id' => 'id', 'CostoParametro_Parametros_id' => 'Parametros_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\CostoparametroQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\CostoparametroQuery(get_called_class());
     }
 }

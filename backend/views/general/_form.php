@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Copias')->textInput() ?>
+    <?= $form->field($model, 'copias')->textInput() ?>
 
-    <?= $form->field($model, 'Caudal')->dropDownList([ 'Aplica' => 'Aplica', 'No Aplica' => 'No Aplica', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'caudal')->dropDownList([ 'Aplica' => 'Aplica', 'No Aplica' => 'No Aplica', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'Analisis')->dropDownList([ 'Analisis y Muestreo' => 'Analisis y Muestreo', 'Analisis' => 'Analisis', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'analisis')->dropDownList([ 'Analisis y Muestreo' => 'Analisis y Muestreo', 'Analisis' => 'Analisis', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'Departamento_id')->textInput() ?>
 

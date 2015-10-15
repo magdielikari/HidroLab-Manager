@@ -9,12 +9,12 @@ use Yii;
  *
  * @property integer $id
  * @property string $nombre
- * @property string $Preservacion
- * @property string $Siglas
- * @property string $Laboratorio
- * @property string $Opacidad
- * @property string $Metodo
- * @property string $Tipo
+ * @property string $preservacion
+ * @property string $siglas
+ * @property string $laboratorio
+ * @property string $opacidad
+ * @property string $metodo
+ * @property string $tipo
  * @property integer $Equipos_id
  *
  * @property Equipos $equipos
@@ -42,11 +42,11 @@ class Caracterizacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Preservacion', 'Laboratorio', 'Opacidad', 'Tipo'], 'string'],
+            [['preservacion', 'laboratorio', 'opacidad', 'tipo'], 'string'],
             [['Equipos_id'], 'required'],
             [['Equipos_id'], 'integer'],
             [['nombre'], 'string', 'max' => 45],
-            [['Siglas', 'Metodo'], 'string', 'max' => 15]
+            [['siglas', 'metodo'], 'string', 'max' => 15]
         ];
     }
 
@@ -58,12 +58,12 @@ class Caracterizacion extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'nombre' => Yii::t('models', 'Nombre'),
-            'Preservacion' => Yii::t('models', 'Preservacion'),
-            'Siglas' => Yii::t('models', 'Siglas'),
-            'Laboratorio' => Yii::t('models', 'Laboratorio'),
-            'Opacidad' => Yii::t('models', 'Opacidad'),
-            'Metodo' => Yii::t('models', 'Metodo'),
-            'Tipo' => Yii::t('models', 'Tipo'),
+            'preservacion' => Yii::t('models', 'Preservacion'),
+            'siglas' => Yii::t('models', 'Siglas'),
+            'laboratorio' => Yii::t('models', 'Laboratorio'),
+            'opacidad' => Yii::t('models', 'Opacidad'),
+            'metodo' => Yii::t('models', 'Metodo'),
+            'tipo' => Yii::t('models', 'Tipo'),
             'Equipos_id' => Yii::t('models', 'Equipos ID'),
         ];
     }
@@ -130,5 +130,14 @@ class Caracterizacion extends \yii\db\ActiveRecord
     public function getRamas()
     {
         return $this->hasMany(Rama::className(), ['id' => 'Rama_id'])->viaTable('rama_has_caracterizacion', ['Caracterizacion_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\CaracterizacionQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\CaracterizacionQuery(get_called_class());
     }
 }

@@ -19,7 +19,7 @@ class PuestoSearch extends Puesto
     {
         return [
             [['id'], 'integer'],
-            [['Nombre'], 'safe'],
+            [['nombre'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class PuestoSearch extends Puesto
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

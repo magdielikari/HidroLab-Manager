@@ -89,4 +89,13 @@ class Parametros extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Muestras::className(), ['id' => 'Muestras_id'])->viaTable('parametros_has_muestras', ['Parametros_id' => 'id']);
     }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\ParametrosQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\ParametrosQuery(get_called_class());
+    }
 }

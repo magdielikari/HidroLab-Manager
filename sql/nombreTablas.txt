@@ -1,6 +1,7 @@
 user
 migration
 track
+
 diaLaborables
 referencia
 ordenCompra
@@ -25,3 +26,7 @@ caracterizacion
 reporte
 general
 clientes
+celular
+departamentohasdecreto
+decretohastipo
+tipohassubtipo

@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\CostoPredeterminados]].
+ * This is the ActiveQuery class for [[\common\models\Costopredeterminados]].
  *
- * @see \common\models\CostoPredeterminados
+ * @see \common\models\Costopredeterminados
  */
-class CostoPredeterminadosQuery extends \yii\db\ActiveQuery
+class CostopredeterminadosQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CostoPredeterminadosQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoPredeterminados[]|array
+     * @return \common\models\Costopredeterminados[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CostoPredeterminadosQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoPredeterminados|array|null
+     * @return \common\models\Costopredeterminados|array|null
      */
     public function one($db = null)
     {

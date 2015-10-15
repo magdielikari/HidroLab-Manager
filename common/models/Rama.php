@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "rama".
  *
  * @property string $id
- * @property string $Nombre
+ * @property string $nombre
  *
  * @property Limites[] $limites
  * @property RamaHasCaracterizacion[] $ramaHasCaracterizacions
@@ -32,7 +32,7 @@ class Rama extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nombre'], 'string', 'max' => 45]
+            [['nombre'], 'string', 'max' => 45]
         ];
     }
 
@@ -43,7 +43,7 @@ class Rama extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
+            'nombre' => Yii::t('models', 'Nombre'),
         ];
     }
 
@@ -85,5 +85,14 @@ class Rama extends \yii\db\ActiveRecord
     public function getGenerals()
     {
         return $this->hasMany(General::className(), ['id' => 'General_id'])->viaTable('rama_has_general', ['Rama_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\RamaQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\RamaQuery(get_called_class());
     }
 }

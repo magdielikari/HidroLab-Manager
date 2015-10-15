@@ -19,9 +19,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'liminf') ?>
 
-    <?= $form->field($model, 'Limsup') ?>
+    <?= $form->field($model, 'limsup') ?>
 
-    <?= $form->field($model, 'Existente') ?>
+    <?= $form->field($model, 'existente') ?>
 
     <?= $form->field($model, 'Departamento_id') ?>
 

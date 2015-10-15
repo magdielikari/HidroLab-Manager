@@ -49,7 +49,7 @@ class Referencia extends \yii\db\ActiveRecord
      */
     public function getDialaborables()
     {
-        return $this->hasMany(Dialaborables::className(), ['referencia_id' => 'id']);
+        return $this->hasMany(Dialaborables::className(), ['Referencia_id' => 'id']);
     }
 
     /**
@@ -57,6 +57,15 @@ class Referencia extends \yii\db\ActiveRecord
      */
     public function getPeticions()
     {
-        return $this->hasMany(Peticion::className(), ['referencia_id' => 'id']);
+        return $this->hasMany(Peticion::className(), ['Referencia_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\ReferenciaQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\ReferenciaQuery(get_called_class());
     }
 }

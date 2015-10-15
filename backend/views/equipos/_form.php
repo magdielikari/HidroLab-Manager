@@ -12,17 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Serial')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'serial')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Modelo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'modelo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Estado')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Propietario')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'propietario')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Equiposcol')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'equiposcol')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('models', 'Create') : Yii::t('models', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

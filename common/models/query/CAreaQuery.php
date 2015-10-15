@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\CArea]].
+ * This is the ActiveQuery class for [[\common\models\Carea]].
  *
- * @see \common\models\CArea
+ * @see \common\models\Carea
  */
-class CAreaQuery extends \yii\db\ActiveQuery
+class CareaQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CAreaQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CArea[]|array
+     * @return \common\models\Carea[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CAreaQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CArea|array|null
+     * @return \common\models\Carea|array|null
      */
     public function one($db = null)
     {

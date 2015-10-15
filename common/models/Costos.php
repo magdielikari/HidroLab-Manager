@@ -15,9 +15,9 @@ use Yii;
  * @property double $utilidad
  * @property integer $rendimiento
  * @property string $General_id
- * @property integer $CostoParametro_id
+ * @property string $CostoParametro_id
  * @property string $CostoParametro_Parametros_id
- * @property string $costoMuestra_id
+ * @property string $CostoMuestra_id
  *
  * @property General $general
  * @property Costoparametro $costoParametro
@@ -41,8 +41,8 @@ class Costos extends \yii\db\ActiveRecord
     {
         return [
             [['cAnalisis', 'cMuestreo', 'cInforme', 'cAdministrativo', 'utilidad'], 'number'],
-            [['rendimiento', 'General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'costoMuestra_id'], 'integer'],
-            [['General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'costoMuestra_id'], 'required']
+            [['rendimiento', 'General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'CostoMuestra_id'], 'integer'],
+            [['General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'CostoMuestra_id'], 'required']
         ];
     }
 
@@ -62,7 +62,7 @@ class Costos extends \yii\db\ActiveRecord
             'General_id' => Yii::t('models', 'General ID'),
             'CostoParametro_id' => Yii::t('models', 'Costo Parametro ID'),
             'CostoParametro_Parametros_id' => Yii::t('models', 'Costo Parametro  Parametros ID'),
-            'costoMuestra_id' => Yii::t('models', 'Costo Muestra ID'),
+            'CostoMuestra_id' => Yii::t('models', 'Costo Muestra ID'),
         ];
     }
 
@@ -87,7 +87,7 @@ class Costos extends \yii\db\ActiveRecord
      */
     public function getCostoMuestra()
     {
-        return $this->hasOne(Costomuestra::className(), ['id' => 'costoMuestra_id']);
+        return $this->hasOne(Costomuestra::className(), ['id' => 'CostoMuestra_id']);
     }
 
     /**
@@ -95,6 +95,15 @@ class Costos extends \yii\db\ActiveRecord
      */
     public function getPeticions()
     {
-        return $this->hasMany(Peticion::className(), ['costos_id' => 'id', 'costos_General_id' => 'General_id', 'costos_CostoParametro_id' => 'CostoParametro_id', 'costos_CostoParametro_Parametros_id' => 'CostoParametro_Parametros_id', 'costos_costoMuestra_id' => 'costoMuestra_id']);
+        return $this->hasMany(Peticion::className(), ['Costos_id' => 'id', 'Costos_General_id' => 'General_id', 'Costos_CostoParametro_id' => 'CostoParametro_id', 'Costos_CostoParametro_Parametros_id' => 'CostoParametro_Parametros_id', 'Costos_CostoMuestra_id' => 'CostoMuestra_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\CostosQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\CostosQuery(get_called_class());
     }
 }

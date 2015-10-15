@@ -12,7 +12,7 @@ use Yii;
  * @property string $ubicacion
  * @property string $observaciones
  * @property string $estado
- * @property string $peticion_id
+ * @property string $Peticion_id
  *
  * @property Peticion $peticion
  */
@@ -33,8 +33,8 @@ class Ordencompra extends \yii\db\ActiveRecord
     {
         return [
             [['observaciones', 'estado'], 'string'],
-            [['peticion_id'], 'required'],
-            [['peticion_id'], 'integer'],
+            [['Peticion_id'], 'required'],
+            [['Peticion_id'], 'integer'],
             [['nOrden'], 'string', 'max' => 45],
             [['ubicacion'], 'string', 'max' => 150]
         ];
@@ -51,7 +51,7 @@ class Ordencompra extends \yii\db\ActiveRecord
             'ubicacion' => Yii::t('models', 'Ubicacion'),
             'observaciones' => Yii::t('models', 'Observaciones'),
             'estado' => Yii::t('models', 'Estado'),
-            'peticion_id' => Yii::t('models', 'Peticion ID'),
+            'Peticion_id' => Yii::t('models', 'Peticion ID'),
         ];
     }
 
@@ -60,6 +60,15 @@ class Ordencompra extends \yii\db\ActiveRecord
      */
     public function getPeticion()
     {
-        return $this->hasOne(Peticion::className(), ['id' => 'peticion_id']);
+        return $this->hasOne(Peticion::className(), ['id' => 'Peticion_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\OrdencompraQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\OrdencompraQuery(get_called_class());
     }
 }

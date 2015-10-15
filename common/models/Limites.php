@@ -9,8 +9,8 @@ use Yii;
  *
  * @property string $id
  * @property double $liminf
- * @property double $Limsup
- * @property string $Existente
+ * @property double $limsup
+ * @property string $existente
  * @property integer $Departamento_id
  * @property integer $Decreto_id
  * @property integer $Tipo_id
@@ -42,8 +42,8 @@ class Limites extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['liminf', 'Limsup'], 'number'],
-            [['Existente'], 'string'],
+            [['liminf', 'limsup'], 'number'],
+            [['existente'], 'string'],
             [['Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'required'],
             [['Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'integer']
         ];
@@ -57,8 +57,8 @@ class Limites extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'liminf' => Yii::t('models', 'Liminf'),
-            'Limsup' => Yii::t('models', 'Limsup'),
-            'Existente' => Yii::t('models', 'Existente'),
+            'limsup' => Yii::t('models', 'Limsup'),
+            'existente' => Yii::t('models', 'Existente'),
             'Departamento_id' => Yii::t('models', 'Departamento ID'),
             'Decreto_id' => Yii::t('models', 'Decreto ID'),
             'Tipo_id' => Yii::t('models', 'Tipo ID'),
@@ -122,5 +122,14 @@ class Limites extends \yii\db\ActiveRecord
     public function getParametros()
     {
         return $this->hasMany(Parametros::className(), ['Limites_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\LimitesQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\LimitesQuery(get_called_class());
     }
 }

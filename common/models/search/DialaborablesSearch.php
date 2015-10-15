@@ -18,7 +18,7 @@ class DialaborablesSearch extends Dialaborables
     public function rules()
     {
         return [
-            [['id', 'referencia_id'], 'integer'],
+            [['id', 'Referencia_id'], 'integer'],
             [['dias'], 'safe'],
         ];
     }
@@ -58,7 +58,7 @@ class DialaborablesSearch extends Dialaborables
         $query->andFilterWhere([
             'id' => $this->id,
             'dias' => $this->dias,
-            'referencia_id' => $this->referencia_id,
+            'Referencia_id' => $this->Referencia_id,
         ]);
 
         return $dataProvider;

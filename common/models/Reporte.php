@@ -62,4 +62,13 @@ class Reporte extends \yii\db\ActiveRecord
     {
         return $this->hasOne(General::className(), ['id' => 'General_id']);
     }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\ReporteQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\ReporteQuery(get_called_class());
+    }
 }

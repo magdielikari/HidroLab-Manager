@@ -44,13 +44,13 @@ class CAreaController extends Controller
     /**
      * Displays a single CArea model.
      * @param integer $id
-     * @param string $celular_id
+     * @param string $Celular_id
      * @return mixed
      */
-    public function actionView($id, $celular_id)
+    public function actionView($id, $Celular_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $celular_id),
+            'model' => $this->findModel($id, $Celular_id),
         ]);
     }
 
@@ -64,7 +64,7 @@ class CAreaController extends Controller
         $model = new CArea();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'celular_id' => $model->celular_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'Celular_id' => $model->Celular_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,15 +76,15 @@ class CAreaController extends Controller
      * Updates an existing CArea model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @param string $celular_id
+     * @param string $Celular_id
      * @return mixed
      */
-    public function actionUpdate($id, $celular_id)
+    public function actionUpdate($id, $Celular_id)
     {
-        $model = $this->findModel($id, $celular_id);
+        $model = $this->findModel($id, $Celular_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'celular_id' => $model->celular_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'Celular_id' => $model->Celular_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -96,12 +96,12 @@ class CAreaController extends Controller
      * Deletes an existing CArea model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @param string $celular_id
+     * @param string $Celular_id
      * @return mixed
      */
-    public function actionDelete($id, $celular_id)
+    public function actionDelete($id, $Celular_id)
     {
-        $this->findModel($id, $celular_id)->delete();
+        $this->findModel($id, $Celular_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -110,13 +110,13 @@ class CAreaController extends Controller
      * Finds the CArea model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @param string $celular_id
+     * @param string $Celular_id
      * @return CArea the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $celular_id)
+    protected function findModel($id, $Celular_id)
     {
-        if (($model = CArea::findOne(['id' => $id, 'celular_id' => $celular_id])) !== null) {
+        if (($model = CArea::findOne(['id' => $id, 'Celular_id' => $Celular_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

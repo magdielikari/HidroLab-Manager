@@ -19,7 +19,7 @@ class EquiposSearch extends Equipos
     {
         return [
             [['id'], 'integer'],
-            [['Nombre', 'Serial', 'Modelo', 'Estado', 'Propietario', 'Equiposcol'], 'safe'],
+            [['nombre', 'serial', 'modelo', 'estado', 'propietario', 'equiposcol'], 'safe'],
         ];
     }
 
@@ -59,12 +59,12 @@ class EquiposSearch extends Equipos
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Serial', $this->Serial])
-            ->andFilterWhere(['like', 'Modelo', $this->Modelo])
-            ->andFilterWhere(['like', 'Estado', $this->Estado])
-            ->andFilterWhere(['like', 'Propietario', $this->Propietario])
-            ->andFilterWhere(['like', 'Equiposcol', $this->Equiposcol]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'serial', $this->serial])
+            ->andFilterWhere(['like', 'modelo', $this->modelo])
+            ->andFilterWhere(['like', 'estado', $this->estado])
+            ->andFilterWhere(['like', 'propietario', $this->propietario])
+            ->andFilterWhere(['like', 'equiposcol', $this->equiposcol]);
 
         return $dataProvider;
     }

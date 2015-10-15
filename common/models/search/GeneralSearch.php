@@ -18,8 +18,8 @@ class GeneralSearch extends General
     public function rules()
     {
         return [
-            [['id', 'Copias', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
-            [['Caudal', 'Analisis'], 'safe'],
+            [['id', 'copias', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
+            [['caudal', 'analisis'], 'safe'],
         ];
     }
 
@@ -57,15 +57,15 @@ class GeneralSearch extends General
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'Copias' => $this->Copias,
+            'copias' => $this->copias,
             'Departamento_id' => $this->Departamento_id,
             'Decreto_id' => $this->Decreto_id,
             'Clientes_id' => $this->Clientes_id,
             'Vendedor_id' => $this->Vendedor_id,
         ]);
 
-        $query->andFilterWhere(['like', 'Caudal', $this->Caudal])
-            ->andFilterWhere(['like', 'Analisis', $this->Analisis]);
+        $query->andFilterWhere(['like', 'caudal', $this->caudal])
+            ->andFilterWhere(['like', 'analisis', $this->analisis]);
 
         return $dataProvider;
     }

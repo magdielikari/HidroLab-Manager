@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "general".
  *
  * @property string $id
- * @property integer $Copias
- * @property string $Caudal
- * @property string $Analisis
+ * @property integer $copias
+ * @property string $caudal
+ * @property string $analisis
  * @property integer $Departamento_id
  * @property integer $Decreto_id
  * @property string $Clientes_id
@@ -48,8 +48,8 @@ class General extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Copias', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
-            [['Caudal', 'Analisis'], 'string'],
+            [['copias', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
+            [['caudal', 'analisis'], 'string'],
             [['Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'required']
         ];
     }
@@ -61,9 +61,9 @@ class General extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Copias' => Yii::t('models', 'Copias'),
-            'Caudal' => Yii::t('models', 'Caudal'),
-            'Analisis' => Yii::t('models', 'Analisis'),
+            'copias' => Yii::t('models', 'Copias'),
+            'caudal' => Yii::t('models', 'Caudal'),
+            'analisis' => Yii::t('models', 'Analisis'),
             'Departamento_id' => Yii::t('models', 'Departamento ID'),
             'Decreto_id' => Yii::t('models', 'Decreto ID'),
             'Clientes_id' => Yii::t('models', 'Clientes ID'),
@@ -189,5 +189,14 @@ class General extends \yii\db\ActiveRecord
     public function getReportes()
     {
         return $this->hasMany(Reporte::className(), ['General_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\GeneralQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\GeneralQuery(get_called_class());
     }
 }

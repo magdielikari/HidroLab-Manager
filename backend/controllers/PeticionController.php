@@ -44,19 +44,20 @@ class PeticionController extends Controller
     /**
      * Displays a single Peticion model.
      * @param string $id
-     * @param string $costos_id
-     * @param string $costos_General_id
-     * @param integer $costos_CostoParametro_id
-     * @param string $costos_CostoParametro_Parametros_id
-     * @param string $costos_costoMuestra_id
+     * @param string $Referencia_id
+     * @param string $Costos_id
+     * @param string $Costos_General_id
+     * @param string $Costos_CostoParametro_id
+     * @param string $Costos_CostoParametro_Parametros_id
+     * @param string $Costos_CostoMuestra_id
      * @param string $General_id
      * @param string $Muestras_id
      * @return mixed
      */
-    public function actionView($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id)
+    public function actionView($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id),
+            'model' => $this->findModel($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id),
         ]);
     }
 
@@ -70,7 +71,7 @@ class PeticionController extends Controller
         $model = new Peticion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'costos_id' => $model->costos_id, 'costos_General_id' => $model->costos_General_id, 'costos_CostoParametro_id' => $model->costos_CostoParametro_id, 'costos_CostoParametro_Parametros_id' => $model->costos_CostoParametro_Parametros_id, 'costos_costoMuestra_id' => $model->costos_costoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'Referencia_id' => $model->Referencia_id, 'Costos_id' => $model->Costos_id, 'Costos_General_id' => $model->Costos_General_id, 'Costos_CostoParametro_id' => $model->Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $model->Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $model->Costos_CostoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,21 +83,22 @@ class PeticionController extends Controller
      * Updates an existing Peticion model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
-     * @param string $costos_id
-     * @param string $costos_General_id
-     * @param integer $costos_CostoParametro_id
-     * @param string $costos_CostoParametro_Parametros_id
-     * @param string $costos_costoMuestra_id
+     * @param string $Referencia_id
+     * @param string $Costos_id
+     * @param string $Costos_General_id
+     * @param string $Costos_CostoParametro_id
+     * @param string $Costos_CostoParametro_Parametros_id
+     * @param string $Costos_CostoMuestra_id
      * @param string $General_id
      * @param string $Muestras_id
      * @return mixed
      */
-    public function actionUpdate($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id)
+    public function actionUpdate($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id)
     {
-        $model = $this->findModel($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id);
+        $model = $this->findModel($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'costos_id' => $model->costos_id, 'costos_General_id' => $model->costos_General_id, 'costos_CostoParametro_id' => $model->costos_CostoParametro_id, 'costos_CostoParametro_Parametros_id' => $model->costos_CostoParametro_Parametros_id, 'costos_costoMuestra_id' => $model->costos_costoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'Referencia_id' => $model->Referencia_id, 'Costos_id' => $model->Costos_id, 'Costos_General_id' => $model->Costos_General_id, 'Costos_CostoParametro_id' => $model->Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $model->Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $model->Costos_CostoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -108,18 +110,19 @@ class PeticionController extends Controller
      * Deletes an existing Peticion model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
-     * @param string $costos_id
-     * @param string $costos_General_id
-     * @param integer $costos_CostoParametro_id
-     * @param string $costos_CostoParametro_Parametros_id
-     * @param string $costos_costoMuestra_id
+     * @param string $Referencia_id
+     * @param string $Costos_id
+     * @param string $Costos_General_id
+     * @param string $Costos_CostoParametro_id
+     * @param string $Costos_CostoParametro_Parametros_id
+     * @param string $Costos_CostoMuestra_id
      * @param string $General_id
      * @param string $Muestras_id
      * @return mixed
      */
-    public function actionDelete($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id)
+    public function actionDelete($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id)
     {
-        $this->findModel($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id)->delete();
+        $this->findModel($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -128,19 +131,20 @@ class PeticionController extends Controller
      * Finds the Peticion model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @param string $costos_id
-     * @param string $costos_General_id
-     * @param integer $costos_CostoParametro_id
-     * @param string $costos_CostoParametro_Parametros_id
-     * @param string $costos_costoMuestra_id
+     * @param string $Referencia_id
+     * @param string $Costos_id
+     * @param string $Costos_General_id
+     * @param string $Costos_CostoParametro_id
+     * @param string $Costos_CostoParametro_Parametros_id
+     * @param string $Costos_CostoMuestra_id
      * @param string $General_id
      * @param string $Muestras_id
      * @return Peticion the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $costos_id, $costos_General_id, $costos_CostoParametro_id, $costos_CostoParametro_Parametros_id, $costos_costoMuestra_id, $General_id, $Muestras_id)
+    protected function findModel($id, $Referencia_id, $Costos_id, $Costos_General_id, $Costos_CostoParametro_id, $Costos_CostoParametro_Parametros_id, $Costos_CostoMuestra_id, $General_id, $Muestras_id)
     {
-        if (($model = Peticion::findOne(['id' => $id, 'costos_id' => $costos_id, 'costos_General_id' => $costos_General_id, 'costos_CostoParametro_id' => $costos_CostoParametro_id, 'costos_CostoParametro_Parametros_id' => $costos_CostoParametro_Parametros_id, 'costos_costoMuestra_id' => $costos_costoMuestra_id, 'General_id' => $General_id, 'Muestras_id' => $Muestras_id])) !== null) {
+        if (($model = Peticion::findOne(['id' => $id, 'Referencia_id' => $Referencia_id, 'Costos_id' => $Costos_id, 'Costos_General_id' => $Costos_General_id, 'Costos_CostoParametro_id' => $Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $Costos_CostoMuestra_id, 'General_id' => $General_id, 'Muestras_id' => $Muestras_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

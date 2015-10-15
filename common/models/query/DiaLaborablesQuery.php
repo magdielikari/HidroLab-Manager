@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\DiaLaborables]].
+ * This is the ActiveQuery class for [[\common\models\Dialaborables]].
  *
- * @see \common\models\DiaLaborables
+ * @see \common\models\Dialaborables
  */
-class DiaLaborablesQuery extends \yii\db\ActiveQuery
+class DialaborablesQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class DiaLaborablesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\DiaLaborables[]|array
+     * @return \common\models\Dialaborables[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class DiaLaborablesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\DiaLaborables|array|null
+     * @return \common\models\Dialaborables|array|null
      */
     public function one($db = null)
     {

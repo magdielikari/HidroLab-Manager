@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'liminf',
-            'Limsup',
-            'Existente',
+            'limsup',
+            'existente',
             'Departamento_id',
             // 'Decreto_id',
             // 'Tipo_id',

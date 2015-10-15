@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $id
  * @property string $dias
- * @property string $referencia_id
+ * @property string $Referencia_id
  *
  * @property Referencia $referencia
  */
@@ -30,8 +30,8 @@ class Dialaborables extends \yii\db\ActiveRecord
     {
         return [
             [['dias'], 'safe'],
-            [['referencia_id'], 'required'],
-            [['referencia_id'], 'integer']
+            [['Referencia_id'], 'required'],
+            [['Referencia_id'], 'integer']
         ];
     }
 
@@ -43,7 +43,7 @@ class Dialaborables extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'dias' => Yii::t('models', 'Dias'),
-            'referencia_id' => Yii::t('models', 'Referencia ID'),
+            'Referencia_id' => Yii::t('models', 'Referencia ID'),
         ];
     }
 
@@ -52,6 +52,15 @@ class Dialaborables extends \yii\db\ActiveRecord
      */
     public function getReferencia()
     {
-        return $this->hasOne(Referencia::className(), ['id' => 'referencia_id']);
+        return $this->hasOne(Referencia::className(), ['id' => 'Referencia_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\DialaborablesQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\DialaborablesQuery(get_called_class());
     }
 }

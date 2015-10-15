@@ -8,14 +8,14 @@ use Yii;
  * This is the model class for table "clientes".
  *
  * @property string $id
- * @property string $Nombre
- * @property string $Direccion
- * @property string $Email
- * @property string $Encargado
- * @property string $NRif
- * @property string $CRif
- * @property string $Siglas
- * @property integer $Contador
+ * @property string $nombre
+ * @property string $direccion
+ * @property string $email
+ * @property string $encargado
+ * @property string $nRif
+ * @property string $cRif
+ * @property string $siglas
+ * @property integer $contador
  *
  * @property Celular[] $celulars
  * @property General[] $generals
@@ -36,13 +36,13 @@ class Clientes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Direccion'], 'string'],
-            [['Contador'], 'integer'],
-            [['Nombre', 'Email'], 'string', 'max' => 90],
-            [['Encargado'], 'string', 'max' => 45],
-            [['NRif'], 'string', 'max' => 10],
-            [['CRif'], 'string', 'max' => 1],
-            [['Siglas'], 'string', 'max' => 4]
+            [['direccion'], 'string'],
+            [['contador'], 'integer'],
+            [['nombre', 'email'], 'string', 'max' => 90],
+            [['encargado'], 'string', 'max' => 45],
+            [['nRif'], 'string', 'max' => 10],
+            [['cRif'], 'string', 'max' => 1],
+            [['siglas'], 'string', 'max' => 4]
         ];
     }
 
@@ -53,14 +53,14 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
-            'Direccion' => Yii::t('models', 'Direccion'),
-            'Email' => Yii::t('models', 'Email'),
-            'Encargado' => Yii::t('models', 'Encargado'),
-            'NRif' => Yii::t('models', 'Nrif'),
-            'CRif' => Yii::t('models', 'Crif'),
-            'Siglas' => Yii::t('models', 'Siglas'),
-            'Contador' => Yii::t('models', 'Contador'),
+            'nombre' => Yii::t('models', 'Nombre'),
+            'direccion' => Yii::t('models', 'Direccion'),
+            'email' => Yii::t('models', 'Email'),
+            'encargado' => Yii::t('models', 'Encargado'),
+            'nRif' => Yii::t('models', 'N Rif'),
+            'cRif' => Yii::t('models', 'C Rif'),
+            'siglas' => Yii::t('models', 'Siglas'),
+            'contador' => Yii::t('models', 'Contador'),
         ];
     }
 
@@ -78,5 +78,14 @@ class Clientes extends \yii\db\ActiveRecord
     public function getGenerals()
     {
         return $this->hasMany(General::className(), ['Clientes_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\ClientesQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\ClientesQuery(get_called_class());
     }
 }

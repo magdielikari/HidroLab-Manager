@@ -14,17 +14,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Preservacion')->dropDownList([ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'preservacion')->dropDownList([ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'Siglas')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'siglas')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Laboratorio')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'laboratorio')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'Opacidad')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'opacidad')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'Metodo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'metodo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Tipo')->dropDownList([ 'AceitesG' => 'AceitesG', 'Cianuro' => 'Cianuro', 'Cloruros' => 'Cloruros', 'Dbo' => 'Dbo', 'Detergente' => 'Detergente', 'Dqo' => 'Dqo', 'Fenol' => 'Fenol', 'Formaldehido' => 'Formaldehido', 'FosforoAA' => 'FosforoAA', 'FosforoAV' => 'FosforoAV', 'Nitratos' => 'Nitratos', 'Nitrito' => 'Nitrito', 'Nitrogeno' => 'Nitrogeno', 'NitrogenoA' => 'NitrogenoA', 'Solidos' => 'Solidos', 'Sulfatos' => 'Sulfatos', 'Sulfitos' => 'Sulfitos', 'Sulfuro' => 'Sulfuro', 'Fluoruro' => 'Fluoruro', 'NitrogenoT' => 'NitrogenoT', 'Ph' => 'Ph', 'SolidosD' => 'SolidosD', 'Conductividad' => 'Conductividad', 'Salinidad' => 'Salinidad', 'Color' => 'Color', 'Espuma' => 'Espuma', 'Turbidez' => 'Turbidez', 'Acidez' => 'Acidez', 'DurezaT' => 'DurezaT', 'Calcica' => 'Calcica', 'Magnesica' => 'Magnesica', 'Alcalinidad' => 'Alcalinidad', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'tipo')->dropDownList([ 'AceitesG' => 'AceitesG', 'Cianuro' => 'Cianuro', 'Cloruros' => 'Cloruros', 'Dbo' => 'Dbo', 'Detergente' => 'Detergente', 'Dqo' => 'Dqo', 'Fenol' => 'Fenol', 'Formaldehido' => 'Formaldehido', 'FosforoAA' => 'FosforoAA', 'FosforoAV' => 'FosforoAV', 'Nitratos' => 'Nitratos', 'Nitrito' => 'Nitrito', 'Nitrogeno' => 'Nitrogeno', 'NitrogenoA' => 'NitrogenoA', 'Solidos' => 'Solidos', 'Sulfatos' => 'Sulfatos', 'Sulfitos' => 'Sulfitos', 'Sulfuro' => 'Sulfuro', 'Fluoruro' => 'Fluoruro', 'NitrogenoT' => 'NitrogenoT', 'Ph' => 'Ph', 'SolidosD' => 'SolidosD', 'Conductividad' => 'Conductividad', 'Salinidad' => 'Salinidad', 'Color' => 'Color', 'Espuma' => 'Espuma', 'Turbidez' => 'Turbidez', 'Acidez' => 'Acidez', 'DurezaT' => 'DurezaT', 'Calcica' => 'Calcica', 'Magnesica' => 'Magnesica', 'Alcalinidad' => 'Alcalinidad', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'Equipos_id')->textInput() ?>
 

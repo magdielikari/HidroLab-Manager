@@ -18,7 +18,7 @@ class CAreaSearch extends CArea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'celular_id'], 'integer'],
+            [['id', 'nombre', 'Celular_id'], 'integer'],
         ];
     }
 
@@ -57,7 +57,7 @@ class CAreaSearch extends CArea
         $query->andFilterWhere([
             'id' => $this->id,
             'nombre' => $this->nombre,
-            'celular_id' => $this->celular_id,
+            'Celular_id' => $this->Celular_id,
         ]);
 
         return $dataProvider;

@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Parametros;
+use common\models\Plantilla;
 
 /**
- * ParametrosSearch represents the model behind the search form about `common\models\Parametros`.
+ * ParametrosSearch represents the model behind the search form about `common\models\Plantilla`.
  */
-class ParametrosSearch extends Parametros
+class ParametrosSearch extends Plantilla
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class ParametrosSearch extends Parametros
     public function rules()
     {
         return [
-            [['id', 'General_id', 'Limites_id'], 'integer'],
+            [['id', 'Vendedor_id', 'Departamento_id'], 'integer'],
+            [['reporte'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class ParametrosSearch extends Parametros
      */
     public function search($params)
     {
-        $query = Parametros::find();
+        $query = Plantilla::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,9 +57,11 @@ class ParametrosSearch extends Parametros
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'General_id' => $this->General_id,
-            'Limites_id' => $this->Limites_id,
+            'Vendedor_id' => $this->Vendedor_id,
+            'Departamento_id' => $this->Departamento_id,
         ]);
+
+        $query->andFilterWhere(['like', 'reporte', $this->reporte]);
 
         return $dataProvider;
     }

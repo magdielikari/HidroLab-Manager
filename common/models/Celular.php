@@ -55,7 +55,7 @@ class Celular extends \yii\db\ActiveRecord
      */
     public function getCareas()
     {
-        return $this->hasMany(Carea::className(), ['celular_id' => 'id']);
+        return $this->hasMany(Carea::className(), ['Celular_id' => 'id']);
     }
 
     /**
@@ -72,5 +72,14 @@ class Celular extends \yii\db\ActiveRecord
     public function getVendedor()
     {
         return $this->hasOne(Vendedor::className(), ['id' => 'Vendedor_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\CelularQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\CelularQuery(get_called_class());
     }
 }

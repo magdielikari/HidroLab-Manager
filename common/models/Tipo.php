@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "tipo".
  *
  * @property integer $id
- * @property string $Nombre
+ * @property string $nombre
  *
  * @property DecretoHasTipo[] $decretoHasTipos
  * @property Decreto[] $decretos
@@ -34,7 +34,7 @@ class Tipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nombre'], 'string', 'max' => 45]
+            [['nombre'], 'string', 'max' => 45]
         ];
     }
 
@@ -45,7 +45,7 @@ class Tipo extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
+            'nombre' => Yii::t('models', 'Nombre'),
         ];
     }
 
@@ -103,5 +103,14 @@ class Tipo extends \yii\db\ActiveRecord
     public function getSubTipos()
     {
         return $this->hasMany(Subtipo::className(), ['id' => 'SubTipo_id'])->viaTable('tipo_has_subtipo', ['Tipo_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\TipoQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\TipoQuery(get_called_class());
     }
 }

@@ -3,11 +3,11 @@
 namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\CostoMuestra]].
+ * This is the ActiveQuery class for [[\common\models\Costomuestra]].
  *
- * @see \common\models\CostoMuestra
+ * @see \common\models\Costomuestra
  */
-class CostoMuestraQuery extends \yii\db\ActiveQuery
+class CostomuestraQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CostoMuestraQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoMuestra[]|array
+     * @return \common\models\Costomuestra[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CostoMuestraQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\CostoMuestra|array|null
+     * @return \common\models\Costomuestra|array|null
      */
     public function one($db = null)
     {

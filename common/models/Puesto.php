@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "puesto".
  *
  * @property integer $id
- * @property string $Nombre
+ * @property string $nombre
  *
  * @property Vendedor[] $vendedors
  */
@@ -28,7 +28,7 @@ class Puesto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nombre'], 'string', 'max' => 45]
+            [['nombre'], 'string', 'max' => 45]
         ];
     }
 
@@ -39,7 +39,7 @@ class Puesto extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'Nombre' => Yii::t('models', 'Nombre'),
+            'nombre' => Yii::t('models', 'Nombre'),
         ];
     }
 
@@ -49,5 +49,14 @@ class Puesto extends \yii\db\ActiveRecord
     public function getVendedors()
     {
         return $this->hasMany(Vendedor::className(), ['Puesto_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\PuestoQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\PuestoQuery(get_called_class());
     }
 }

@@ -14,9 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'liminf')->textInput() ?>
 
-    <?= $form->field($model, 'Limsup')->textInput() ?>
+    <?= $form->field($model, 'limsup')->textInput() ?>
 
-    <?= $form->field($model, 'Existente')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'existente')->dropDownList([ 'Si' => 'Si', 'No' => 'No', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'Departamento_id')->textInput() ?>
 

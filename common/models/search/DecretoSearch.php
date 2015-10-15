@@ -19,7 +19,7 @@ class DecretoSearch extends Decreto
     {
         return [
             [['id'], 'integer'],
-            [['Nombre', 'Gaceta', 'Fecha'], 'safe'],
+            [['nombre', 'gaceta', 'fecha'], 'safe'],
         ];
     }
 
@@ -57,11 +57,11 @@ class DecretoSearch extends Decreto
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'Fecha' => $this->Fecha,
+            'fecha' => $this->fecha,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Gaceta', $this->Gaceta]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'gaceta', $this->gaceta]);
 
         return $dataProvider;
     }

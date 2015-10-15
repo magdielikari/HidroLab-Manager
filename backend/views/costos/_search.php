@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'CostoParametro_Parametros_id') ?>
 
-    <?php // echo $form->field($model, 'costoMuestra_id') ?>
+    <?php // echo $form->field($model, 'CostoMuestra_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>

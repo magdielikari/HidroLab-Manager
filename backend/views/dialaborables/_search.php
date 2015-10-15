@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dias') ?>
 
-    <?= $form->field($model, 'referencia_id') ?>
+    <?= $form->field($model, 'Referencia_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>
