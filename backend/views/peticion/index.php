@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Create Peticion'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('models', 'Create Peticion'), ['crear'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -30,12 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'cadena',
             'fVencimiento',
             'fCreacion',
-            // 'Referencia_id',
-            // 'Costos_id',
-            // 'Costos_General_id',
-            // 'Costos_CostoParametro_id',
-            // 'Costos_CostoParametro_Parametros_id',
-            // 'Costos_CostoMuestra_id',
+            // 'referencia_id',
+            // 'costos_id',
+            // 'costos_General_id',
+            // 'costos_CostoParametro_id',
+            // 'costos_CostoParametro_Parametros_id',
+            // 'costos_costoMuestra_id',
             // 'General_id',
             // 'Muestras_id',
 

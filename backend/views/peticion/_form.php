@@ -20,17 +20,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fCreacion')->textInput() ?>
 
-    <?= $form->field($model, 'Referencia_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'referencia_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Costos_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'costos_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Costos_General_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'costos_General_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Costos_CostoParametro_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'costos_CostoParametro_id')->textInput() ?>
 
-    <?= $form->field($model, 'Costos_CostoParametro_Parametros_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'costos_CostoParametro_Parametros_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Costos_CostoMuestra_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'costos_costoMuestra_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'General_id')->textInput(['maxlength' => true]) ?>
 

@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Update'), ['update', 'id' => $model->id, 'Referencia_id' => $model->Referencia_id, 'Costos_id' => $model->Costos_id, 'Costos_General_id' => $model->Costos_General_id, 'Costos_CostoParametro_id' => $model->Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $model->Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $model->Costos_CostoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('models', 'Delete'), ['delete', 'id' => $model->id, 'Referencia_id' => $model->Referencia_id, 'Costos_id' => $model->Costos_id, 'Costos_General_id' => $model->Costos_General_id, 'Costos_CostoParametro_id' => $model->Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $model->Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $model->Costos_CostoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id], [
+        <?= Html::a(Yii::t('models', 'Update'), ['update', 'id' => $model->id, 'costos_id' => $model->costos_id, 'costos_General_id' => $model->costos_General_id, 'costos_CostoParametro_id' => $model->costos_CostoParametro_id, 'costos_CostoParametro_Parametros_id' => $model->costos_CostoParametro_Parametros_id, 'costos_costoMuestra_id' => $model->costos_costoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('models', 'Delete'), ['delete', 'id' => $model->id, 'costos_id' => $model->costos_id, 'costos_General_id' => $model->costos_General_id, 'costos_CostoParametro_id' => $model->costos_CostoParametro_id, 'costos_CostoParametro_Parametros_id' => $model->costos_CostoParametro_Parametros_id, 'costos_costoMuestra_id' => $model->costos_costoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('models', 'Are you sure you want to delete this item?'),
@@ -33,12 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'cadena',
             'fVencimiento',
             'fCreacion',
-            'Referencia_id',
-            'Costos_id',
-            'Costos_General_id',
-            'Costos_CostoParametro_id',
-            'Costos_CostoParametro_Parametros_id',
-            'Costos_CostoMuestra_id',
+            'referencia_id',
+            'costos_id',
+            'costos_General_id',
+            'costos_CostoParametro_id',
+            'costos_CostoParametro_Parametros_id',
+            'costos_costoMuestra_id',
             'General_id',
             'Muestras_id',
         ],
