@@ -48,7 +48,7 @@ class Departamento extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'nombre' => Yii::t('models', 'Nombre'),
+            'nombre' => Yii::t('models', 'NombreD'),
             'contador' => Yii::t('models', 'Contador'),
         ];
     }

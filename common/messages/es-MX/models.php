@@ -1,3 +1,3 @@
 <?php
-return ['Siglas'=>'Siglas'];
+return ['Nombre'=>'Nombre'];
 ?>

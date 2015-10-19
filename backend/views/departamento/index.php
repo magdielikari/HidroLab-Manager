@@ -2,6 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
+//use common\models\Decreto;
+//use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DepartamentoSearch */
@@ -16,21 +22,34 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Create Departamento'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('models', 'Create Departamento'), ['value'=>Url::to('departamento/create'),
+        'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+    
+    <?php
+        Modal::begin([
+                'header'=>'<h4>Departamento</h4>',
+                'id'=>'modal',
+                'size'=>'modal-lg',
+            ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
+    ?>
 
+    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nombre',
+//            ArrayHelper::map(Decreto::find()->select(['id','nombre'])->all(),'id','nombre'),
+//            'decreto.nombre',
             'contador',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end();?>
 </div>
