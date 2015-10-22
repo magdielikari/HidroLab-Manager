@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use common\models\Departamento;
+use common\models\helpers\ModelUtility;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DepartamentoSearch */
@@ -41,19 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'nombre',
-//            ArrayHelper::map(Decreto::find()->select(['id','nombre'])->all(),'id','nombre'),
-//            'decreto.nombre',
             'contador',
             [
-                'attribute'=>'Decretos',
+                'attribute'=>'decretos',
                 'value'=>function($data){
-                    $summary = [];
-                    $decretos = $data->decretos;
-
-                    foreach($decretos as $d)
-                        $summary[] = $d->nombre;
-
-                    return implode(' - ', $summary);
+                    return ModelUtility::handler($data, 'decretos', 'nombre');
                 }
             ],
 
