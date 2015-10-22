@@ -22,6 +22,13 @@ return [
 			'identityClass' => 'common\models\User',
 			'enableAutoLogin' => true,
 		],
+		'response'=>[
+			'formatters'=>[
+				'pdf'=>[
+					'class'=>'robregonm\pdf\PdfResponseFormatter'
+				]
+			]
+		],
 		'log' => [
 			'traceLevel' => YII_DEBUG ? 3 : 0,
 			'targets' => [
