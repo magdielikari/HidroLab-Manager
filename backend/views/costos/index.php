@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\CostosSearch */
@@ -16,9 +20,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Create Costos'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('models', 'Create Costos'), ['value'=>Url::to('costos/create'),
+        'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
 
+    <?php
+        Modal::begin([
+                'header'=>'<h4>Costos</h4>',
+                'id'=>'modal',
+                'size'=>'modal-lg',
+            ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
+    ?>
+
+    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -40,5 +56,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end();?>
 </div>

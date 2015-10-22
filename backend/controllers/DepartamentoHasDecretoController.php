@@ -8,6 +8,7 @@ use common\models\search\DepartamentoHasDecretoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * DepartamentoHasDecretoController implements the CRUD actions for DepartamentoHasDecreto model.
@@ -63,10 +64,11 @@ class DepartamentoHasDecretoController extends Controller
     {
         $model = new DepartamentoHasDecreto();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save()
             return $this->redirect(['view', 'Departamento_id' => $model->Departamento_id, 'Decreto_id' => $model->Decreto_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

@@ -8,6 +8,7 @@ use common\models\search\DecretoHasTipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * DecretoHasTipoController implements the CRUD actions for DecretoHasTipo model.
@@ -63,10 +64,11 @@ class DecretoHasTipoController extends Controller
     {
         $model = new DecretoHasTipo();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'Decreto_id' => $model->Decreto_id, 'Tipo_id' => $model->Tipo_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

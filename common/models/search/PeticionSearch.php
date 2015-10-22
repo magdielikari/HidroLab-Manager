@@ -18,7 +18,7 @@ class PeticionSearch extends Peticion
     public function rules()
     {
         return [
-            [['id', 'fVencimiento', 'referencia_id', 'costos_id', 'costos_General_id', 'costos_CostoParametro_id', 'costos_CostoParametro_Parametros_id', 'costos_costoMuestra_id', 'General_id', 'Muestras_id'], 'integer'],
+            [['id', 'fVencimiento', 'Referencia_id', 'Costos_id', 'Costos_General_id', 'Costos_CostoParametro_id', 'Costos_CostoParametro_Parametros_id', 'Costos_CostoMuestra_id', 'General_id', 'Muestras_id'], 'integer'],
             [['fPeticion', 'cadena', 'fCreacion'], 'safe'],
         ];
     }
@@ -60,12 +60,12 @@ class PeticionSearch extends Peticion
             'fPeticion' => $this->fPeticion,
             'fVencimiento' => $this->fVencimiento,
             'fCreacion' => $this->fCreacion,
-            'referencia_id' => $this->referencia_id,
-            'costos_id' => $this->costos_id,
-            'costos_General_id' => $this->costos_General_id,
-            'costos_CostoParametro_id' => $this->costos_CostoParametro_id,
-            'costos_CostoParametro_Parametros_id' => $this->costos_CostoParametro_Parametros_id,
-            'costos_costoMuestra_id' => $this->costos_costoMuestra_id,
+            'Referencia_id' => $this->Referencia_id,
+            'Costos_id' => $this->Costos_id,
+            'Costos_General_id' => $this->Costos_General_id,
+            'Costos_CostoParametro_id' => $this->Costos_CostoParametro_id,
+            'Costos_CostoParametro_Parametros_id' => $this->Costos_CostoParametro_Parametros_id,
+            'Costos_CostoMuestra_id' => $this->Costos_CostoMuestra_id,
             'General_id' => $this->General_id,
             'Muestras_id' => $this->Muestras_id,
         ]);

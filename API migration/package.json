@@ -1,0 +1,19 @@
+{
+  "name": "mysql-migrator",
+  "version": "1.0.0",
+  "description": "Migrates data between databases",
+  "main": "main.js",
+  "bin": {
+    "mysql-migrator": "sql.js"
+  },
+  "dependencies": {
+    "json-sql": "^0.3.5",
+    "mysql": "^2.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oscar Reyes",
+  "license": "ISC"
+}

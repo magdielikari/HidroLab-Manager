@@ -8,6 +8,7 @@ use common\models\search\CostoMuestraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * CostoMuestraController implements the CRUD actions for CostoMuestra model.
@@ -62,10 +63,11 @@ class CostoMuestraController extends Controller
     {
         $model = new CostoMuestra();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

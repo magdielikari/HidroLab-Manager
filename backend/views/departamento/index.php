@@ -5,9 +5,6 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
-//use common\models\Decreto;
-//use yii\helpers\ArrayHelper;
-
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DepartamentoSearch */

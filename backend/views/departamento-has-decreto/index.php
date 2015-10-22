@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use common\models\Decreto;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DepartamentoHasDecretoSearch */
@@ -18,9 +21,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Create Departamento Has Decreto'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('models', 'Create Departamento Has Decreto'), ['value'=>Url::to('departamento-has-decreto/create'),
+        'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
 
+    <?php
+        Modal::begin([
+                'header'=>'<h4>Departamento-has-decreto</h4>',
+                'id'=>'modal',
+                'size'=>'modal-lg',
+            ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
+    ?>
+    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -33,5 +47,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end();?>
 </div>

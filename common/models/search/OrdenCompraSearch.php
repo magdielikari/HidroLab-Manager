@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\OrdenCompra;
+use common\models\Ordencompra;
 
 /**
- * OrdenCompraSearch represents the model behind the search form about `common\models\OrdenCompra`.
+ * OrdencompraSearch represents the model behind the search form about `common\models\Ordencompra`.
  */
-class OrdenCompraSearch extends OrdenCompra
+class OrdencompraSearch extends Ordencompra
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class OrdenCompraSearch extends OrdenCompra
     public function rules()
     {
         return [
-            [['id', 'peticion_id'], 'integer'],
+            [['id', 'Peticion_id'], 'integer'],
             [['nOrden', 'ubicacion', 'observaciones', 'estado'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class OrdenCompraSearch extends OrdenCompra
      */
     public function search($params)
     {
-        $query = OrdenCompra::find();
+        $query = Ordencompra::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,7 +57,7 @@ class OrdenCompraSearch extends OrdenCompra
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'peticion_id' => $this->peticion_id,
+            'Peticion_id' => $this->Peticion_id,
         ]);
 
         $query->andFilterWhere(['like', 'nOrden', $this->nOrden])

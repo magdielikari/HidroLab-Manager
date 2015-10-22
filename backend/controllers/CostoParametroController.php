@@ -8,6 +8,7 @@ use common\models\search\CostoParametroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * CostoParametroController implements the CRUD actions for CostoParametro model.
@@ -63,10 +64,11 @@ class CostoParametroController extends Controller
     {
         $model = new CostoParametro();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'Parametros_id' => $model->Parametros_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

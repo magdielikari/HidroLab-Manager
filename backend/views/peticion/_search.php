@@ -25,17 +25,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fCreacion') ?>
 
-    <?php // echo $form->field($model, 'referencia_id') ?>
+    <?php // echo $form->field($model, 'Referencia_id') ?>
 
-    <?php // echo $form->field($model, 'costos_id') ?>
+    <?php // echo $form->field($model, 'Costos_id') ?>
 
-    <?php // echo $form->field($model, 'costos_General_id') ?>
+    <?php // echo $form->field($model, 'Costos_General_id') ?>
 
-    <?php // echo $form->field($model, 'costos_CostoParametro_id') ?>
+    <?php // echo $form->field($model, 'Costos_CostoParametro_id') ?>
 
-    <?php // echo $form->field($model, 'costos_CostoParametro_Parametros_id') ?>
+    <?php // echo $form->field($model, 'Costos_CostoParametro_Parametros_id') ?>
 
-    <?php // echo $form->field($model, 'costos_costoMuestra_id') ?>
+    <?php // echo $form->field($model, 'Costos_CostoMuestra_id') ?>
 
     <?php // echo $form->field($model, 'General_id') ?>
 

@@ -1,0 +1,24 @@
+{
+	"source":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hidro1"
+		},
+		"table":"schematest",
+		"fields": ["*"]
+	},
+	"destiny":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hl"
+		},
+		"table":"schema",
+		"rename":{
+			"first_name":"name"
+		}
+	}
+}

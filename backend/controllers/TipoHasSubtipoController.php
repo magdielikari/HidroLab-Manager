@@ -8,6 +8,7 @@ use common\models\search\TipoHasSubtipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * TipoHasSubtipoController implements the CRUD actions for TipoHasSubtipo model.
@@ -63,10 +64,11 @@ class TipoHasSubtipoController extends Controller
     {
         $model = new TipoHasSubtipo();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'Tipo_id' => $model->Tipo_id, 'SubTipo_id' => $model->SubTipo_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

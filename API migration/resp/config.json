@@ -1,0 +1,23 @@
+{
+	"source":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hidro1"
+		},
+		"table":"clientes"
+	},
+	"destiny":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hl"
+		},
+		"table":"clientes",
+		"rename":{
+			"first_name":"name"
+		}
+	}
+}

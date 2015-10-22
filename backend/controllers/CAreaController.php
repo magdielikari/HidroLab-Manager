@@ -8,6 +8,7 @@ use common\models\search\CAreaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * CAreaController implements the CRUD actions for CArea model.
@@ -63,10 +64,11 @@ class CAreaController extends Controller
     {
         $model = new CArea();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'Celular_id' => $model->Celular_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);//, 'Celular_id' => $model->Celular_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

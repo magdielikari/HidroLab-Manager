@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\PeticionSearch */
@@ -14,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<p>
+    <?= Html::a(Yii::t('models','Create Peticion'),['crear'],['class'=>'btn btn-success'])?>
+</p>
 
-    <p>
-        <?= Html::a(Yii::t('models', 'Create Peticion'), ['crear'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -30,17 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'cadena',
             'fVencimiento',
             'fCreacion',
-            // 'referencia_id',
-            // 'costos_id',
-            // 'costos_General_id',
-            // 'costos_CostoParametro_id',
-            // 'costos_CostoParametro_Parametros_id',
-            // 'costos_costoMuestra_id',
+            // 'Referencia_id',
+            // 'Costos_id',
+            // 'Costos_General_id',
+            // 'Costos_CostoParametro_id',
+            // 'Costos_CostoParametro_Parametros_id',
+            // 'Costos_CostoMuestra_id',
             // 'General_id',
             // 'Muestras_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end();?>
 </div>

@@ -8,6 +8,7 @@ use common\models\search\CaracterizacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * CaracterizacionController implements the CRUD actions for Caracterizacion model.
@@ -62,10 +63,11 @@ class CaracterizacionController extends Controller
     {
         $model = new Caracterizacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

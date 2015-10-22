@@ -3,16 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\OrdenCompra;
-use common\models\search\OrdenCompraSearch;
+use common\models\Ordencompra;
+use common\models\search\OrdencompraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
- * OrdenCompraController implements the CRUD actions for OrdenCompra model.
+ * OrdencompraController implements the CRUD actions for Ordencompra model.
  */
-class OrdenCompraController extends Controller
+class OrdencompraController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +28,12 @@ class OrdenCompraController extends Controller
     }
 
     /**
-     * Lists all OrdenCompra models.
+     * Lists all Ordencompra models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrdenCompraSearch();
+        $searchModel = new OrdencompraSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +43,7 @@ class OrdenCompraController extends Controller
     }
 
     /**
-     * Displays a single OrdenCompra model.
+     * Displays a single Ordencompra model.
      * @param string $id
      * @return mixed
      */
@@ -54,25 +55,26 @@ class OrdenCompraController extends Controller
     }
 
     /**
-     * Creates a new OrdenCompra model.
+     * Creates a new Ordencompra model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new OrdenCompra();
+        $model = new Ordencompra();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing OrdenCompra model.
+     * Updates an existing Ordencompra model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -91,7 +93,7 @@ class OrdenCompraController extends Controller
     }
 
     /**
-     * Deletes an existing OrdenCompra model.
+     * Deletes an existing Ordencompra model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -104,15 +106,15 @@ class OrdenCompraController extends Controller
     }
 
     /**
-     * Finds the OrdenCompra model based on its primary key value.
+     * Finds the Ordencompra model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return OrdenCompra the loaded model
+     * @return Ordencompra the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = OrdenCompra::findOne($id)) !== null) {
+        if (($model = Ordencompra::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

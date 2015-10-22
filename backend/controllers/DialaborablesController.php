@@ -8,6 +8,7 @@ use common\models\search\DialaborablesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
 
 /**
  * DialaborablesController implements the CRUD actions for Dialaborables model.
@@ -62,10 +63,11 @@ class DialaborablesController extends Controller
     {
         $model = new Dialaborables();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
