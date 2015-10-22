@@ -42,6 +42,17 @@ class PeticionController extends Controller
         ]);
     }
 
+    public function actionIndice()
+    {
+        $searchModel = new PeticionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('indice', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single Peticion model.
      * @param string $id

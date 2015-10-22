@@ -1,1 +1,5 @@
-<?php var_dump('This is the layout'); ?>
+<?php 
+use backend\assets\AppAsset;
+?>
+
+<?= $content?>
