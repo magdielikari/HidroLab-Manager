@@ -44,6 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ArrayHelper::map(Decreto::find()->select(['id','nombre'])->all(),'id','nombre'),
 //            'decreto.nombre',
             'contador',
+            [
+                'attribute'=>'Decretos',
+                'value'=>function($data){
+                    $summary = [];
+                    $decretos = $data->decretos;
+
+                    foreach($decretos as $d)
+                        $summary[] = $d->nombre;
+
+                    return implode(' - ', $summary);
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
