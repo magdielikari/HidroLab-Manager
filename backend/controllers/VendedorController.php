@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\General;
-use common\models\search\GeneralSearch;
+use common\models\Vendedor;
+use common\models\search\VendedorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GeneralController implements the CRUD actions for General model.
+ * VendedorController implements the CRUD actions for Vendedor model.
  */
-class GeneralController extends Controller
+class VendedorController extends Controller
 {
     public function behaviors()
     {
@@ -27,23 +27,23 @@ class GeneralController extends Controller
     }
 
     /**
-     * Lists all General models.
+     * Lists all Vendedor models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GeneralSearch();
+        $searchModel = new VendedorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderAjax('index', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single General model.
-     * @param string $id
+     * Displays a single Vendedor model.
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id)
@@ -54,48 +54,46 @@ class GeneralController extends Controller
     }
 
     /**
-     * Creates a new General model.
+     * Creates a new Vendedor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new General();
+        $model = new Vendedor();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->renderAjax('create', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing General model.
+     * Updates an existing Vendedor model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->renderAjax('update', [
+            return $this->render('update', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Deletes an existing General model.
+     * Deletes an existing Vendedor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -106,15 +104,15 @@ class GeneralController extends Controller
     }
 
     /**
-     * Finds the General model based on its primary key value.
+     * Finds the Vendedor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return General the loaded model
+     * @param integer $id
+     * @return Vendedor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = General::findOne($id)) !== null) {
+        if (($model = Vendedor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

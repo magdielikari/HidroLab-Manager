@@ -20,6 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions'=> [
+            'class'=>'table table-striped table-bordered table-hover'
+        ],
+        'rowOptions'=>function($model, $key, $index, $grid){
+            return ['class'=>'gridRow'];
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -27,12 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'copias',
             'caudal',
             'analisis',
-            'Departamento_id',
+            'departamento.nombre',
             // 'Decreto_id',
             // 'Clientes_id',
             // 'Vendedor_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
