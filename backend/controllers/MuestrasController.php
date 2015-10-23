@@ -36,7 +36,7 @@ class MuestrasController extends Controller
         $searchModel = new MuestrasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -83,10 +83,11 @@ class MuestrasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
             ]);
         }

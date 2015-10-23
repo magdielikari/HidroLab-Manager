@@ -36,7 +36,7 @@ class EquiposHasGeneralController extends Controller
         $searchModel = new EquiposHasGeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

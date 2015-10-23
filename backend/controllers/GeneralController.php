@@ -35,7 +35,7 @@ class GeneralController extends Controller
         $searchModel = new GeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -62,10 +62,11 @@ class GeneralController extends Controller
     {
         $model = new General();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
@@ -81,10 +82,11 @@ class GeneralController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
             ]);
         }
