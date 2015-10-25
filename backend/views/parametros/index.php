@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\search\ParametrosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('models', 'Parametros');
+//$this->title = Yii::t('models', 'Parametros');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parametros-index">
@@ -19,24 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Parametros'), ['value'=>Url::to('parametros/create'),
-        'class' => 'btn btn-success','id'=>'modalButton']) ?>
-    </p>
-
-    <?php
-        Modal::begin([
-                'header'=>'<h4>Parametros</h4>',
-                'id'=>'modal',
-                'size'=>'modal-lg',
-            ]);
-        echo "<div id='modalContent'></div>";
-        Modal::end();
-    ?>
+     <?= Html::button(Yii::t('models', 'Create Parametros'), ['data-dismiss'=>"modal",
+     'class' => 'btn btn-warning modalButton']) ?>
+    </p>  
 
     <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => $searchModel,S
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

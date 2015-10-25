@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\search\PeticionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('models', 'Peticions');
+//$this->title = Yii::t('models', 'Peticions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="peticion-index">
@@ -17,10 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
   
     <p>
-
-    <p>
      <?= Html::button(Yii::t('models', 'Create Peticion'), ['data-dismiss'=>"modal",
-     'class' => 'btn btn-success modalButton']) ?>
+     'class' => 'btn btn-warning modalButton']) ?>
     </p>  
 
     <?php Pjax::begin();?>

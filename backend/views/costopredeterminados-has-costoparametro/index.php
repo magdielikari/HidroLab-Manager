@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\search\CostopredeterminadosHasCostoparametroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('models', 'Costopredeterminados Has Costoparametros');
+//$this->title = Yii::t('models', 'Costopredeterminados Has Costoparametros');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costopredeterminados-has-costoparametro-index">
@@ -19,20 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Costopredeterminados Has Costoparametro'), ['value'=>Url::to('costopredeterminados-has-costoparametro/create'),
-        'class' => 'btn btn-success','id'=>'modalButton']) ?>
-    </p>
-
-    <?php
-        Modal::begin([
-                'header'=>'<h4>Costo Predeterminados has costoParametro</h4>',
-                'id'=>'modal',
-                'size'=>'modal-lg',
-            ]);
-        echo "<div id='modalContent'></div>";
-        Modal::end();
-    ?>
-
+     <?= Html::button(Yii::t('models', 'Create CostoParametros'), ['data-dismiss'=>"modal",
+     'class' => 'btn btn-warning modalButton']) ?>
+    </p>  
+    
     <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

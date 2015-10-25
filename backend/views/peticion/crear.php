@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php echo $this->renderFile('@backend/views/herramientas/thu.php'); ?>
 	<h3>Datos Generales</h3>
 	<p>	
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
 	Quam dolore numquam mollitia voluptatem rem nobis asperiores 
 	animi est voluptas recusandae a labore deleniti nihil enim, 
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
    	 <?= Html::button(Yii::t('models', 'Seleccionar General'), ['value'=>Url::to(['general/index']),
      'class' => 'btn btn-success modalButton', 'data-title'=>'Seleccionar General']) ?>
      <?= Html::button(Yii::t('models', 'Crear General'), ['value'=>Url::to(['general/create']),
-     'class' => 'btn btn-success modalButton', 'data-title'=>'Create General']) ?>
+     'class' => 'btn btn-info modalButton', 'data-title'=>'Create General']) ?>
 	</p>
    </div></div></div>
 
