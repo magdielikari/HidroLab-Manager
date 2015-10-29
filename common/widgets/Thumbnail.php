@@ -137,7 +137,7 @@ class Thumbnail extends Widget
 			$value = Url::to($bottom['value']);
 			$htmlOptions = $bottom[0];
 			
-			$buttonOptions = ArrayHelper::merge(['name'=>$value], $htmlOptions);
+			$buttonOptions = ArrayHelper::merge(['value'=>$value], $htmlOptions);
 
 			$buttonHtml .= Html::button($name, $buttonOptions)."\n";
 		}
