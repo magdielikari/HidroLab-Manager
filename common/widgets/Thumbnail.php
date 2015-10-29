@@ -23,7 +23,7 @@ class Thumbnail extends Widget
 
 	/**
 	 * [$bottom The bottom content of the Thumbnail]
-	 * @var [array|string]
+	 * @var [array]
 	 */
 	public $bottom;
 
@@ -31,12 +31,36 @@ class Thumbnail extends Widget
 	 * [$htmlOptions Html options for the base container]
 	 * @var [array]
 	 */
-	public $htmlOptions = ['class'=>'thumbnail'];
+	public $htmlOptions = [];
 
+	/**
+	 * [$innerHtmlOptions Html options for the inner container]
+	 * @var [array]
+	 */
+	public $innerHtmlOptions = [];
+
+	/**
+	 * [$labelOptions Html options for heading]
+	 * @var [array]
+	 */
 	public $labelOptions = [];
+
+	/**
+	 * [$contentOptions Html options for the content]
+	 * @var [array]
+	 */
 	public $contentOptions = [];
+
+	/**
+	 * [$bottomOptions Html options for the bottom of the thumbnail]
+	 * @var [array]
+	 */
 	public $bottomOptions = [];
 
+	/**
+	 * [$keepDefaultClasses Option to add default classes for base and inner container]
+	 * @var [boolean]
+	 */
 	public $keepDefaultClasses = true;
 
 	/**
@@ -45,25 +69,36 @@ class Thumbnail extends Widget
 	 */
 	protected $html;
 
+	/**
+	 * [$container Variable where inner data will be encoded to html]
+	 * @var [string]
+	 */
 	protected $container;
+
+	/**
+	 * [$defaultClasses The default classes to add into base and inner containers]
+	 * @var [array]
+	 */
+	protected $defaultClasses = ['thumbnail', 'caption'];
 
 
 	/**
 	 * [init primary function]
-	 * @return [type] [description]
 	 */
 	public function init()
 	{
 		parent::init();
 
+		$this->addClasses();
+
 		$this->encapsulate();
+
 
 		$this->html = Html::tag('div', $this->html, $this->htmlOptions);
 	}
 
 	/**
 	 * [encapsulate Creates the header, content and button of the thumbnail]
-	 * @return [null]
 	 */
 	protected function encapsulate()
 	{
@@ -77,8 +112,20 @@ class Thumbnail extends Widget
 	}
 
 	/**
+	 * [addClasses Add classes if keepDefaultClasses property is true]
+	 */
+	protected function addClasses()
+	{
+		if($this->keepDefaultClasses)
+		{
+			Html::addCssClass($this->htmlOptions, $this->defaultClasses[0]);
+			Html::addCssClass($this->innerHtmlOptions, $this->defaultClasses[1]);
+		}
+
+	}
+
+	/**
 	 * [createButtons Get all data from button array and create html Buttons]
-	 * @return [string] [Html buttons]
 	 */
 	protected function createButtons()
 	{
@@ -103,11 +150,14 @@ class Thumbnail extends Widget
 	 */
 	protected function addParent()
 	{
-		$caption = Html::tag('div', $this->container, ['class'=>'caption']);
+		$caption = Html::tag('div', $this->container, $this->innerHtmlOptions);
 
 		$this->html = $caption;
 	}
 
+	/**
+	 * [run Ouptput the html widget]
+	 */
 	public function run()
 	{
 		return $this->html;
