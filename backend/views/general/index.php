@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -27,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'class'=>'table table-striped table-bordered table-hover'
         ],
         'rowOptions'=>function($model, $key, $index, $grid){
-            return ['class'=>'gridRow'];
+            return [
+                'class'=>'gridRow',
+                'data-url'=>Url::to(['view', 'id'=>$model->id])
+            ];
         },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
