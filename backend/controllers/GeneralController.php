@@ -8,6 +8,7 @@ use common\models\search\GeneralSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * GeneralController implements the CRUD actions for General model.
@@ -48,7 +49,7 @@ class GeneralController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -61,10 +62,22 @@ class GeneralController extends Controller
     public function actionCreate()
     {
         $model = new General();
-
+        $data=[
+            'url'=>null,
+            'success'=>false,
+            'error'=>[]
+        ];
         if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->save()){
+                $data['success']=true;
+                $data['url']=Url::to(['general/view','id'=>$model->id]);
+            }else{
+                $data['error'][]=$model->getErrors();    
+            }
+            header('Content-type:application/json');
+            echo json_encode($data);
+            Yii::$app->end();
+//            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,

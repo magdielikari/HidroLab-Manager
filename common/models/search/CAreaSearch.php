@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CArea;
+use common\models\Carea;
 
 /**
- * CAreaSearch represents the model behind the search form about `common\models\CArea`.
+ * CareaSearch represents the model behind the search form about `common\models\Carea`.
  */
-class CAreaSearch extends CArea
+class CareaSearch extends Carea
 {
     /**
      * @inheritdoc
@@ -40,7 +40,7 @@ class CAreaSearch extends CArea
      */
     public function search($params)
     {
-        $query = CArea::find();
+        $query = Carea::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
