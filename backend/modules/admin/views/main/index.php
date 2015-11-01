@@ -12,8 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'label'=>Yii::t('app', 'Authorization'),
             'content'=>'Set the access configuration',
             'bottom'=>[
-                ['name'=>Yii::t('app', 'Permissions'), 'value'=>['permissions\index'], ['class'=>'btn btn-success']],
-                ['name'=>Yii::t('app', 'Roles'), 'value'=>['roles\index'], ['class'=>'btn btn-success']]
+                ['name'=>Yii::t('app', 'Permissions'), 'url'=>['permissions/index'], 'options'=>['class'=>'btn btn-success']],
+                ['name'=>Yii::t('app', 'Roles'), 'url'=>['roles'], 'options'=>['class'=>'btn btn-success']]
             ]
         ]) ?>
     </div>
