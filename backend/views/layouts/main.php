@@ -34,10 +34,8 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Peticion', 'url' => ['/peticion/index'],
-        ],
-    ];
+    $menuItems = [];
+    $routeItems = [];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']
         ];
@@ -47,7 +45,13 @@ AppAsset::register($this);
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post'],
         ];
+
+        $routeItems = array_merge($routeItems, Yii::$app->params['menuRoutes']);
     }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav'],
+        'items' => $routeItems,
+    ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
