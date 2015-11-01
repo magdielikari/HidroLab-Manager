@@ -6,6 +6,8 @@ class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\admin\controllers';
 
+    public $defaultRoute = 'main';
+
     public function init()
     {
         parent::init();
