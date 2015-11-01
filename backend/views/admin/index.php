@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<h1><?= Html::encode($this->title) ?></h1>
 
     <?= HTml::a(Yii::t('app', 'Create permission'), ['create-permissions'], ['class'=>'btn btn-success']) ?>
-	<?= HTml::a(Yii::t('app', 'Assign'), ['assign'], ['class'=>'btn btn-success']) ?>
+	<?= HTml::a(Yii::t('app', 'Create Role'), ['create-role'], ['class'=>'btn btn-success']) ?>
 
 	<?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,11 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
             'description',
+            [  
+                'label'=>'Create at',
+                'value'=>function($model, $key, $index){
+                    if($model->createdAt)
+                        return date('Y-m-d H:i', $model->createdAt);
+                }
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons'=>[
-                    'delete'=>function($url, $model, $key){
+                    'delete'=>function($url, $model){
                         $url = Url::to(['delete', 'name'=>$model->name]);
                         
                         return Html::a(Html::icon('trash'), $url, [

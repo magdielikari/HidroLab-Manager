@@ -10,11 +10,14 @@ class AdminController extends Controller
 {
     public function actionIndex()
     {
-    	$dataProvider = $this->getRoles();
+    	$dataProvider = $this->getPermissions();
 
         return $this->render('index', ['dataProvider'=>$dataProvider]);
     }
 
+    /**
+     * [actionCreatePermissions Crear un permiso a la base de datos]
+     */
     public function actionCreatePermissions()
     {
     	$post = Yii::$app->request->post();
@@ -23,10 +26,10 @@ class AdminController extends Controller
     	{
     		$auth = Yii::$app->authManager;
 
-    		$role = $auth->createPermission($post['permission']['name']);
-    		$role->description = $post['permission']['description'];
+    		$permission = $auth->createPermission($post['permission']['name']);
+    		$permission->description = $post['permission']['description'];
 
-    		if($auth->add($role))
+    		if($auth->add($permission))
             {
                 Yii::$app->session->setFlash('success', Yii::t('app', 'The item was successfully created'));
 
@@ -35,6 +38,26 @@ class AdminController extends Controller
     	}
 
     	return $this->render('create-permissions');
+    }
+
+    public function actionCreateRole()
+    {
+        $auth = Yii::$app->authManager;
+        $post = Yii::$app->request->post();
+
+        if(isset($post['role']))
+        {
+            $role = $auth->createRole($post['role']['name']);
+            $role->description = $post['role']['description'];
+
+            if($auth->add($role))
+                Yii::$app->session->setFlash('success', Yii::t('app', 'The permissions were assigned successfully'));
+
+            else
+                Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error creating the role'));
+        }
+
+        return $this->render('create-role');
     }
 
     /**
@@ -58,7 +81,7 @@ class AdminController extends Controller
         return $this->redirect(['index']);
     }
 
-    protected function getRoles()
+    protected function getPermissions()
     {
     	$roles = Yii::$app->authManager->getPermissions();
 
@@ -66,12 +89,18 @@ class AdminController extends Controller
     		'models'=>$roles,
     		'pagination'=>[
     			'pageSize'=>10,
-    		],
-    		'sort'=>[
-    			'attributes'=>['name', 'description']
     		]
     	]);
 
     	return $provider;
+    }
+
+    protected function mapKeys($array)
+    {
+        $arr = [];
+        foreach ($array as $key => $value)
+                $arr[$key] = $key;
+
+        return $arr;
     }
 }

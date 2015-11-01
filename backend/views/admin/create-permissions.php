@@ -9,12 +9,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= Html::beginForm('', 'POST') ?>
 <div class="form-group">
-	<?= Html::label(Yii::t('app', 'Permision Name'), null, ['class'=>'contol-label']) ?>
+	<?= Html::label(Yii::t('app', 'Permision Name'), null, ['class'=>'control-label']) ?>
 	<?= Html::input('text', 'permission[name]', null, ['class'=>'form-control']) ?>
 </div>
 
 <div class="form-group">
-	<?= Html::label(Yii::t('app', 'Permision Description'), null, ['class'=>'contol-label']) ?>
+	<?= Html::label(Yii::t('app', 'Permision Description'), null, ['class'=>'control-label']) ?>
 	<?= Html::input('text', 'permission[description]', null, ['class'=>'form-control']) ?>
 </div>
 
