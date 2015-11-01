@@ -125,7 +125,7 @@ class Thumbnail extends Widget
 	}
 
 	/**
-	 * [createButtons Get all data from button array and create html Buttons]
+	 * [createButtons Get all data from button array and create html Links/Buttons]
 	 */
 	protected function createButtons()
 	{
@@ -134,12 +134,19 @@ class Thumbnail extends Widget
 		foreach($this->bottom as $bottom)
 		{
 			$name = $bottom['name'];
-			$value = Url::to($bottom['value']);
-			$htmlOptions = $bottom[0];
+			$htmlOptions = $bottom['options'];
 			
-			$buttonOptions = ArrayHelper::merge(['value'=>$value], $htmlOptions);
+			if(isset($bottom['url']))
+				$buttonHtml .= Html::a($name, $bottom['url'], $htmlOptions)."\n";
 
-			$buttonHtml .= Html::button($name, $buttonOptions)."\n";
+			else
+			{
+				$value = Url::to($bottom['value']);
+				
+				$buttonOptions = ArrayHelper::merge(['value'=>$value], $htmlOptions);
+
+				$buttonHtml .= Html::button($name, $buttonOptions)."\n";		
+			}
 		}
 
 		return $buttonHtml;
