@@ -20,18 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button(Yii::t('models', 'Create Plantilla'), ['value'=>Url::to('plantilla/create'),
-        'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Plantilla']) ?>
     </p>
-
-    <?php
-        Modal::begin([
-                'header'=>'<h4>Plantilla</h4>',
-                'id'=>'modal',
-                'size'=>'modal-lg',
-            ]);
-        echo "<div id='modalContent'></div>";
-        Modal::end();
-    ?>
 
     <?php Pjax::begin();?>
     <?= GridView::widget([
@@ -50,3 +40,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

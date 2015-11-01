@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button(Yii::t('models', 'Create General'), ['value'=>Url::to('general/create'),
-        'class' => 'btn btn-success modalButton', 'data-title'=>'Seleccionar Muestra']) ?>
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear General']) ?>
     </p>
 
     <?php Pjax::begin();?>
