@@ -20,18 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button(Yii::t('models', 'Create Caracterizacion Has Equipos'), ['value'=>Url::to('caracterizacion-has-equipos/create'),
-        'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        'class' => 'btn btn-success modalButton','data-title'=>'Crear Caracterizaciones has Equipos']) ?>
     </p>
-
-    <?php
-        Modal::begin([
-                'header'=>'<h4>caracterizacion has equipos</h4>',
-                'id'=>'modal',
-                'size'=>'modal-lg',
-            ]);
-        echo "<div id='modalContent'></div>";
-        Modal::end();
-    ?>
 
     <?php Pjax::begin();?>
     <?= GridView::widget([
@@ -48,3 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

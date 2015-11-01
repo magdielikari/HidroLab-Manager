@@ -42,6 +42,17 @@ class SubTipoController extends Controller
         ]);
     }
 
+    public function actionSelect()
+    {
+        $searchModel = new SubTipoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single SubTipo model.
      * @param integer $id
@@ -67,6 +78,19 @@ class SubTipoController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+        public function actionEstablish()
+    {
+        $model = new SubTipo();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->renderAjax('establish', [
                 'model' => $model,
             ]);
         }

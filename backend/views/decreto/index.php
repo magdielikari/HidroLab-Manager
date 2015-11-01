@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -20,18 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button(Yii::t('models', 'Create Decreto'), ['value'=>Url::to('decreto/create'),
-        'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Decreto']) ?>
     </p>
-
-        <?php
-        Modal::begin([
-                'header'=>'<h4>Decreto</h4>',
-                'id'=>'modal',
-                'size'=>'modal-lg',
-            ]);
-        echo "<div id='modalContent'></div>";
-        Modal::end();
-    ?>
 
     <?php Pjax::begin();?>
     <?= GridView::widget([
@@ -50,3 +39,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

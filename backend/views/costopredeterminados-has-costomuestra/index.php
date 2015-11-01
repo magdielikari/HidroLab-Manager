@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
+
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\search\CostopredeterminadosHasCostomuestraSearch */
+/* @var $searchModel common\models\CostopredeterminadosHasCostomuestraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-//$this->title = Yii::t('models', 'Costopredeterminados Has Costomuestras');
+$this->title = Yii::t('models', 'Costopredeterminados Has Costomuestras');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costopredeterminados-has-costomuestra-index">
@@ -19,9 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-     <?= Html::button(Yii::t('models', 'Create CostoMuestraS'), ['data-dismiss'=>"modal",
-     'class' => 'btn btn-warning modalButton']) ?>
-    </p>   
+        <?= Html::button(Yii::t('models', 'Create Costopredeterminados Has Costomuestra'),
+             ['value'=>Url::to('costopredeterminados-has-costomuestra/create'),
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear CostosPrederterminados has Costomuestra']) ?>
+    </p>
 
     <?php Pjax::begin();?>
     <?= GridView::widget([
@@ -35,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'cantidad',
 
             ['class' => 'yii\grid\ActionColumn'],
-        ],S
+        ],
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

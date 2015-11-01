@@ -42,6 +42,17 @@ class TipoController extends Controller
         ]);
     }
 
+    public function actionSelect()
+    {
+        $searchModel = new TipoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single Tipo model.
      * @param integer $id
@@ -68,6 +79,20 @@ class TipoController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionEstablish()
+    {
+        $model = new Tipo();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();            
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->renderAjax('establish', [
                 'model' => $model,
             ]);
         }

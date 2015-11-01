@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <p>
-    <?= Html::a(Yii::t('models','Create Peticion'),['crear'],['class'=>'btn btn-success'])?>
+    <?= Html::a(Yii::t('models','Create Peticion'),['generate'],['class'=>'btn btn-success'])?>
 </p>
 
     <?php Pjax::begin();?>

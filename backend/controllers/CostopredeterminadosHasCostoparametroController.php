@@ -36,11 +36,23 @@ class CostopredeterminadosHasCostoparametroController extends Controller
         $searchModel = new CostopredeterminadosHasCostoparametroSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSelect()
+    {
+        $searchModel = new CostopredeterminadosHasCostoparametroSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
     /**
      * Displays a single CostopredeterminadosHasCostoparametro model.
@@ -69,6 +81,20 @@ class CostopredeterminadosHasCostoparametroController extends Controller
             return $this->redirect(['view', 'CostoPredeterminados_id' => $model->CostoPredeterminados_id, 'CostoParametro_id' => $model->CostoParametro_id]);
         } else {
             return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+        public function actionEstablish()
+    {
+        $model = new CostopredeterminadosHasCostoparametro();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'CostoPredeterminados_id' => $model->CostoPredeterminados_id, 'CostoParametro_id' => $model->CostoParametro_id]);
+        } else {
+            return $this->renderAjax('establish', [
                 'model' => $model,
             ]);
         }

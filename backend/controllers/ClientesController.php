@@ -41,6 +41,17 @@ class ClientesController extends Controller
         ]);
     }
 
+    public function actionSelect()
+    {
+        $searchModel = new ClientesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single Clientes model.
      * @param string $id
@@ -70,6 +81,21 @@ class ClientesController extends Controller
             ]);
         }
     }
+
+       public function actionEstablish()
+    {
+        $model = new Clientes();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->renderAjax('establish', [
+                'model' => $model,
+            ]);
+        }
+    }
+
 
     /**
      * Updates an existing Clientes model.

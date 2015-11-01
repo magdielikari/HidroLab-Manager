@@ -42,12 +42,12 @@ class PeticionController extends Controller
         ]);
     }
 
-    public function actionIndice()
+    public function actionSelect()
     {
         $searchModel = new PeticionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderAjax('indice', [
+        return $this->renderAjax('select', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -92,9 +92,23 @@ class PeticionController extends Controller
         }
     }
 
-    public function actionCrear()
+    public function actionEstablish()
     {
-        return $this->render('crear');
+        $model = new Peticion();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id, 'Referencia_id' => $model->Referencia_id, 'Costos_id' => $model->Costos_id, 'Costos_General_id' => $model->Costos_General_id, 'Costos_CostoParametro_id' => $model->Costos_CostoParametro_id, 'Costos_CostoParametro_Parametros_id' => $model->Costos_CostoParametro_Parametros_id, 'Costos_CostoMuestra_id' => $model->Costos_CostoMuestra_id, 'General_id' => $model->General_id, 'Muestras_id' => $model->Muestras_id]);
+        } else {
+            return $this->renderAjax('establish', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionGenerate()
+    {
+        return $this->render('generate');
     }
 
     /**

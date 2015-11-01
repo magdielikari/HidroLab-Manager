@@ -3,14 +3,13 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\search\ParametrosSearch */
+/* @var $searchModel common\models\ParametrosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-//$this->title = Yii::t('models', 'Parametros');
+$this->title = Yii::t('models', 'Parametros');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parametros-index">
@@ -19,14 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-     <?= Html::button(Yii::t('models', 'Create Parametros'), ['data-dismiss'=>"modal",
-     'class' => 'btn btn-warning modalButton']) ?>
-    </p>  
-
+        <?= Html::button(Yii::t('models', 'Create Parametros'), ['value'=>Url::to('parametros/create'),
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Seleccionar Muestra']) ?>
+    </p>
+    
     <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,S
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -39,3 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

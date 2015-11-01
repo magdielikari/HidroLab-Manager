@@ -36,11 +36,23 @@ class GeneralController extends Controller
         $searchModel = new GeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSelect()
+    {
+        $searchModel = new GeneralSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
     /**
      * Displays a single General model.
@@ -77,13 +89,38 @@ class GeneralController extends Controller
             header('Content-type:application/json');
             echo json_encode($data);
             Yii::$app->end();
-//            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
     }
+
+    public function actionEstablish()
+    {
+        $model = new General();
+        $data=[
+            'url'=>null,
+            'success'=>false,
+            'error'=>[]
+        ];
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                $data['success']=true;
+                $data['url']=Url::to(['general/view','id'=>$model->id]);
+            }else{
+                $data['error'][]=$model->getErrors();    
+            }
+            header('Content-type:application/json');
+            echo json_encode($data);
+            Yii::$app->end();
+        } else {
+            return $this->renderAjax('establish', [
+                'model' => $model,
+            ]);
+        }
+    }
+
 
     /**
      * Updates an existing General model.

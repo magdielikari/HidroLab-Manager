@@ -36,6 +36,17 @@ class RamaHasGeneralController extends Controller
         $searchModel = new RamaHasGeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSelect()
+    {
+        $searchModel = new RamaHasGeneralSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -69,6 +80,20 @@ class RamaHasGeneralController extends Controller
             return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
         } else {
             return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionEstablish()
+    {
+        $model = new RamaHasGeneral();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
+        } else {
+            return $this->renderAjax('establish', [
                 'model' => $model,
             ]);
         }
