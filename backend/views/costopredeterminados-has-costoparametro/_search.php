@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\CostopredeterminadosHasCostoparametroSearch */
+/* @var $model common\models\search\CostopredeterminadosHasCostoparametroSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

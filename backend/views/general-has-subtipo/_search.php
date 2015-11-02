@@ -4,26 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\search\MuestrasSearch */
+/* @var $model common\models\search\GeneralHasSubtipoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="muestras-search">
+<div class="general-has-subtipo-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'nombre') ?>
-
-    <?= $form->field($model, 'tipo') ?>
-
-    <?= $form->field($model, 'horas') ?>
-
     <?= $form->field($model, 'General_id') ?>
+
+    <?= $form->field($model, 'SubTipo_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>

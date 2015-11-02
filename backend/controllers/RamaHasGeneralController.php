@@ -47,7 +47,7 @@ class RamaHasGeneralController extends Controller
         $searchModel = new RamaHasGeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderAjax('index', [
+        return $this->renderAjax('select', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

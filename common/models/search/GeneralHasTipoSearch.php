@@ -1,16 +1,16 @@
 <?php
 
-namespace common\models;
+namespace common\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Clientes;
+use common\models\GeneralHasTipo;
 
 /**
- * ClientesSearch represents the model behind the search form about `common\models\Clientes`.
+ * GeneralHasTipoSearch represents the model behind the search form about `common\models\GeneralHasTipo`.
  */
-class ClientesSearch extends Clientes
+class GeneralHasTipoSearch extends GeneralHasTipo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class ClientesSearch extends Clientes
     public function rules()
     {
         return [
-            [['id', 'contador'], 'integer'],
-            [['nombre', 'direccion', 'email', 'encargado', 'nRif', 'cRif', 'siglas'], 'safe'],
+            [['General_id', 'Tipo_id'], 'integer'],
         ];
     }
 
@@ -41,7 +40,7 @@ class ClientesSearch extends Clientes
      */
     public function search($params)
     {
-        $query = Clientes::find();
+        $query = GeneralHasTipo::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,17 +55,9 @@ class ClientesSearch extends Clientes
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'contador' => $this->contador,
+            'General_id' => $this->General_id,
+            'Tipo_id' => $this->Tipo_id,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'direccion', $this->direccion])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'encargado', $this->encargado])
-            ->andFilterWhere(['like', 'nRif', $this->nRif])
-            ->andFilterWhere(['like', 'cRif', $this->cRif])
-            ->andFilterWhere(['like', 'siglas', $this->siglas]);
 
         return $dataProvider;
     }

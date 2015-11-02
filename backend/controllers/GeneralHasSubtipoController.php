@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\General;
-use common\models\search\GeneralSearch;
+use common\models\GeneralHasSubtipo;
+use common\models\search\GeneralHasSubtipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Url;
 
 /**
- * GeneralController implements the CRUD actions for General model.
+ * GeneralHasSubtipoController implements the CRUD actions for GeneralHasSubtipo model.
  */
-class GeneralController extends Controller
+class GeneralHasSubtipoController extends Controller
 {
     public function behaviors()
     {
@@ -28,12 +27,12 @@ class GeneralController extends Controller
     }
 
     /**
-     * Lists all General models.
+     * Lists all GeneralHasSubtipo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GeneralSearch();
+        $searchModel = new GeneralHasSubtipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +43,7 @@ class GeneralController extends Controller
 
     public function actionSelect()
     {
-        $searchModel = new GeneralSearch();
+        $searchModel = new GeneralHasSubtipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->renderAjax('select', [
@@ -53,42 +52,31 @@ class GeneralController extends Controller
         ]);
     }
 
-
     /**
-     * Displays a single General model.
-     * @param string $id
+     * Displays a single GeneralHasSubtipo model.
+     * @param string $General_id
+     * @param integer $SubTipo_id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($General_id, $SubTipo_id)
     {
-        return $this->renderAjax('view', [
-            'model' => $this->findModel($id),
+        return $this->render('view', [
+            'model' => $this->findModel($General_id, $SubTipo_id),
         ]);
     }
 
     /**
-     * Creates a new General model.
+     * Creates a new GeneralHasSubtipo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new General();
-        $data=[
-            'url'=>null,
-            'success'=>false,
-            'error'=>[]
-        ];
+        $model = new GeneralHasSubtipo();
+
         if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                $data['success']=true;
-                $data['url']=Url::to(['general/view','id'=>$model->id]);
-            }else{
-                $data['error'][]=$model->getErrors();    
-            }
-            header('Content-type:application/json');
-            echo json_encode($data);
-            Yii::$app->end();
+            $model->save();
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'SubTipo_id' => $model->SubTipo_id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -96,24 +84,13 @@ class GeneralController extends Controller
         }
     }
 
-    public function actionEstablish()
+        public function actionEstablish()
     {
-        $model = new General();
-        $data=[
-            'url'=>null,
-            'success'=>false,
-            'error'=>[]
-        ];
+        $model = new GeneralHasSubtipo();
+
         if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                $data['success']=true;
-                $data['url']=Url::to(['general/view','id'=>$model->id]);
-            }else{
-                $data['error'][]=$model->getErrors();    
-            }
-            header('Content-type:application/json');
-            echo json_encode($data);
-            Yii::$app->end();
+            $model->save();
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'SubTipo_id' => $model->SubTipo_id]);
         } else {
             return $this->renderAjax('establish', [
                 'model' => $model,
@@ -123,48 +100,50 @@ class GeneralController extends Controller
 
 
     /**
-     * Updates an existing General model.
+     * Updates an existing GeneralHasSubtipo model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param string $General_id
+     * @param integer $SubTipo_id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($General_id, $SubTipo_id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($General_id, $SubTipo_id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'SubTipo_id' => $model->SubTipo_id]);
         } else {
-            return $this->renderAjax('update', [
+            return $this->render('update', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Deletes an existing General model.
+     * Deletes an existing GeneralHasSubtipo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param string $General_id
+     * @param integer $SubTipo_id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($General_id, $SubTipo_id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($General_id, $SubTipo_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the General model based on its primary key value.
+     * Finds the GeneralHasSubtipo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return General the loaded model
+     * @param string $General_id
+     * @param integer $SubTipo_id
+     * @return GeneralHasSubtipo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($General_id, $SubTipo_id)
     {
-        if (($model = General::findOne($id)) !== null) {
+        if (($model = GeneralHasSubtipo::findOne(['General_id' => $General_id, 'SubTipo_id' => $SubTipo_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -57,9 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'label'=>'Tipos',
       'content'=>'Se solicita información de Nombre de las Tipos',
       'bottom'=>[
-        ['name'=>'Seleccionar Tipos','value'=>['tipo/select'],
+        ['name'=>'Seleccionar Tipos','value'=>['general-has-tipo/select'],
           ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Tipos']],
-        ['name'=>'Crear Tipos','value'=>['tipo/establish'],
+        ['name'=>'Crear Tipos','value'=>['general-has-tipo/establish'],
           ['class'=>'btn btn-success modalButton','data-title'=>'Crear Tipos']]
       ]
     ])?> 
@@ -69,9 +69,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'label'=>'Sub-Tipos',
       'content'=>'Se solicita información de Nombre de las Sub-Tipos',
       'bottom'=>[
-        ['name'=>'Seleccionar Sub-Tipos','value'=>['sub-tipo/select'],
+        ['name'=>'Seleccionar Sub-Tipos','value'=>['general-has-subtipo/select'],
           ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Sub-Tipos']],
-        ['name'=>'Crear Sub-Tiposs','value'=>['sub-tipo/establish'],
+        ['name'=>'Crear Sub-Tiposs','value'=>['general-has-subtipo/establish'],
           ['class'=>'btn btn-success modalButton','data-title'=>'Crear Sub-Tipos']]
       ]
     ])?> 

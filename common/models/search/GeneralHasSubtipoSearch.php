@@ -1,16 +1,16 @@
 <?php
 
-namespace common\models;
+namespace common\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Parametros;
+use common\models\GeneralHasSubtipo;
 
 /**
- * ParametrosSearch represents the model behind the search form about `common\models\Parametros`.
+ * GeneralHasSubtipoSearch represents the model behind the search form about `common\models\GeneralHasSubtipo`.
  */
-class ParametrosSearch extends Parametros
+class GeneralHasSubtipoSearch extends GeneralHasSubtipo
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class ParametrosSearch extends Parametros
     public function rules()
     {
         return [
-            [['id', 'General_id', 'Limites_id'], 'integer'],
+            [['General_id', 'SubTipo_id'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ParametrosSearch extends Parametros
      */
     public function search($params)
     {
-        $query = Parametros::find();
+        $query = GeneralHasSubtipo::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,9 +55,8 @@ class ParametrosSearch extends Parametros
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
             'General_id' => $this->General_id,
-            'Limites_id' => $this->Limites_id,
+            'SubTipo_id' => $this->SubTipo_id,
         ]);
 
         return $dataProvider;

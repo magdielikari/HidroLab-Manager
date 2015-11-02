@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\MuestrasSearch */
+/* @var $searchModel common\models\search\MuestrasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('models', 'Muestras');

@@ -7,7 +7,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\CostopredeterminadosHasCostomuestraSearch */
+/* @var $searchModel common\models\search\CostopredeterminadosHasCostomuestraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('models', 'Costopredeterminados Has Costomuestras');

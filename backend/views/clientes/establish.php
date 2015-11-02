@@ -12,7 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="clientes-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <p>
+     <?= Html::button(Yii::t('models', 'Seleccionar Clientes'), ['data-dismiss'=>"modal",
+     'class' => 'btn btn-warning modalButton']) ?>
+    </p>  
+
 
     <?= $this->render('_form', [
         'model' => $model,

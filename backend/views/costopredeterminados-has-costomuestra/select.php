@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cantidad',
 
             ['class' => 'yii\grid\ActionColumn'],
-        ],S
+        ],
     ]); ?>
     <?php Pjax::end();?>
 </div>

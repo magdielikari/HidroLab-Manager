@@ -3,13 +3,12 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ClientesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('models', 'Clientes');
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="clientes-index">
@@ -18,10 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Clientes'), ['value'=>Url::to('clientes/create'),
-        'class' => 'btn btn-success modalButton', 'data-title'=>'Seleccionar Muestra']) ?>
-    </p>
-
+     <?= Html::button(Yii::t('models', 'Create Cliente'), ['data-dismiss'=>"modal",
+     'class' => 'btn btn-warning modalButton']) ?>
+    </p>  
     <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

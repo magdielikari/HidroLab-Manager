@@ -2,40 +2,34 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\search\ParametrosSearch */
+/* @var $searchModel common\models\search\GeneralHasTipoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-//$this->title = Yii::t('models', 'Parametros');
+$this->title = Yii::t('models', 'General Has Tipos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parametros-index">
+<div class="general-has-tipo-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-     <?= Html::button(Yii::t('models', 'Create Parametros'), ['data-dismiss'=>"modal",
-     'class' => 'btn btn-warning modalButton']) ?>
-    </p>  
+        <?= Html::a(Yii::t('models', 'Create General Has Tipo'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'General_id',
-            'Limites_id',
+            'Tipo_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end();?>
+
 </div>

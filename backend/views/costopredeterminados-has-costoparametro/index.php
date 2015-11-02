@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\CostopredeterminadosHasCostoparametroSearch */
+/* @var $searchModel common\models\search\CostopredeterminadosHasCostoparametroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('models', 'Costopredeterminados Has Costoparametros');

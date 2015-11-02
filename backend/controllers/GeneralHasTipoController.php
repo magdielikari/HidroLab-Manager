@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\General;
-use common\models\search\GeneralSearch;
+use common\models\GeneralHasTipo;
+use common\models\search\GeneralHasTipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Url;
 
 /**
- * GeneralController implements the CRUD actions for General model.
+ * GeneralHasTipoController implements the CRUD actions for GeneralHasTipo model.
  */
-class GeneralController extends Controller
+class GeneralHasTipoController extends Controller
 {
     public function behaviors()
     {
@@ -28,15 +27,15 @@ class GeneralController extends Controller
     }
 
     /**
-     * Lists all General models.
+     * Lists all GeneralHasTipo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GeneralSearch();
+        $searchModel = new GeneralHasTipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->renderAjax('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -44,7 +43,7 @@ class GeneralController extends Controller
 
     public function actionSelect()
     {
-        $searchModel = new GeneralSearch();
+        $searchModel = new GeneralHasTipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->renderAjax('select', [
@@ -53,42 +52,30 @@ class GeneralController extends Controller
         ]);
     }
 
-
     /**
-     * Displays a single General model.
-     * @param string $id
+     * Displays a single GeneralHasTipo model.
+     * @param string $General_id
+     * @param integer $Tipo_id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($General_id, $Tipo_id)
     {
-        return $this->renderAjax('view', [
-            'model' => $this->findModel($id),
+        return $this->render('view', [
+            'model' => $this->findModel($General_id, $Tipo_id),
         ]);
     }
 
     /**
-     * Creates a new General model.
+     * Creates a new GeneralHasTipo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new General();
-        $data=[
-            'url'=>null,
-            'success'=>false,
-            'error'=>[]
-        ];
-        if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                $data['success']=true;
-                $data['url']=Url::to(['general/view','id'=>$model->id]);
-            }else{
-                $data['error'][]=$model->getErrors();    
-            }
-            header('Content-type:application/json');
-            echo json_encode($data);
-            Yii::$app->end();
+        $model = new GeneralHasTipo();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -98,22 +85,10 @@ class GeneralController extends Controller
 
     public function actionEstablish()
     {
-        $model = new General();
-        $data=[
-            'url'=>null,
-            'success'=>false,
-            'error'=>[]
-        ];
-        if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                $data['success']=true;
-                $data['url']=Url::to(['general/view','id'=>$model->id]);
-            }else{
-                $data['error'][]=$model->getErrors();    
-            }
-            header('Content-type:application/json');
-            echo json_encode($data);
-            Yii::$app->end();
+        $model = new GeneralHasTipo();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
         } else {
             return $this->renderAjax('establish', [
                 'model' => $model,
@@ -121,20 +96,20 @@ class GeneralController extends Controller
         }
     }
 
-
     /**
-     * Updates an existing General model.
+     * Updates an existing GeneralHasTipo model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param string $General_id
+     * @param integer $Tipo_id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($General_id, $Tipo_id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($General_id, $Tipo_id);
 
         if ($model->load(Yii::$app->request->post())) {
             $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
         } else {
             return $this->renderAjax('update', [
                 'model' => $model,
@@ -142,29 +117,33 @@ class GeneralController extends Controller
         }
     }
 
+
+
     /**
-     * Deletes an existing General model.
+     * Deletes an existing GeneralHasTipo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param string $General_id
+     * @param integer $Tipo_id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($General_id, $Tipo_id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($General_id, $Tipo_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the General model based on its primary key value.
+     * Finds the GeneralHasTipo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return General the loaded model
+     * @param string $General_id
+     * @param integer $Tipo_id
+     * @return GeneralHasTipo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($General_id, $Tipo_id)
     {
-        if (($model = General::findOne($id)) !== null) {
+        if (($model = GeneralHasTipo::findOne(['General_id' => $General_id, 'Tipo_id' => $Tipo_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

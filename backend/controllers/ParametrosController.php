@@ -47,7 +47,7 @@ class ParametrosController extends Controller
         $searchModel = new ParametrosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderAjax('index', [
+        return $this->renderAjax('select', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
