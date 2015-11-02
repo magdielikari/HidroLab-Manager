@@ -10,7 +10,7 @@ Class PermissionsController extends Controller
 {
 	public function actionIndex()
 	{
-		$dataProvider = $this->getPermissions();
+		$dataProvider = $this->getDataPermissions();
 
         return $this->render('index', ['dataProvider'=>$dataProvider]);
 	}
@@ -39,7 +39,28 @@ Class PermissionsController extends Controller
     	return $this->render('create');
 	}
 
-	protected function getPermissions()
+    /**
+    * [actionDelete Eliminar un permiso en la base de la base de datos]
+    * @param  [string] $name Nombre del permiso
+    */
+    public function actionDelete($name)
+    {
+        $auth = Yii::$app->authManager;
+        $permission = $auth->getPermission($name);
+
+        /**
+        * Si no existe permiso entonces agregar un flash de error y regresar a index
+        */
+        if(!$auth->remove($permission))
+            Yii::$app->session->setFlash('error', Yii::t('app', 'The selected item does not exist'));
+
+        else
+            Yii::$app->session->setFlash('success', Yii::t('app', 'The selected item was successfully deleted'));
+
+        return $this->redirect(['index']);
+    }
+
+	public function getDataPermissions()
     {
     	$permissions = Yii::$app->authManager->getPermissions();
 

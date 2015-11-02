@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= HTml::a(Yii::t('app', 'Create Roles'), ['create'], ['class'=>'btn btn-success']) ?>
+    <?= HTml::a(Yii::t('app', 'Assign Roles'), ['assign'], ['class'=>'btn btn-success']) ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
