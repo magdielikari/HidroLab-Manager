@@ -33,16 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div class="col-md-6">
 		<div class="list-group">
 			<?php foreach($permissions as $permission): ?>
-					<a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-11">
-								<?= $permission->name ?>
-							</div>
-							<div class="col-md-1">
-								<?= Html::checkbox('assign[permission][]', false, ['value'=>$permission->name]) ?>
-							</div>
+				<a href="#" class="list-group-item">
+					<div class="row">
+						<div class="col-md-11">
+							<?= $permission->name ?>
 						</div>
-					</a>
+						<div class="col-md-1">
+							<?= Html::checkbox('assign[permission][]', false, ['value'=>$permission->name]) ?>
+						</div>
+					</div>
+				</a>
 			<?php endforeach; ?>
 		</div>
 	</div>

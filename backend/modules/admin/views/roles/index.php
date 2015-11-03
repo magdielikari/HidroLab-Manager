@@ -43,6 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             'aria-label'=>'Delete',
                             'title'=>'Delete'
                         ]);
+                    },
+                    'view'=>function($url, $model){
+                        $url = Url::to(['view', 'name'=>$model->name]);
+
+                        return Html::a(Html::icon('eye-open'), $url);
                     }
                 ]
             ],

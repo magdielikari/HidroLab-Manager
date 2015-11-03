@@ -60,7 +60,7 @@ Class PermissionsController extends Controller
         return $this->redirect(['index']);
     }
 
-	public function getDataPermissions()
+	protected function getDataPermissions()
     {
     	$permissions = Yii::$app->authManager->getPermissions();
 
