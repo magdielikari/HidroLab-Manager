@@ -2,13 +2,12 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Assign Role');
+$this->title = Yii::t('app', 'Set Role');
 
 $this->params['breadcrumbs'][] = ['label'=>Yii::t('app', 'Admin'), 'url'=>['main/index']];
 $this->params['breadcrumbs'][] = ['label'=>Yii::t('app', 'Roles'), 'url'=>['roles/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <?= Html::beginForm('', 'post') ?>
 <div class="row">
 	<!-- List of roles -->
@@ -22,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							<p class="list-group-item-text"><?= $role->description ?></p>
 						</div>
 						<div class="col-md-1">
-							<?= Html::radio('assign[role]', false, ['value'=>$role->name]) ?>
+							<?= Html::radio('set[role]', false, ['value'=>$role->name]) ?>
 						</div>
 					</div>
 				</a>
@@ -33,14 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
 	<!-- List of permissions -->
 	<div class="col-md-6">
 		<div class="list-group">
-			<?php foreach($users as $user): ?>
+			<?php foreach($permissions as $permission): ?>
 				<a href="#" class="list-group-item">
 					<div class="row">
 						<div class="col-md-11">
-							<?= $user->username ?>
+							<?= $permission->name ?>
 						</div>
 						<div class="col-md-1">
-							<?= Html::checkbox('assign[users][]', false, ['value'=>$user->id]) ?>
+							<?= Html::checkbox('set[permission][]', false, ['value'=>$permission->name]) ?>
 						</div>
 					</div>
 				</a>

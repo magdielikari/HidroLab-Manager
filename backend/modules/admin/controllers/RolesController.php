@@ -5,8 +5,11 @@ namespace backend\modules\admin\controllers;
 use yii;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
+use yii\db\Query;
 
 use backend\modules\admin\controllers\PermissionsController;
+
+use common\models\User;
 
 Class RolesController extends Controller
 {
@@ -18,9 +21,9 @@ Class RolesController extends Controller
 	}
 
 	/**
-	 * [actionAssign Assign permisions to a role]
+	 * [actionAssign Set permisions to a role]
 	 */
-	public function actionAssign()
+	public function actionSet()
 	{
 		$auth = Yii::$app->authManager;
 		$roles = $this->getRoles();
@@ -29,11 +32,11 @@ Class RolesController extends Controller
 
 		if(isset($post['assign']))
 		{
-			$roleItem = $auth->getRole($post['assign']['role']);
+			$roleItem = $auth->getRole($post['set']['role']);
 
 			try
 			{
-				foreach($post['assign']['permission'] as $permission)
+				foreach($post['set']['permission'] as $permission)
 				{
 					$permissionItem = $auth->getPermission($permission);
 
@@ -56,7 +59,47 @@ Class RolesController extends Controller
 			}
 		}
 
-		return $this->render('assign', ['roles'=>$roles, 'permissions'=>$permissions]);
+		return $this->render('set', ['roles'=>$roles, 'permissions'=>$permissions]);
+	}
+
+	/**
+	 * [actionAssign Assign users to a role]
+	 */
+	public function actionAssign()
+	{
+		$roles = $this->getRoles();
+		$users = User::find()->select(['id', 'username'])->all();
+		$post = Yii::$app->request->post();
+
+		if(isset($post['assign']))
+		{
+			$auth = Yii::$app->authManager;
+
+			try
+			{
+				foreach ($post['assign']['users'] as $user)
+				{
+					$role = $auth->getRole($post['assign']['role']);
+
+					$auth->assign($role, $user);
+				}
+
+				Yii::$app->session->setFlash('success', Yii::t('app', 'The user was successfully assigned to {role} role', ['role'=>$post['assign']['role']]));
+			}
+			catch(\Exception $e)
+			{
+				if($e->getCode() == 23000)
+					Yii::$app->session->setFlash('error', Yii::t('app', 'The user was already assigned to {role} role', ['role'=>$post['assign']['role']]));
+
+				else
+					Yii::$app->session->setFlash('error', 'There was an error caught');
+			}
+		}
+
+		return $this->render('assign', [
+			'roles'=>$roles,
+			'users'=>$users
+		]);
 	}
 
 	/**
@@ -66,10 +109,29 @@ Class RolesController extends Controller
 	public function actionView($name)
 	{
 		$role = Yii::$app->authManager->getRole($name);
-
 		$permissions = $this->getDataChildren($name);
 
-		return $this->render('view', ['role'=>$role, 'dataProvider'=>$permissions]);
+		/**
+		 * [$query Crear un sql query y ejecutarlo a la base de datos]
+		 * @var [object]
+		 */
+		$query = (new yii\db\Query())
+			->select('id, username, auth_assignment.created_at')
+			->from('user')
+			->innerJoin('auth_assignment','user.id = auth_assignment.user_id')
+			->innerJoin('auth_item','auth_item.name = auth_assignment.item_name')
+			->where([
+				'auth_item.name' => $name
+			])->all();
+
+		$assignedUsers = new ArrayDataProvider([
+			'models'=>$query,
+			'pagination'=>[
+				'pageSize'=>10
+			]
+		]);
+
+		return $this->render('view', ['role'=>$role, 'dataProvider'=>$permissions, 'users'=>$assignedUsers]);
 	}
 
 	/**
@@ -120,6 +182,29 @@ Class RolesController extends Controller
 	}
 
 	/**
+	 * [actionRevoke Revoke an user from a speficic role]
+	 * @param  [integer] $id   [The id of the user]
+	 * @param  [string] $role [The name of the role]
+	 */
+	public function actionRevoke($id, $role)
+	{
+		if(Yii::$app->request->isPost)
+		{
+			$auth = Yii::$app->authManager;
+
+			$roleItem = $auth->getRole($role);
+
+			if($auth->revoke($roleItem, $id))
+				Yii::$app->session->setFlash('success', Yii::t('app', 'User was revoked successfully'));
+
+			else
+				Yii::$app->session->setFlash('error', Yii::t('app', 'User cannot be revoked'));
+		
+			return $this->redirect(['view', 'name'=>$role]);
+		}
+	}
+
+	/**
 	 * [getDataRoles Create a role dataProvider]
 	 * @return [object] [The dataProvider]
 	 */
@@ -157,7 +242,7 @@ Class RolesController extends Controller
 	{
 		$auth = Yii::$app->authManager;
 
-		return $auth->getChildren($parent);
+		return $auth->getPermissionsByRole($parent);
 	}
 
 	/**

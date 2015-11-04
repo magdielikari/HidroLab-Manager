@@ -25,32 +25,72 @@ $this->params['breadcrumbs'][] = Html::encode($role->name);
 	]
 ]) ?>	
 <hr>
-<h3><?= Html::encode(Yii::t('app', 'Permissions')) ?></h3>
+<div class="row">
+	<div class="col-md-6">
+		<!-- List of assigned permissions -->
+		<h3><?= Html::encode(Yii::t('app', 'Permissions')) ?></h3>
 
-<?= GridView::widget([
-	'dataProvider' => $dataProvider,
-	'columns' => [
-		['class' => 'yii\grid\SerialColumn'],
+		<?= GridView::widget([
+			'dataProvider' => $dataProvider,
+			'columns' => [
+				['class' => 'yii\grid\SerialColumn'],
 
-		'name',
-		'description',
+				'name',
+				'description',
 
-		[
-			'class' => 'yii\grid\ActionColumn',
-			'template'=>'{delete}',
-			'buttons'=>[
-				'delete'=>function($url, $model) use($role){
-					$url = Url::to(['remove', 'name'=>$model->name, 'role'=>$role->name]);
+				[
+					'class' => 'yii\grid\ActionColumn',
+					'template'=>'{delete}',
+					'buttons'=>[
+						'delete'=>function($url, $model) use($role){
+							$url = Url::to(['remove', 'name'=>$model->name, 'role'=>$role->name]);
 
-					return Html::a(Html::icon('remove'), $url, [
-						'data-pjax'=>0,
-						'data-method'=>'post',
-						'data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'),
-						'aria-label'=>'Remove',
-						'title'=>'Remove'
-					]);
-				},
-			]
-		],
-	],
-]); ?>
+							return Html::a(Html::icon('remove'), $url, [
+								'data-pjax'=>0,
+								'data-method'=>'post',
+								'data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'),
+								'aria-label'=>'Remove',
+								'title'=>'Remove'
+							]);
+						},
+					]
+				],
+			],
+		]); ?>
+	</div>
+	<div class="col-md-6">
+		<h3><?= Html::encode(Yii::t('app', 'Users')) ?></h3>
+		<?= GridView::widget([
+			'dataProvider' => $users,
+			'columns' => [
+				['class' => 'yii\grid\SerialColumn'],
+
+				'username',
+				[
+					'attribute'=>'assigned at',
+					'value'=>function($model){
+						return date('Y-m-d H:i', $model['created_at']);
+					}
+				],
+
+				[
+					'class' => 'yii\grid\ActionColumn',
+					'template'=>'{delete}',
+					'buttons'=>[
+						'delete'=>function($url, $model) use($role){
+							$url = Url::to(['revoke', 'id'=>$model['id'], 'role'=>$role->name]);
+
+							return Html::a(Html::icon('remove'), $url, [
+								'data-pjax'=>0,
+								'data-method'=>'post',
+								'data-confirm'=>Yii::t('app', 'Are you sure you want to delete this item?'),
+								'aria-label'=>'Remove',
+								'title'=>'Remove'
+							]);
+						},
+					]
+				],
+			],
+		]); ?>
+	</div>
+</div>
