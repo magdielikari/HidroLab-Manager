@@ -30,7 +30,7 @@ Class RolesController extends Controller
 		$permissions = $auth->getPermissions();
 		$post = Yii::$app->request->post();
 
-		if(isset($post['assign']))
+		if(isset($post['set']))
 		{
 			$roleItem = $auth->getRole($post['set']['role']);
 
