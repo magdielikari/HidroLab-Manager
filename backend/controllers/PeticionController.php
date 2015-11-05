@@ -46,7 +46,7 @@ class PeticionController extends Controller
         }
 
         else
-            throw new UnauthorizedHttpException(Yii::t('app/error', 'You are not authorized to access this view.'));
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionIndice()
