@@ -7,13 +7,13 @@ return [
         ],
         'i18n' => [
         	'translations' => [
-            	'models' => [
+            	'models*' => [
                 	'class' => 'yii\i18n\PhpMessageSource',
                 	'basePath' => '@common/messages',
                 	'sourceLanguage' => 'es-MX',
                 	'fileMap' => [
                    		'models' => 'models.php',
-                    	'models/error' => 'error.php',
+                    	'models/error' => '/error/error.php',
                 	],
             	],
         	],
