@@ -24,10 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             [  
-                'label'=>'Create at',
+                'label'=>'Created at',
                 'value'=>function($model, $key, $index){
                     if($model->createdAt)
                         return date('Y-m-d H:i', $model->createdAt);
+                }
+            ],
+            [  
+                'label'=>'Updated at',
+                'value'=>function($model, $key, $index){
+                    if($model->updatedAt)
+                        return date('Y-m-d H:i', $model->updatedAt);
                 }
             ],
 
@@ -49,7 +56,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         $url = Url::to(['view', 'name'=>$model->name]);
 
                         return Html::a(Html::icon('eye-open'), $url);
-                    }
+                    },
+                    'update'=>function($url, $model){
+                        $url = Url::to(['update', 'name'=>$model->name]);
+
+                        return Html::a(Html::icon('pencil'), $url);
+                    },
+
                 ]
             ],
         ],
