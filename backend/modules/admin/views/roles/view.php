@@ -42,8 +42,9 @@ $this->params['breadcrumbs'][] = Html::encode($role->name);
 					'class' => 'yii\grid\ActionColumn',
 					'template'=>'{delete}',
 					'buttons'=>[
+						// Unset permission button
 						'delete'=>function($url, $model) use($role){
-							$url = Url::to(['remove', 'name'=>$model->name, 'role'=>$role->name]);
+							$url = Url::to(['unset', 'name'=>$model->name, 'role'=>$role->name]);
 
 							return Html::a(Html::icon('remove'), $url, [
 								'data-pjax'=>0,

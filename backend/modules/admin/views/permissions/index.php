@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= HTml::a(Yii::t('app', 'Create permission'), ['create'], ['class'=>'btn btn-success']) ?>
+    <?= HTml::a(Yii::t('app', 'Assign permission'), ['assign'], ['class'=>'btn btn-success']) ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -22,16 +23,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             [  
-                'label'=>'Create at',
+                'label'=>'Created at',
                 'value'=>function($model, $key, $index){
                     if($model->createdAt)
                         return date('Y-m-d H:i', $model->createdAt);
                 }
             ],
+            [  
+                'label'=>'Updated at',
+                'value'=>function($model, $key, $index){
+                    if($model->updatedAt)
+                        return date('Y-m-d H:i', $model->updatedAt);
+                }
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'template'=>'{update}{delete}',
                 'buttons'=>[
+                    'update'=>function($url, $model){
+                        $url = Url::to(['update', 'name'=>$model->name]);
+
+                        return Html::a(Html::icon('pencil'), $url);
+                    },
                     'delete'=>function($url, $model){
                         $url = Url::to(['delete', 'name'=>$model->name]);
                         
