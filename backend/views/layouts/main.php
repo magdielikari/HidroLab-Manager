@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use rmrevin\yii\fontawesome\FA;
 
 AppAsset::register($this);
 ?>
@@ -37,15 +38,16 @@ AppAsset::register($this);
     $menuItems = [];
     $routeItems = [];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']
+        $menuItems[] = ['label' => '<i class="glyphicon glyphicon-log-in"></i>', 
+        'url' => ['/site/login'],
         ];
     } else {
         $menuItems[] = [
-            'label' => 'Admin',
+            'label' => FA::icon('lock'),
             'url' => ['/admin/main/index'],
         ];
         $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+            'label' => '<i class="glyphicon glyphicon-log-out"></i> (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post'],
         ];
@@ -60,6 +62,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels'=>false,
     ]);
     NavBar::end();
     ?>
