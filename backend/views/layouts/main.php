@@ -41,6 +41,10 @@ AppAsset::register($this);
         ];
     } else {
         $menuItems[] = [
+            'label' => 'Admin',
+            'url' => ['/admin/main/index'],
+        ];
+        $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post'],

@@ -6,6 +6,7 @@ use yii;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 use yii\db\Query;
+use yii\web\NotFoundHttpException;
 
 use backend\modules\admin\controllers\PermissionsController;
 
@@ -148,7 +149,11 @@ Class RolesController extends Controller
             $role->description = $post['role']['description'];
 
             if($auth->add($role))
-                Yii::$app->session->setFlash('success', Yii::t('app', 'The permissions were assigned successfully'));
+            {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'The role was created successfully'));
+            	
+            	return $this->redirect('index');
+            }
 
             else
                 Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error creating the role'));
@@ -157,12 +162,31 @@ Class RolesController extends Controller
         return $this->render('create');
 	}
 
+	public function actionDelete($name)
+	{
+		$auth = Yii::$app->authManager;
+
+		if($role = $auth->getRole($name))
+		{
+			if($auth->remove($role))
+				Yii::$app->session->setFlash('success', Yii::t('app', 'The {role} role was removed successfully', ['role'=>$name]));
+
+			else
+				Yii::$app->session->setFlash('error', Yii::t('app', 'The {role} role could not be removed', ['role'=>$name]));		
+			
+			return $this->redirect(['index']);
+		}
+
+		else
+			throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist'));
+	}
+
 	/**
 	 * [actionRemove Remove a permission to a role]
 	 * @param  [string] $name [The name of the permission]
 	 * @param  [string] $role [The name of the role]
 	 */
-	public function actionRemove($name, $role)
+	public function actionUnset($name, $role)
 	{
 		if(Yii::$app->request->isPost)
 		{
@@ -202,6 +226,52 @@ Class RolesController extends Controller
 		
 			return $this->redirect(['view', 'name'=>$role]);
 		}
+	}
+
+	/**
+	 * [actionUpdate Updates the information of the role]
+	 * @param  [string] $name [The name of the role]
+	 */
+	public function actionUpdate($name)
+	{
+		$auth = Yii::$app->authManager;
+		$role = $auth->getRole($name);
+		$post = Yii::$app->request->post();
+
+		if(isset($post['role']))
+		{
+			if($role = $auth->getRole($name))
+			{
+				try
+				{
+					$role->name = $post['role']['name'];
+					$role->description = $post['role']['description'];
+
+					if($auth->update($name, $role))
+					{
+						Yii::$app->session->setFlash('success', Yii::t('app', 'The role {role} was updated successfully', ['role'=>$role->name]));
+						return $this->redirect('index');
+					}
+
+					else
+						Yii::$app->session->setFlash('error', Yii::t('app', 'The role {role} could not update', ['role'=>$name]));
+				}
+
+				catch(\Exception $e)
+				{
+					if($e->getCode() == 23000)
+						Yii::$app->session->setFlash('error', Yii::t('app', 'The {role} role already exists', ['role'=>$post['role']['name']]));
+
+					else
+						Yii::$app->session->setFlash('error', 'There was an error caught');
+				}
+			}
+
+			else
+				throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist'));
+		}
+
+		return $this->render('update', ['role'=>$role]);
 	}
 
 	/**
