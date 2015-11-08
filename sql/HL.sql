@@ -874,6 +874,27 @@ CREATE TABLE IF NOT EXISTS `vendedor` (
   KEY `fk_Vendedor_Departamento1_idx` (`Departamento_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- -----------------------------------------------------
+-- Table `HL`.`General_has_SubTipo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `HL`.`General_has_SubTipo` (
+  `General_id` INT UNSIGNED NOT NULL,
+  `SubTipo_id` TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (`General_id`, `SubTipo_id`),
+  INDEX `fk_General_has_SubTipo_SubTipo1_idx` (`SubTipo_id` ASC),
+  INDEX `fk_General_has_SubTipo_General1_idx` (`General_id` ASC),
+  CONSTRAINT `fk_General_has_SubTipo_General1`
+    FOREIGN KEY (`General_id`)
+    REFERENCES `HL`.`General` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_General_has_SubTipo_SubTipo1`
+    FOREIGN KEY (`SubTipo_id`)
+    REFERENCES `HL`.`SubTipo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 --
 -- Constraints for dumped tables
 --

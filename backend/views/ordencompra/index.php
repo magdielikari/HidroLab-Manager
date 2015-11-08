@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Ordencompra'), ['value'=>Url::to('ordencompra/create'),
+        <?= Html::button(Yii::t('models', 'Create Ordencompra'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Orden Compra']) ?>
     </p>
 

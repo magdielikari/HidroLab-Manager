@@ -36,11 +36,23 @@ class EquiposHasGeneralController extends Controller
         $searchModel = new EquiposHasGeneralSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderAjax('index', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionSelect()
+    {
+        $searchModel = new EquiposHasGeneralSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 
     /**
      * Displays a single EquiposHasGeneral model.
@@ -68,11 +80,26 @@ class EquiposHasGeneralController extends Controller
             $model->save();
             return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
         } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionEstablish()
+    {
+        $model = new EquiposHasGeneral();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
+        } else {
             return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
     }
+
 
     /**
      * Updates an existing EquiposHasGeneral model.

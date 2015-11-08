@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Tipo Has Subtipo'), ['value'=>Url::to('tipo-has-subtipo/create'),
+        <?= Html::button(Yii::t('models', 'Create Tipo Has Subtipo'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton','data-title'=>'Seleccionar Muestra']) ?>
     </p>
 

@@ -66,6 +66,13 @@ class GeneralController extends Controller
         ]);
     }
 
+    public function actionAjaxView($id)
+    {
+        return $this->renderAjax('ajaxView', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Creates a new General model.
      * If creation is successful, the browser will be redirected to the 'view' page.

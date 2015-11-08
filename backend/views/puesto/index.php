@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Puesto'), ['value'=>Url::to('puesto/create'),
+        <?= Html::button(Yii::t('models', 'Create Puesto'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Puesto']) ?>
     </p>
 

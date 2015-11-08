@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\helpers\Url;
 use common\models\Departamento;
 use common\models\helpers\ModelUtility;
 
@@ -20,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Departamento'), ['value'=>Url::to('departamento/create'),
-        'class' => 'btn btn-success modalButton','data-title'=>'Seleccionar Muestra']) ?>
+        <?= Html::button(Yii::t('models', 'Create Departamento'), 
+        ['class' => 'btn btn-success modalButton','data-title'=>'Create Departamento']) ?>
     </p>
     
     <?php Pjax::begin();?>
@@ -35,9 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'contador',
             [
                 'attribute'=>'decretos',
+                'format'=>'raw',
                 'value'=>function($data){
                     return ModelUtility::handler($data, 'decretos', 'nombre');
-                }
+                },
+                'options'=>['class'=>'text-center'],
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Celular'), ['value'=>Url::to('celular/create'),
-        'class' => 'btn btn-success modalButton', 'data-title'=>'Seleccionar Muestra']) ?>
+        <?= Html::button(Yii::t('models', 'Create Celular'), ['value'=>Url::to('create'),
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Celular']) ?>
     </p>
 
     <?php Pjax::begin();?>

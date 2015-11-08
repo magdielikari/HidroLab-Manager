@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Se solicita información de Nombre de los Clientes',
       'bottom'=>[
         ['name'=>'Seleccionar Tipos','value'=>['clientes/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Clientes']],
+         'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Clientes']],
         ['name'=>'Crear Tipos','value'=>['clientes/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Clientes']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Clientes']]
       ]
     ])?> 
   </div>
@@ -31,21 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   cual departamento Departamento para que Decreto y cual clientes',
       'bottom'=>[
         ['name'=>'Seleccionar General','value'=>['general/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar General']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar General']],
         ['name'=>'Crear General','value'=>['general/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear General']]
-      ]
-    ])?> 
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <?= Thumbnail::widget([
-      'label'=>'Muestras',
-      'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
-      'bottom'=>[
-        ['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Muestras']],
-        ['name'=>'Crear Muestras','value'=>['muestras/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Muestras']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear General']]
       ]
     ])?> 
   </div>
@@ -58,9 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Se solicita información de Nombre de las Tipos',
       'bottom'=>[
         ['name'=>'Seleccionar Tipos','value'=>['general-has-tipo/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Tipos']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Tipos']],
         ['name'=>'Crear Tipos','value'=>['general-has-tipo/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Tipos']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Tipos']]
       ]
     ])?> 
   </div>
@@ -70,9 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Se solicita información de Nombre de las Sub-Tipos',
       'bottom'=>[
         ['name'=>'Seleccionar Sub-Tipos','value'=>['general-has-subtipo/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Sub-Tipos']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Sub-Tipos']],
         ['name'=>'Crear Sub-Tiposs','value'=>['general-has-subtipo/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Sub-Tipos']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Sub-Tipos']]
       ]
     ])?> 
   </div>
@@ -82,9 +70,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Se solicita información de Nombre de las Ramas',
       'bottom'=>[
         ['name'=>'Seleccionar Ramas','value'=>['rama-has-general/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Ramas']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Ramas']],
         ['name'=>'Crear Ramas','value'=>['rama-has-general/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Ramas']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Ramas']]
       ]
     ])?> 
   </div>
@@ -97,21 +85,48 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Se solicita información de los parámetros',
       'bottom'=>[
         ['name'=>'Seleccionar Parámetros','value'=>['parametros/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Parámetros']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Parámetros']],
         ['name'=>'Crear Parámetros','value'=>['parametros/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
       ]
     ])?> 
   </div>
+    <div class="col-sm-6 col-md-4">
+    <?= Thumbnail::widget([
+      'label'=>'Muestras',
+      'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
+      'bottom'=>[
+        ['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Muestras']],
+        ['name'=>'Crear Muestras','value'=>['muestras/establish'],
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Muestras']]
+      ]
+    ])?> 
+  </div>
+    <div class="col-sm-6 col-md-4">
+    <?= Thumbnail::widget([
+      'label'=>'Equipos has General',
+      'content'=>'Se solicita información de Nombre de las Equipos has General, su tipo, la hora de muestreo',
+      'bottom'=>[
+        ['name'=>'Seleccionar Equipos','value'=>['equipos-has-general/select'],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Equipos has General']],
+        ['name'=>'Crear Equipos','value'=>['equipos-has-general/establish'],
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Equipos has General']]
+      ]
+    ])?> 
+  </div>
+</div>
+  
+  <div class="row">  
   <div class="col-sm-6 col-md-4">
     <?= Thumbnail::widget([
       'label'=>'Costo Muestra',
       'content'=>'Holllla',
       'bottom'=>[
         ['name'=>'Seleccionar Costo M.','value'=>['costopredeterminados-has-costomuestra/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Costos Muestra']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Costos Muestra']],
         ['name'=>'Crear Costos M.','value'=>['costopredeterminados-has-costomuestra/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Costos Muestra']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Costos Muestra']]
       ]
     ])?> 
   </div>
@@ -121,13 +136,13 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Holllla',
       'bottom'=>[
         ['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-costoparametro/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Seccionar Costos Parámetros']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seccionar Costos Parámetros']],
         ['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-costoparametro/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
       ]
     ])?> 
   </div>
-  </div>
+</div>
   
 <div class="row"> 
   <div class="col-sm-6 col-md-4">
@@ -136,9 +151,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'content'=>'Holllla',
       'bottom'=>[
         ['name'=>'Seleccionar Petición','value'=>['peticion/select'],
-          ['class'=>'btn btn-info modalButton','data-title'=>'Selecionar Petición']],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Selecionar Petición']],
         ['name'=>'Crear Petición','value'=>['peticion/establish'],
-          ['class'=>'btn btn-success modalButton','data-title'=>'Crear Petición']]
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Petición']]
       ]
     ])?> 
   </div>

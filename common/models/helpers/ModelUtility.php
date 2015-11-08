@@ -7,12 +7,17 @@ Class ModelUtility
 	public static function handler($record, $relation, $attribute)
 	{
 		$summary = [];
-
-		foreach($record[$relation] as $data)
+		$valor=[];
+		$absoluto=[];
+		foreach($record[$relation] as $data){
 			$summary[] = $data[$attribute];
-
-		return implode(' - ', $summary);
+		}
+		
+		usort($summary,function ($a,$b){
+			return strlen($a)-strlen($b);
+		});
+		
+		return implode("<br>", $summary);
 	}
 }
-
 ?>

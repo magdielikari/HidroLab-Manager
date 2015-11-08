@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Departamento has Decreto'), ['value'=>Url::to('departamento-has-decreto/create'),
+        <?= Html::button(Yii::t('models', 'Create Departamento has Decreto'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Departamento has Decreto']) ?>
     </p>
 
@@ -28,10 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'Departamento_id',
-            'Decreto_id',
-
+            [
+                'attribute'=>'Departamento_id',
+                'value'=>'departamento.nombre',
+            ],
+            [
+                'attribute'=>'Decreto_id',
+                'value'=>'decreto.nombre',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

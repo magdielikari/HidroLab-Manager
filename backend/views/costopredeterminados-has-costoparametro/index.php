@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
-        <?= Html::button(Yii::t('models', 'Create Costopredeterminados Has Costoparametro'), ['value'=>Url::to('costopredeterminados-has-costoparametro/create'),
+        <?= Html::button(Yii::t('models', 'Create Costopredeterminados Has Costoparametro'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Costopredeterminado has Costoparametro']) ?>
     </p>
 

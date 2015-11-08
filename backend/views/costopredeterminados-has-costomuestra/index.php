@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button(Yii::t('models', 'Create Costopredeterminados Has Costomuestra'),
-             ['value'=>Url::to('costopredeterminados-has-costomuestra/create'),
+             ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton', 'data-title'=>'Crear CostosPrederterminados has Costomuestra']) ?>
     </p>
 

@@ -2,15 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\EquiposHasGeneralSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-//$this->title = Yii::t('models', 'Equipos Has Generals');
+$this->title = Yii::t('models', 'Equipos Has Generals');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equipos-has-general-index">
@@ -19,11 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-     <?= Html::button(Yii::t('models', 'Create Equipos-has-General'), ['data-dismiss'=>"modal",
-     'class' => 'btn btn-warning modalButton']) ?>
-    </p>  
+        <?= Html::a(Yii::t('models', 'Create Equipos Has General'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -36,5 +31,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end();?>
+
 </div>

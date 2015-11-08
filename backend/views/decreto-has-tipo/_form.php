@@ -16,17 +16,18 @@ use common\models\Decreto;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'Decreto_id')->dropDownList(
-    	ArrayHelper::map(Decreto::find()->all(),'id','nombre'),
-    	['prompt'=>'Select Decreto']
+    	ArrayHelper::map(Decreto::find()->select(['nombre','id'])->all(),'id','nombre'),
+    	['prompt'=>'Select Decreto','class'=>'form-control inline-block']
     )?>
 
     <?= $form->field($model, 'Tipo_id')->dropDownList(
-    	ArrayHelper::map(Tipo::find()->all(),'id','nombre'),
-    	['prompt'=>'Select Tipo']
+    	ArrayHelper::map(Tipo::find()->select(['nombre','id'])->all(),'id','nombre'),
+    	['prompt'=>'Select Tipo','class'=>'form-control inline-block']
     )?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('models', 'Create') : Yii::t('models', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('models', 'Create') : Yii::t('models', 'Update'), 
+        ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

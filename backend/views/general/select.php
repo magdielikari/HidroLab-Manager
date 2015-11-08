@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'rowOptions'=>function($model, $key, $index, $grid){
             return [
                 'class'=>'gridRow',
-                'data-url'=>Url::to(['view', 'id'=>$model->id])
+                'data-url'=>Url::to(['ajax-view', 'id'=>$model->id])
             ];
         },
         'columns' => [
