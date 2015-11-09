@@ -40,4 +40,15 @@ $(function(){
 				.load(url);
 		},500);
 	}
+
+	// Hacer la llamada a servidor para verificar si existe la cookie "petProcc"
+	window.cookie.check('petProcc', function(res){
+		if(res)
+			alert('Cookie exists');
+
+		else
+			alert('Cookie doesnt exist');
+
+		console.log(res);
+	});
 });

@@ -4,10 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use common\widgets\Thumbnail; 
 use yii\helpers\Url;
+use yii\web\View;
   
 $this->title = Yii::t('models', 'Crear Peticion');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Peticion'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+// Definicion de la variable de la url ajax para las peticiones de cookies
+$this->registerJs('var ajaxDir = "'.Url::to(['ajax-cookie']).'";', View::POS_HEAD);
 ?>
 <?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>
 
