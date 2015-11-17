@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use common\models\helpers\ModelUtility;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DecretoSearch */
@@ -28,11 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+           
             'nombre',
             'gaceta',
             'fecha',
+            [
+                'attribute'=>'Departamento_id',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'departamentos', 'nombre');
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

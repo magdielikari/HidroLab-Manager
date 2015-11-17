@@ -63,10 +63,11 @@ class RamaHasCaracterizacionController extends Controller
     {
         $model = new RamaHasCaracterizacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'Caracterizacion_id' => $model->Caracterizacion_id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
