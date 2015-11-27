@@ -30,5 +30,21 @@ var cookie = {
 			if(callback)
 				callback(response);
 		});
+	},
+
+	hasData: function(){
+		var result;
+		$.ajax({
+			url: window.ajaxDir,
+			async: false,
+			data: {
+				action: 'verify'
+			},
+			dataType: 'json'
+		}).done(function(response){
+			result = response.data;
+		});
+
+		return result;
 	}
-}
+};

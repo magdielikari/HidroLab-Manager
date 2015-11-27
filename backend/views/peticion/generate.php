@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 // Definicion de la variable de la url ajax para las peticiones de cookies
 $this->registerJs('var ajaxDir = "'.Url::to(['ajax-cookie']).'";', View::POS_HEAD);
+$this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::className()]);
 ?>
 <?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>
 

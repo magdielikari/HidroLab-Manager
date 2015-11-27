@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ClientesSearch */
@@ -24,6 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions' => function($model, $key, $index, $grid){
+            return [
+                'class'=>'gridRow',
+                'data-url'=>Url::to(['ajax-view', 'id'=>$key])
+            ];
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

@@ -213,6 +213,10 @@ class PeticionController extends Controller
 
                 $cookies->remove($data['name']);
                 break;
+
+            case 'verify':
+                return json_encode(['data'=>Yii::$app->response->cookies->has('cliente')]);
+                break;
         }
         
         return json_encode($data);

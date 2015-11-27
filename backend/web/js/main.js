@@ -8,12 +8,6 @@ $(function(){
 			.load($(this).attr('value'));
 	});
 
-	// Register event on table rows inside the grid placed in AJAX Modal.
-	$('#modal').on('click', '.gridRow', function(){
-		// Get the data and reload modal
-		reloadModal($(this).data('url'));
-	});
-
 	// Post form in modal and Display the results.
 	$("#modal").on('submit','form', function() {
 		var form_data = $("form").serialize();
@@ -41,14 +35,7 @@ $(function(){
 		},500);
 	}
 
-	// Hacer la llamada a servidor para verificar si existe la cookie "petProcc"
-	window.cookie.check('petProcc', function(res){
-		if(res)
-			alert('Cookie exists');
-
-		else
-			alert('Cookie doesnt exist');
-
-		console.log(res);
+	$('#modal').on('modal:reload', function(event, url){
+		reloadModal(url);
 	});
 });
