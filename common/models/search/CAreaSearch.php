@@ -18,7 +18,7 @@ class CareaSearch extends Carea
     public function rules()
     {
         return [
-            [['id', 'nombre', 'Celular_id'], 'integer'],
+            [['id', 'nombre'], 'integer'],
         ];
     }
 
@@ -57,7 +57,6 @@ class CareaSearch extends Carea
         $query->andFilterWhere([
             'id' => $this->id,
             'nombre' => $this->nombre,
-            'Celular_id' => $this->Celular_id,
         ]);
 
         return $dataProvider;

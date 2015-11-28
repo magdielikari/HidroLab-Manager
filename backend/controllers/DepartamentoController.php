@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * DepartamentoController implements the CRUD actions for Departamento model.
@@ -33,13 +34,17 @@ class DepartamentoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DepartamentoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('departamento-index'))
+        {    
+            $searchModel = new DepartamentoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -49,9 +54,14 @@ class DepartamentoController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->user->can('departamento-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -61,16 +71,20 @@ class DepartamentoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Departamento();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('departamento-create'))
+        {    
+            $model = new Departamento();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -81,15 +95,20 @@ class DepartamentoController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('departamento-update'))
+        {    
+            $model = $this->findModel($id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -100,9 +119,13 @@ class DepartamentoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('departamento-delete'))
+        {    
+            return $this->redirect(['index']);
+            $this->findModel($id)->delete();
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

@@ -10,8 +10,8 @@ use Yii;
  * @property string $Rama_id
  * @property string $General_id
  *
- * @property General $general
  * @property Rama $rama
+ * @property General $general
  */
 class RamaHasGeneral extends \yii\db\ActiveRecord
 {
@@ -48,17 +48,17 @@ class RamaHasGeneral extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGeneral()
+    public function getRama()
     {
-        return $this->hasOne(General::className(), ['id' => 'General_id']);
+        return $this->hasOne(Rama::className(), ['id' => 'Rama_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRama()
+    public function getGeneral()
     {
-        return $this->hasOne(Rama::className(), ['id' => 'Rama_id']);
+        return $this->hasOne(General::className(), ['id' => 'General_id']);
     }
 
     /**

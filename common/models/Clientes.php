@@ -36,6 +36,7 @@ class Clientes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre', 'direccion', 'email', 'encargado', 'nRif', 'cRif', 'siglas', 'contador'], 'required'],
             [['direccion'], 'string'],
             [['contador'], 'integer'],
             [['nombre', 'email'], 'string', 'max' => 90],

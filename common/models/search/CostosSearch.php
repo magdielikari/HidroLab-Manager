@@ -18,7 +18,7 @@ class CostosSearch extends Costos
     public function rules()
     {
         return [
-            [['id', 'rendimiento', 'General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'CostoMuestra_id'], 'integer'],
+            [['id', 'rendimiento', 'General_id'], 'integer'],
             [['cAnalisis', 'cMuestreo', 'cInforme', 'cAdministrativo', 'utilidad'], 'number'],
         ];
     }
@@ -64,9 +64,6 @@ class CostosSearch extends Costos
             'utilidad' => $this->utilidad,
             'rendimiento' => $this->rendimiento,
             'General_id' => $this->General_id,
-            'CostoParametro_id' => $this->CostoParametro_id,
-            'CostoParametro_Parametros_id' => $this->CostoParametro_Parametros_id,
-            'CostoMuestra_id' => $this->CostoMuestra_id,
         ]);
 
         return $dataProvider;

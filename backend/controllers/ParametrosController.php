@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * ParametrosController implements the CRUD actions for Parametros model.
@@ -33,26 +34,29 @@ class ParametrosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ParametrosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('parametros-index'))
+        {    
+            $searchModel = new ParametrosSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     public function actionSelect()
     {
-        $searchModel = new ParametrosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->renderAjax('select', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('parametros-select'))
+        {    
+            $searchModel = new ParametrosSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('select', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
-
     /**
      * Displays a single Parametros model.
      * @param string $id
@@ -60,9 +64,14 @@ class ParametrosController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->user->can('parametros-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -72,30 +81,38 @@ class ParametrosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Parametros();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('parametros-create'))
+        {    
+            $model = new Parametros();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionEstablish()
     {
-        $model = new Parametros();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->renderAjax('establish', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('parametros-establish'))
+        {    
+            $model = new Parametros();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('establish', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -105,16 +122,21 @@ class ParametrosController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+    {   
+        if(Yii::$app->user->can('parametros-update'))
+        {    
+            $model = $this->findModel($id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -124,10 +146,14 @@ class ParametrosController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+    {   
+        if(Yii::$app->user->can('parametros-delete'))
+        {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);           
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

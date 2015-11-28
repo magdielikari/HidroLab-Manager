@@ -10,8 +10,9 @@ use Yii;
  * @property string $Parametros_id
  * @property string $Muestras_id
  *
- * @property Muestras $muestras
  * @property Parametros $parametros
+ * @property Muestras $muestras
+ * @property ParametrosHasMuestrasHasCostopredeterminados[] $parametrosHasMuestrasHasCostopredeterminados
  */
 class ParametrosHasMuestras extends \yii\db\ActiveRecord
 {
@@ -48,6 +49,14 @@ class ParametrosHasMuestras extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getParametros()
+    {
+        return $this->hasOne(Parametros::className(), ['id' => 'Parametros_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getMuestras()
     {
         return $this->hasOne(Muestras::className(), ['id' => 'Muestras_id']);
@@ -56,9 +65,9 @@ class ParametrosHasMuestras extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getParametros()
+    public function getParametrosHasMuestrasHasCostopredeterminados()
     {
-        return $this->hasOne(Parametros::className(), ['id' => 'Parametros_id']);
+        return $this->hasMany(ParametrosHasMuestrasHasCostopredeterminados::className(), ['Parametros_has_Muestras_Parametros_id' => 'Parametros_id', 'Parametros_has_Muestras_Muestras_id' => 'Muestras_id']);
     }
 
     /**

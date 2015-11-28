@@ -9,7 +9,7 @@ $this->title = Yii::t('models', 'Update {modelClass}: ', [
     'modelClass' => 'Costos',
 ]) . ' ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Costos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'General_id' => $model->General_id, 'CostoParametro_id' => $model->CostoParametro_id, 'CostoParametro_Parametros_id' => $model->CostoParametro_Parametros_id, 'CostoMuestra_id' => $model->CostoMuestra_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('models', 'Update');
 ?>
 <div class="costos-update">

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * DecretoHasTipoController implements the CRUD actions for DecretoHasTipo model.
@@ -33,13 +34,18 @@ class DecretoHasTipoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DecretoHasTipoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->user->can('decretoHasTipo-index'))
+        {    
+            $searchModel = new DecretoHasTipoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -50,9 +56,14 @@ class DecretoHasTipoController extends Controller
      */
     public function actionView($Decreto_id, $Tipo_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Decreto_id, $Tipo_id),
-        ]);
+        if(Yii::$app->user->can('decretoHasTipo-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($Decreto_id, $Tipo_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -62,16 +73,20 @@ class DecretoHasTipoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new DecretoHasTipo();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Decreto_id' => $model->Decreto_id, 'Tipo_id' => $model->Tipo_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('decretoHasTipo-create'))
+        {    
+            $model = new DecretoHasTipo();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Decreto_id' => $model->Decreto_id, 'Tipo_id' => $model->Tipo_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -83,15 +98,20 @@ class DecretoHasTipoController extends Controller
      */
     public function actionUpdate($Decreto_id, $Tipo_id)
     {
-        $model = $this->findModel($Decreto_id, $Tipo_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Decreto_id' => $model->Decreto_id, 'Tipo_id' => $model->Tipo_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('decretoHasTipo-update'))
+        {    
+            $model = $this->findModel($Decreto_id, $Tipo_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Decreto_id' => $model->Decreto_id, 'Tipo_id' => $model->Tipo_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -103,9 +123,13 @@ class DecretoHasTipoController extends Controller
      */
     public function actionDelete($Decreto_id, $Tipo_id)
     {
-        $this->findModel($Decreto_id, $Tipo_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('decretoHasTipo-delete'))
+        {    
+            $this->findModel($Decreto_id, $Tipo_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

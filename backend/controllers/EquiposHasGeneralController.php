@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * EquiposHasGeneralController implements the CRUD actions for EquiposHasGeneral model.
@@ -33,27 +34,33 @@ class EquiposHasGeneralController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EquiposHasGeneralSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('equiposHasGeneral-index'))
+        {    
+            $searchModel = new EquiposHasGeneralSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionSelect()
     {
-        $searchModel = new EquiposHasGeneralSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->renderAjax('select', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('equiposHasGeneral-select'))
+        {    
+            $searchModel = new EquiposHasGeneralSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('select', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
-
-
     /**
      * Displays a single EquiposHasGeneral model.
      * @param integer $Equipos_id
@@ -62,9 +69,14 @@ class EquiposHasGeneralController extends Controller
      */
     public function actionView($Equipos_id, $General_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Equipos_id, $General_id),
-        ]);
+        if(Yii::$app->user->can('equiposHasGeneral-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($Equipos_id, $General_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -74,32 +86,39 @@ class EquiposHasGeneralController extends Controller
      */
     public function actionCreate()
     {
-        $model = new EquiposHasGeneral();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('equiposHasGeneral-create'))
+        {    
+            $model = new EquiposHasGeneral();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionEstablish()
     {
-        $model = new EquiposHasGeneral();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('equiposHasGeneral-establish'))
+        {    
+            $model = new EquiposHasGeneral();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('establish', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
-
 
     /**
      * Updates an existing EquiposHasGeneral model.
@@ -110,15 +129,20 @@ class EquiposHasGeneralController extends Controller
      */
     public function actionUpdate($Equipos_id, $General_id)
     {
-        $model = $this->findModel($Equipos_id, $General_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('equiposHasGeneral-update'))
+        {    
+            $model = $this->findModel($Equipos_id, $General_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Equipos_id' => $model->Equipos_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -130,9 +154,13 @@ class EquiposHasGeneralController extends Controller
      */
     public function actionDelete($Equipos_id, $General_id)
     {
-        $this->findModel($Equipos_id, $General_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('equiposHasGeneral-delete'))
+        {    
+            $this->findModel($Equipos_id, $General_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

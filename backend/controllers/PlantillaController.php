@@ -4,11 +4,12 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Plantilla;
-use common\models\search\ParametrosSearch;
+use common\models\search\PlantillaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * PlantillaController implements the CRUD actions for Plantilla model.
@@ -33,13 +34,15 @@ class PlantillaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ParametrosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('plantilla-index'))
+        {    
+            $searchModel = new PlantillaSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
@@ -49,9 +52,14 @@ class PlantillaController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->user->can('plantilla-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -61,16 +69,20 @@ class PlantillaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Plantilla();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('plantilla-create'))
+        {    
+            $model = new Plantilla();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -81,15 +93,20 @@ class PlantillaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('plantilla-update'))
+        {    
+            $model = $this->findModel($id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -100,9 +117,13 @@ class PlantillaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('plantilla-delete'))
+        {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

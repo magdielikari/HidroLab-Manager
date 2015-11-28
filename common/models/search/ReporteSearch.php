@@ -18,7 +18,7 @@ class ReporteSearch extends Reporte
     public function rules()
     {
         return [
-            [['id', 'Plantilla_id', 'General_id'], 'integer'],
+            [['id', 'Plantilla_id'], 'integer'],
         ];
     }
 
@@ -57,7 +57,6 @@ class ReporteSearch extends Reporte
         $query->andFilterWhere([
             'id' => $this->id,
             'Plantilla_id' => $this->Plantilla_id,
-            'General_id' => $this->General_id,
         ]);
 
         return $dataProvider;

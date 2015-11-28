@@ -23,6 +23,8 @@ use Yii;
  * @property Decreto $decreto
  * @property Clientes $clientes
  * @property Vendedor $vendedor
+ * @property GeneralHasSubtipo[] $generalHasSubtipos
+ * @property Subtipo[] $subTipos
  * @property GeneralHasTipo[] $generalHasTipos
  * @property Tipo[] $tipos
  * @property Muestras[] $muestras
@@ -30,7 +32,6 @@ use Yii;
  * @property Peticion[] $peticions
  * @property RamaHasGeneral[] $ramaHasGenerals
  * @property Rama[] $ramas
- * @property Reporte[] $reportes
  */
 class General extends \yii\db\ActiveRecord
 {
@@ -48,9 +49,9 @@ class General extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['copias', 'caudal', 'analisis', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'required'],
             [['copias', 'Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
-            [['caudal', 'analisis'], 'string'],
-            [['Departamento_id', 'Decreto_id', 'Clientes_id', 'Vendedor_id'], 'required']
+            [['caudal', 'analisis'], 'string']
         ];
     }
 
@@ -130,6 +131,22 @@ class General extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getGeneralHasSubtipos()
+    {
+        return $this->hasMany(GeneralHasSubtipo::className(), ['General_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubTipos()
+    {
+        return $this->hasMany(Subtipo::className(), ['id' => 'SubTipo_id'])->viaTable('general_has_subtipo', ['General_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getGeneralHasTipos()
     {
         return $this->hasMany(GeneralHasTipo::className(), ['General_id' => 'id']);
@@ -181,14 +198,6 @@ class General extends \yii\db\ActiveRecord
     public function getRamas()
     {
         return $this->hasMany(Rama::className(), ['id' => 'Rama_id'])->viaTable('rama_has_general', ['General_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReportes()
-    {
-        return $this->hasMany(Reporte::className(), ['General_id' => 'id']);
     }
 
     /**

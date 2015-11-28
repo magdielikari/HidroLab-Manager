@@ -32,6 +32,7 @@ class Rama extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre'], 'required'],
             [['nombre'], 'string', 'max' => 45]
         ];
     }

@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $nombre
  *
+ * @property GeneralHasSubtipo[] $generalHasSubtipos
+ * @property General[] $generals
  * @property Limites[] $limites
  * @property TipoHasSubtipo[] $tipoHasSubtipos
  * @property Tipo[] $tipos
@@ -30,6 +32,7 @@ class Subtipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre'], 'required'],
             [['nombre'], 'string', 'max' => 45]
         ];
     }
@@ -43,6 +46,22 @@ class Subtipo extends \yii\db\ActiveRecord
             'id' => Yii::t('models', 'ID'),
             'nombre' => Yii::t('models', 'Nombre'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGeneralHasSubtipos()
+    {
+        return $this->hasMany(GeneralHasSubtipo::className(), ['SubTipo_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGenerals()
+    {
+        return $this->hasMany(General::className(), ['id' => 'General_id'])->viaTable('general_has_subtipo', ['SubTipo_id' => 'id']);
     }
 
     /**

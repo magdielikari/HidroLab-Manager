@@ -18,7 +18,7 @@ class CelularSearch extends Celular
     public function rules()
     {
         return [
-            [['id', 'numero', 'Clientes_id', 'Vendedor_id'], 'integer'],
+            [['id', 'numero', 'CArea_id', 'Clientes_id', 'Vendedor_id'], 'integer'],
         ];
     }
 
@@ -57,6 +57,7 @@ class CelularSearch extends Celular
         $query->andFilterWhere([
             'id' => $this->id,
             'numero' => $this->numero,
+            'CArea_id' => $this->CArea_id,
             'Clientes_id' => $this->Clientes_id,
             'Vendedor_id' => $this->Vendedor_id,
         ]);

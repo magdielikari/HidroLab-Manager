@@ -42,8 +42,8 @@ class Caracterizacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre', 'preservacion', 'siglas', 'laboratorio', 'opacidad', 'metodo', 'tipo', 'Equipos_id'], 'required'],
             [['preservacion', 'laboratorio', 'opacidad', 'tipo'], 'string'],
-            [['Equipos_id'], 'required'],
             [['Equipos_id'], 'integer'],
             [['nombre'], 'string', 'max' => 45],
             [['siglas', 'metodo'], 'string', 'max' => 15]

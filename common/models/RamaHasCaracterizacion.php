@@ -10,8 +10,8 @@ use Yii;
  * @property string $Rama_id
  * @property integer $Caracterizacion_id
  *
- * @property Caracterizacion $caracterizacion
  * @property Rama $rama
+ * @property Caracterizacion $caracterizacion
  */
 class RamaHasCaracterizacion extends \yii\db\ActiveRecord
 {
@@ -48,17 +48,17 @@ class RamaHasCaracterizacion extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCaracterizacion()
+    public function getRama()
     {
-        return $this->hasOne(Caracterizacion::className(), ['id' => 'Caracterizacion_id']);
+        return $this->hasOne(Rama::className(), ['id' => 'Rama_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRama()
+    public function getCaracterizacion()
     {
-        return $this->hasOne(Rama::className(), ['id' => 'Rama_id']);
+        return $this->hasOne(Caracterizacion::className(), ['id' => 'Caracterizacion_id']);
     }
 
     /**

@@ -13,19 +13,17 @@ use Yii;
  * @property integer $fVencimiento
  * @property string $fCreacion
  * @property string $Referencia_id
- * @property string $Costos_id
- * @property string $Costos_General_id
- * @property string $Costos_CostoParametro_id
- * @property string $Costos_CostoParametro_Parametros_id
- * @property string $Costos_CostoMuestra_id
  * @property string $General_id
  * @property string $Muestras_id
+ * @property string $Costos_id
+ * @property string $Reporte_id
  *
  * @property Ordencompra[] $ordencompras
  * @property Referencia $referencia
- * @property Costos $costos
  * @property General $general
  * @property Muestras $muestras
+ * @property Costos $costos
+ * @property Reporte $reporte
  */
 class Peticion extends \yii\db\ActiveRecord
 {
@@ -43,9 +41,9 @@ class Peticion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['fPeticion', 'cadena', 'fVencimiento', 'Referencia_id', 'General_id', 'Muestras_id', 'Costos_id', 'Reporte_id'], 'required'],
             [['fPeticion', 'fCreacion'], 'safe'],
-            [['fVencimiento', 'Referencia_id', 'Costos_id', 'Costos_General_id', 'Costos_CostoParametro_id', 'Costos_CostoParametro_Parametros_id', 'Costos_CostoMuestra_id', 'General_id', 'Muestras_id'], 'integer'],
-            [['Referencia_id', 'Costos_id', 'Costos_General_id', 'Costos_CostoParametro_id', 'Costos_CostoParametro_Parametros_id', 'Costos_CostoMuestra_id', 'General_id', 'Muestras_id'], 'required'],
+            [['fVencimiento', 'Referencia_id', 'General_id', 'Muestras_id', 'Costos_id', 'Reporte_id'], 'integer'],
             [['cadena'], 'string', 'max' => 15]
         ];
     }
@@ -62,13 +60,10 @@ class Peticion extends \yii\db\ActiveRecord
             'fVencimiento' => Yii::t('models', 'F Vencimiento'),
             'fCreacion' => Yii::t('models', 'F Creacion'),
             'Referencia_id' => Yii::t('models', 'Referencia ID'),
-            'Costos_id' => Yii::t('models', 'Costos ID'),
-            'Costos_General_id' => Yii::t('models', 'Costos  General ID'),
-            'Costos_CostoParametro_id' => Yii::t('models', 'Costos  Costo Parametro ID'),
-            'Costos_CostoParametro_Parametros_id' => Yii::t('models', 'Costos  Costo Parametro  Parametros ID'),
-            'Costos_CostoMuestra_id' => Yii::t('models', 'Costos  Costo Muestra ID'),
             'General_id' => Yii::t('models', 'General ID'),
             'Muestras_id' => Yii::t('models', 'Muestras ID'),
+            'Costos_id' => Yii::t('models', 'Costos ID'),
+            'Reporte_id' => Yii::t('models', 'Reporte ID'),
         ];
     }
 
@@ -91,14 +86,6 @@ class Peticion extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCostos()
-    {
-        return $this->hasOne(Costos::className(), ['id' => 'Costos_id', 'General_id' => 'Costos_General_id', 'CostoParametro_id' => 'Costos_CostoParametro_id', 'CostoParametro_Parametros_id' => 'Costos_CostoParametro_Parametros_id', 'CostoMuestra_id' => 'Costos_CostoMuestra_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getGeneral()
     {
         return $this->hasOne(General::className(), ['id' => 'General_id']);
@@ -110,6 +97,22 @@ class Peticion extends \yii\db\ActiveRecord
     public function getMuestras()
     {
         return $this->hasOne(Muestras::className(), ['id' => 'Muestras_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostos()
+    {
+        return $this->hasOne(Costos::className(), ['id' => 'Costos_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReporte()
+    {
+        return $this->hasOne(Reporte::className(), ['id' => 'Reporte_id']);
     }
 
     /**

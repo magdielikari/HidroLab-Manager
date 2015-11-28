@@ -7,6 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\GeneralHasSubtipoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->title = Yii::t('models', 'General Has Subtipos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="general-has-subtipo-index">

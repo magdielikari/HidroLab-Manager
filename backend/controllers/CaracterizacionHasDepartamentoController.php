@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * CaracterizacionHasDepartamentoController implements the CRUD actions for CaracterizacionHasDepartamento model.
@@ -33,13 +34,17 @@ class CaracterizacionHasDepartamentoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CaracterizacionHasDepartamentoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('caracterizacionHasDepartamento-index'))
+        {    
+            $searchModel = new CaracterizacionHasDepartamentoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -50,9 +55,14 @@ class CaracterizacionHasDepartamentoController extends Controller
      */
     public function actionView($Caracterizacion_id, $Departamento_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Caracterizacion_id, $Departamento_id),
-        ]);
+        if(Yii::$app->user->can('caracterizacionHasDepartamento-view'))
+        {   
+            return $this->render('view', [
+                'model' => $this->findModel($Caracterizacion_id, $Departamento_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -62,16 +72,20 @@ class CaracterizacionHasDepartamentoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CaracterizacionHasDepartamento();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Departamento_id' => $model->Departamento_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('caracterizacionHasDepartamento-create'))
+        {    
+            $model = new CaracterizacionHasDepartamento();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Departamento_id' => $model->Departamento_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -83,15 +97,20 @@ class CaracterizacionHasDepartamentoController extends Controller
      */
     public function actionUpdate($Caracterizacion_id, $Departamento_id)
     {
-        $model = $this->findModel($Caracterizacion_id, $Departamento_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Departamento_id' => $model->Departamento_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('caracterizacionHasDepartamento-update'))
+        {    
+            $model = $this->findModel($Caracterizacion_id, $Departamento_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Departamento_id' => $model->Departamento_id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -103,9 +122,13 @@ class CaracterizacionHasDepartamentoController extends Controller
      */
     public function actionDelete($Caracterizacion_id, $Departamento_id)
     {
-        $this->findModel($Caracterizacion_id, $Departamento_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('caracterizacionHasDepartamento-delete'))
+        {
+            $this->findModel($Caracterizacion_id, $Departamento_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

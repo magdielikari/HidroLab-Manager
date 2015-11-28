@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'numero') ?>
 
+    <?= $form->field($model, 'CArea_id') ?>
+
     <?= $form->field($model, 'Clientes_id') ?>
 
     <?= $form->field($model, 'Vendedor_id') ?>

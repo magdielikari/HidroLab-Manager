@@ -29,6 +29,7 @@ class Referencia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['ano'], 'required'],
             [['ano'], 'safe']
         ];
     }

@@ -32,8 +32,8 @@ class Ordencompra extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nOrden', 'ubicacion', 'observaciones', 'estado', 'Peticion_id'], 'required'],
             [['observaciones', 'estado'], 'string'],
-            [['Peticion_id'], 'required'],
             [['Peticion_id'], 'integer'],
             [['nOrden'], 'string', 'max' => 45],
             [['ubicacion'], 'string', 'max' => 150]

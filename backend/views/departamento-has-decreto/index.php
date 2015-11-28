@@ -2,8 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DepartamentoHasDecretoSearch */
@@ -18,27 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Departamento has Decreto'), ['value'=>Url::to('create'),
-        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Departamento has Decreto']) ?>
+        <?= Html::a(Yii::t('models', 'Create Departamento Has Decreto'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            [
-                'attribute'=>'Departamento_id',
-                'value'=>'departamento.nombre',
-            ],
-            [
-                'attribute'=>'Decreto_id',
-                'value'=>'decreto.nombre',
-            ],
+
+            'Departamento_id',
+            'Decreto_id',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end();?>
+
 </div>
-<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

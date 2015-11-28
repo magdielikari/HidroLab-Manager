@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\PeticionSearch */
@@ -15,11 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-<p>
-    <?= Html::a(Yii::t('models','Create Peticion'),['generate'],['class'=>'btn btn-success'])?>
-</p>
 
-    <?php Pjax::begin();?>
+    <p>
+        <?= Html::a(Yii::t('models', 'Create Peticion'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -32,16 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'fVencimiento',
             'fCreacion',
             // 'Referencia_id',
-            // 'Costos_id',
-            // 'Costos_General_id',
-            // 'Costos_CostoParametro_id',
-            // 'Costos_CostoParametro_Parametros_id',
-            // 'Costos_CostoMuestra_id',
             // 'General_id',
             // 'Muestras_id',
+            // 'Costos_id',
+            // 'Reporte_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end();?>
+
 </div>

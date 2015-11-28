@@ -9,10 +9,11 @@ use Yii;
  *
  * @property string $id
  * @property string $numero
+ * @property integer $CArea_id
  * @property string $Clientes_id
  * @property integer $Vendedor_id
  *
- * @property Carea[] $careas
+ * @property Carea $cArea
  * @property Clientes $clientes
  * @property Vendedor $vendedor
  */
@@ -32,8 +33,8 @@ class Celular extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numero', 'Clientes_id', 'Vendedor_id'], 'integer'],
-            [['Clientes_id', 'Vendedor_id'], 'required']
+            [['numero', 'CArea_id'], 'required'],
+            [['numero', 'CArea_id', 'Clientes_id', 'Vendedor_id'], 'integer']
         ];
     }
 
@@ -45,6 +46,7 @@ class Celular extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'numero' => Yii::t('models', 'Numero'),
+            'CArea_id' => Yii::t('models', 'Carea ID'),
             'Clientes_id' => Yii::t('models', 'Clientes ID'),
             'Vendedor_id' => Yii::t('models', 'Vendedor ID'),
         ];
@@ -53,9 +55,9 @@ class Celular extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCareas()
+    public function getCArea()
     {
-        return $this->hasMany(Carea::className(), ['Celular_id' => 'id']);
+        return $this->hasOne(Carea::className(), ['id' => 'CArea_id']);
     }
 
     /**

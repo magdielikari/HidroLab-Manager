@@ -35,6 +35,7 @@ class Decreto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre', 'gaceta', 'fecha'], 'required'],
             [['fecha'], 'safe'],
             [['nombre'], 'string', 'max' => 90],
             [['gaceta'], 'string', 'max' => 6]

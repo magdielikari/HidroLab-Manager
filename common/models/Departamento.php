@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use common\models\helpers\Utility;
 
 /**
  * This is the model class for table "departamento".
@@ -37,6 +36,7 @@ class Departamento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre'], 'required'],
             [['contador'], 'integer'],
             [['nombre'], 'string', 'max' => 45]
         ];
@@ -49,7 +49,7 @@ class Departamento extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'nombre' => Yii::t('models', 'NombreD'),
+            'nombre' => Yii::t('models', 'Nombre'),
             'contador' => Yii::t('models', 'Contador'),
         ];
     }

@@ -13,7 +13,6 @@ use Yii;
  * @property integer $horas
  * @property string $General_id
  *
- * @property Costomuestra[] $costomuestras
  * @property General $general
  * @property ParametrosHasMuestras[] $parametrosHasMuestras
  * @property Parametros[] $parametros
@@ -35,8 +34,8 @@ class Muestras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre', 'tipo', 'horas', 'General_id'], 'required'],
             [['horas', 'General_id'], 'integer'],
-            [['General_id'], 'required'],
             [['nombre'], 'string', 'max' => 45],
             [['tipo'], 'string', 'max' => 1]
         ];
@@ -54,14 +53,6 @@ class Muestras extends \yii\db\ActiveRecord
             'horas' => Yii::t('models', 'Horas'),
             'General_id' => Yii::t('models', 'General ID'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCostomuestras()
-    {
-        return $this->hasMany(Costomuestra::className(), ['Muestras_id' => 'id']);
     }
 
     /**

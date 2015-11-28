@@ -5,12 +5,12 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\CostoPredeterminados;
+use common\models\Costopredeterminados;
 
 /**
- * CostoPredeterminadosSearch represents the model behind the search form about `common\models\CostoPredeterminados`.
+ * CostopredeterminadosSearch represents the model behind the search form about `common\models\Costopredeterminados`.
  */
-class CostoPredeterminadosSearch extends CostoPredeterminados
+class CostopredeterminadosSearch extends Costopredeterminados
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CostoPredeterminadosSearch extends CostoPredeterminados
     public function rules()
     {
         return [
-            [['id', 'vencimiento'], 'integer'],
-            [['nombre', 'fechaIngreso', 'modena', 'tipo'], 'safe'],
+            [['id', 'vencimiento', 'Moneda_id'], 'integer'],
+            [['nombre', 'fechaIngreso'], 'safe'],
             [['costo'], 'number'],
         ];
     }
@@ -42,7 +42,7 @@ class CostoPredeterminadosSearch extends CostoPredeterminados
      */
     public function search($params)
     {
-        $query = CostoPredeterminados::find();
+        $query = Costopredeterminados::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,11 +61,10 @@ class CostoPredeterminadosSearch extends CostoPredeterminados
             'costo' => $this->costo,
             'fechaIngreso' => $this->fechaIngreso,
             'vencimiento' => $this->vencimiento,
+            'Moneda_id' => $this->Moneda_id,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'modena', $this->modena])
-            ->andFilterWhere(['like', 'tipo', $this->tipo]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

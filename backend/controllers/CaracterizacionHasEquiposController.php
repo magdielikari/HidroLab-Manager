@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * CaracterizacionHasEquiposController implements the CRUD actions for CaracterizacionHasEquipos model.
@@ -33,13 +34,17 @@ class CaracterizacionHasEquiposController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CaracterizacionHasEquiposSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('caracterizacionHasEquipos-index'))
+        {    
+            $searchModel = new CaracterizacionHasEquiposSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -50,9 +55,14 @@ class CaracterizacionHasEquiposController extends Controller
      */
     public function actionView($Caracterizacion_id, $Equipos_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Caracterizacion_id, $Equipos_id),
-        ]);
+        if(Yii::$app->user->can('caracterizacionHasEquipos-index'))
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($Caracterizacion_id, $Equipos_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -62,16 +72,20 @@ class CaracterizacionHasEquiposController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CaracterizacionHasEquipos();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Equipos_id' => $model->Equipos_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('caracterizacionHasEquipos-index'))
+        {
+            $model = new CaracterizacionHasEquipos();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Equipos_id' => $model->Equipos_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -83,15 +97,20 @@ class CaracterizacionHasEquiposController extends Controller
      */
     public function actionUpdate($Caracterizacion_id, $Equipos_id)
     {
-        $model = $this->findModel($Caracterizacion_id, $Equipos_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Equipos_id' => $model->Equipos_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('caracterizacionHasEquipos-index'))
+        {    
+            $model = $this->findModel($Caracterizacion_id, $Equipos_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Caracterizacion_id' => $model->Caracterizacion_id, 'Equipos_id' => $model->Equipos_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -103,9 +122,14 @@ class CaracterizacionHasEquiposController extends Controller
      */
     public function actionDelete($Caracterizacion_id, $Equipos_id)
     {
-        $this->findModel($Caracterizacion_id, $Equipos_id)->delete();
+        if(Yii::$app->user->can('caracterizacionHasEquipos-index'))
+        {
+            $this->findModel($Caracterizacion_id, $Equipos_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
 
-        return $this->redirect(['index']);
     }
 
     /**

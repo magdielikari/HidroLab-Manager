@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * RamaHasGeneralController implements the CRUD actions for RamaHasGeneral model.
@@ -33,24 +34,32 @@ class RamaHasGeneralController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RamaHasGeneralSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('ramaHasGeneral-index'))
+        {
+            $searchModel = new RamaHasGeneralSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionSelect()
     {
-        $searchModel = new RamaHasGeneralSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->renderAjax('select', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('ramaHasGeneral-select'))
+        {
+            $searchModel = new RamaHasGeneralSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('select', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -61,9 +70,14 @@ class RamaHasGeneralController extends Controller
      */
     public function actionView($Rama_id, $General_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Rama_id, $General_id),
-        ]);
+        if(Yii::$app->user->can('ramaHasGeneral-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($Rama_id, $General_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -73,32 +87,39 @@ class RamaHasGeneralController extends Controller
      */
     public function actionCreate()
     {
-        $model = new RamaHasGeneral();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('ramaHasGeneral-create'))
+        {    
+            $model = new RamaHasGeneral();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionEstablish()
     {
-        $model = new RamaHasGeneral();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->renderAjax('establish', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('ramaHasGeneral-establish'))
+        {    
+            $model = new RamaHasGeneral();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('establish', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
-
     /**
      * Updates an existing RamaHasGeneral model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -108,15 +129,20 @@ class RamaHasGeneralController extends Controller
      */
     public function actionUpdate($Rama_id, $General_id)
     {
-        $model = $this->findModel($Rama_id, $General_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('ramaHasGeneral-update'))
+        {    
+            $model = $this->findModel($Rama_id, $General_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Rama_id' => $model->Rama_id, 'General_id' => $model->General_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -128,9 +154,13 @@ class RamaHasGeneralController extends Controller
      */
     public function actionDelete($Rama_id, $General_id)
     {
-        $this->findModel($Rama_id, $General_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('ramaHasGeneral-delete'))
+        {    
+            $this->findModel($Rama_id, $General_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));        
     }
 
     /**

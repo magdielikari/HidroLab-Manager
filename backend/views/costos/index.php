@@ -2,10 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\bootstrap\Modal;
-use yii\helpers\Url;
-
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\CostosSearch */
@@ -20,11 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('models', 'Create Costos'), ['value'=>Url::to('costos/create'),
-        'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Costos']) ?>
+        <?= Html::a(Yii::t('models', 'Create Costos'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -39,13 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'utilidad',
             // 'rendimiento',
             // 'General_id',
-            // 'CostoParametro_id',
-            // 'CostoParametro_Parametros_id',
-            // 'CostoMuestra_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end();?>
+
 </div>
-<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

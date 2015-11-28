@@ -2,8 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\Url;
-use yii\widgets\Pjax;    
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\CareaSearch */
@@ -18,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-    <?= Html::button(Yii::t('models', 'Crear Carea'), ['value'=>Url::to(['carea/create']),
-    'class' => 'btn btn-success modalButton', 'data-title'=>'Crear Carea']) ?>   
+        <?= Html::a(Yii::t('models', 'Create Carea'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -30,12 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'nombre',
-            'Celular_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
 </div>
-
-<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>

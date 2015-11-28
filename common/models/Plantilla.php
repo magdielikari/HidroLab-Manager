@@ -32,8 +32,8 @@ class Plantilla extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['reporte', 'Vendedor_id', 'Departamento_id'], 'required'],
             [['reporte'], 'string'],
-            [['Vendedor_id', 'Departamento_id'], 'required'],
             [['Vendedor_id', 'Departamento_id'], 'integer']
         ];
     }

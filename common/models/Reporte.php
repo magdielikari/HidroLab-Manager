@@ -9,10 +9,9 @@ use Yii;
  *
  * @property string $id
  * @property integer $Plantilla_id
- * @property string $General_id
  *
+ * @property Peticion[] $peticions
  * @property Plantilla $plantilla
- * @property General $general
  */
 class Reporte extends \yii\db\ActiveRecord
 {
@@ -30,8 +29,8 @@ class Reporte extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Plantilla_id', 'General_id'], 'required'],
-            [['Plantilla_id', 'General_id'], 'integer']
+            [['Plantilla_id'], 'required'],
+            [['Plantilla_id'], 'integer']
         ];
     }
 
@@ -43,8 +42,15 @@ class Reporte extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'Plantilla_id' => Yii::t('models', 'Plantilla ID'),
-            'General_id' => Yii::t('models', 'General ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPeticions()
+    {
+        return $this->hasMany(Peticion::className(), ['Reporte_id' => 'id']);
     }
 
     /**
@@ -53,14 +59,6 @@ class Reporte extends \yii\db\ActiveRecord
     public function getPlantilla()
     {
         return $this->hasOne(Plantilla::className(), ['id' => 'Plantilla_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGeneral()
-    {
-        return $this->hasOne(General::className(), ['id' => 'General_id']);
     }
 
     /**

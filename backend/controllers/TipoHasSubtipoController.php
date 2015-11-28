@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * TipoHasSubtipoController implements the CRUD actions for TipoHasSubtipo model.
@@ -33,13 +34,17 @@ class TipoHasSubtipoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TipoHasSubtipoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('tipoHasSubtipo-index'))
+        {    
+            $searchModel = new TipoHasSubtipoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -50,9 +55,14 @@ class TipoHasSubtipoController extends Controller
      */
     public function actionView($Tipo_id, $SubTipo_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Tipo_id, $SubTipo_id),
-        ]);
+        if(Yii::$app->user->can('tipoHasSubtipo-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($Tipo_id, $SubTipo_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -62,16 +72,20 @@ class TipoHasSubtipoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new TipoHasSubtipo();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Tipo_id' => $model->Tipo_id, 'SubTipo_id' => $model->SubTipo_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('tipoHasSubtipo-create'))
+        {    
+            $model = new TipoHasSubtipo();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Tipo_id' => $model->Tipo_id, 'SubTipo_id' => $model->SubTipo_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -83,15 +97,20 @@ class TipoHasSubtipoController extends Controller
      */
     public function actionUpdate($Tipo_id, $SubTipo_id)
     {
-        $model = $this->findModel($Tipo_id, $SubTipo_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Tipo_id' => $model->Tipo_id, 'SubTipo_id' => $model->SubTipo_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('tipoHasSubtipo-update'))
+        {    
+            $model = $this->findModel($Tipo_id, $SubTipo_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Tipo_id' => $model->Tipo_id, 'SubTipo_id' => $model->SubTipo_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -103,9 +122,13 @@ class TipoHasSubtipoController extends Controller
      */
     public function actionDelete($Tipo_id, $SubTipo_id)
     {
-        $this->findModel($Tipo_id, $SubTipo_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('tipoHasSubtipo-delete'))
+        {
+            $this->findModel($Tipo_id, $SubTipo_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

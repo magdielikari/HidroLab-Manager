@@ -27,19 +27,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Referencia_id') ?>
 
-    <?php // echo $form->field($model, 'Costos_id') ?>
-
-    <?php // echo $form->field($model, 'Costos_General_id') ?>
-
-    <?php // echo $form->field($model, 'Costos_CostoParametro_id') ?>
-
-    <?php // echo $form->field($model, 'Costos_CostoParametro_Parametros_id') ?>
-
-    <?php // echo $form->field($model, 'Costos_CostoMuestra_id') ?>
-
     <?php // echo $form->field($model, 'General_id') ?>
 
     <?php // echo $form->field($model, 'Muestras_id') ?>
+
+    <?php // echo $form->field($model, 'Costos_id') ?>
+
+    <?php // echo $form->field($model, 'Reporte_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>

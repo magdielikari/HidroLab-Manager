@@ -29,8 +29,8 @@ class Dialaborables extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['dias', 'Referencia_id'], 'required'],
             [['dias'], 'safe'],
-            [['Referencia_id'], 'required'],
             [['Referencia_id'], 'integer']
         ];
     }

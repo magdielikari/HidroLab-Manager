@@ -9,9 +9,8 @@ use Yii;
  *
  * @property integer $id
  * @property integer $nombre
- * @property string $Celular_id
  *
- * @property Celular $celular
+ * @property Celular[] $celulars
  */
 class Carea extends \yii\db\ActiveRecord
 {
@@ -29,8 +28,8 @@ class Carea extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'Celular_id'], 'integer'],
-            [['Celular_id'], 'required']
+            [['nombre'], 'required'],
+            [['nombre'], 'integer']
         ];
     }
 
@@ -42,16 +41,15 @@ class Carea extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'nombre' => Yii::t('models', 'Nombre'),
-            'Celular_id' => Yii::t('models', 'Celular ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCelular()
+    public function getCelulars()
     {
-        return $this->hasOne(Celular::className(), ['id' => 'Celular_id']);
+        return $this->hasMany(Celular::className(), ['CArea_id' => 'id']);
     }
 
     /**

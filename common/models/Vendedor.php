@@ -17,9 +17,9 @@ use Yii;
  * @property Celular[] $celulars
  * @property General[] $generals
  * @property Plantilla[] $plantillas
- * @property Departamento $departamento
  * @property Puesto $puesto
  * @property User $user
+ * @property Departamento $departamento
  */
 class Vendedor extends \yii\db\ActiveRecord
 {
@@ -37,7 +37,7 @@ class Vendedor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Puesto_id', 'user_id', 'Departamento_id'], 'required'],
+            [['nombre', 'email', 'Puesto_id', 'user_id', 'Departamento_id'], 'required'],
             [['Puesto_id', 'user_id', 'Departamento_id'], 'integer'],
             [['nombre', 'email'], 'string', 'max' => 45]
         ];
@@ -85,14 +85,6 @@ class Vendedor extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDepartamento()
-    {
-        return $this->hasOne(Departamento::className(), ['id' => 'Departamento_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getPuesto()
     {
         return $this->hasOne(Puesto::className(), ['id' => 'Puesto_id']);
@@ -104,5 +96,22 @@ class Vendedor extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDepartamento()
+    {
+        return $this->hasOne(Departamento::className(), ['id' => 'Departamento_id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return \common\models\query\VendedorQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\VendedorQuery(get_called_class());
     }
 }

@@ -8,6 +8,8 @@ use common\models\search\GeneralHasTipoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * GeneralHasTipoController implements the CRUD actions for GeneralHasTipo model.
@@ -32,24 +34,32 @@ class GeneralHasTipoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new GeneralHasTipoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('generalHasTipo-index'))
+        {
+            $searchModel = new GeneralHasTipoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionSelect()
     {
-        $searchModel = new GeneralHasTipoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->renderAjax('select', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('generalHasTipo-select'))
+        {
+            $searchModel = new GeneralHasTipoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('select', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -60,9 +70,14 @@ class GeneralHasTipoController extends Controller
      */
     public function actionView($General_id, $Tipo_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($General_id, $Tipo_id),
-        ]);
+        if(Yii::$app->user->can('generalHasTipo-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($General_id, $Tipo_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -72,28 +87,38 @@ class GeneralHasTipoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new GeneralHasTipo();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('generalHasTipo-create'))
+        {    
+            $model = new GeneralHasTipo();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionEstablish()
     {
-        $model = new GeneralHasTipo();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
-        } else {
-            return $this->renderAjax('establish', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('generalHasTipo-establish'))
+        {    
+            $model = new GeneralHasTipo();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
+            } else {
+                return $this->renderAjax('establish', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -105,19 +130,21 @@ class GeneralHasTipoController extends Controller
      */
     public function actionUpdate($General_id, $Tipo_id)
     {
-        $model = $this->findModel($General_id, $Tipo_id);
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
-        } else {
-            return $this->renderAjax('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('generalHasTipo-update'))
+        {    
+            $model = $this->findModel($General_id, $Tipo_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'General_id' => $model->General_id, 'Tipo_id' => $model->Tipo_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
-
-
 
     /**
      * Deletes an existing GeneralHasTipo model.
@@ -128,9 +155,13 @@ class GeneralHasTipoController extends Controller
      */
     public function actionDelete($General_id, $Tipo_id)
     {
-        $this->findModel($General_id, $Tipo_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('generalHasTipo-delete'))
+        {    
+            $this->findModel($General_id, $Tipo_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

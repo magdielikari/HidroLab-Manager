@@ -15,13 +15,8 @@ use Yii;
  * @property double $utilidad
  * @property integer $rendimiento
  * @property string $General_id
- * @property string $CostoParametro_id
- * @property string $CostoParametro_Parametros_id
- * @property string $CostoMuestra_id
  *
  * @property General $general
- * @property Costoparametro $costoParametro
- * @property Costomuestra $costoMuestra
  * @property Peticion[] $peticions
  */
 class Costos extends \yii\db\ActiveRecord
@@ -40,9 +35,9 @@ class Costos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['cAnalisis', 'cMuestreo', 'cInforme', 'cAdministrativo', 'utilidad', 'rendimiento', 'General_id'], 'required'],
             [['cAnalisis', 'cMuestreo', 'cInforme', 'cAdministrativo', 'utilidad'], 'number'],
-            [['rendimiento', 'General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'CostoMuestra_id'], 'integer'],
-            [['General_id', 'CostoParametro_id', 'CostoParametro_Parametros_id', 'CostoMuestra_id'], 'required']
+            [['rendimiento', 'General_id'], 'integer']
         ];
     }
 
@@ -60,9 +55,6 @@ class Costos extends \yii\db\ActiveRecord
             'utilidad' => Yii::t('models', 'Utilidad'),
             'rendimiento' => Yii::t('models', 'Rendimiento'),
             'General_id' => Yii::t('models', 'General ID'),
-            'CostoParametro_id' => Yii::t('models', 'Costo Parametro ID'),
-            'CostoParametro_Parametros_id' => Yii::t('models', 'Costo Parametro  Parametros ID'),
-            'CostoMuestra_id' => Yii::t('models', 'Costo Muestra ID'),
         ];
     }
 
@@ -77,25 +69,9 @@ class Costos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCostoParametro()
-    {
-        return $this->hasOne(Costoparametro::className(), ['id' => 'CostoParametro_id', 'Parametros_id' => 'CostoParametro_Parametros_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCostoMuestra()
-    {
-        return $this->hasOne(Costomuestra::className(), ['id' => 'CostoMuestra_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getPeticions()
     {
-        return $this->hasMany(Peticion::className(), ['Costos_id' => 'id', 'Costos_General_id' => 'General_id', 'Costos_CostoParametro_id' => 'CostoParametro_id', 'Costos_CostoParametro_Parametros_id' => 'CostoParametro_Parametros_id', 'Costos_CostoMuestra_id' => 'CostoMuestra_id']);
+        return $this->hasMany(Peticion::className(), ['Costos_id' => 'id']);
     }
 
     /**

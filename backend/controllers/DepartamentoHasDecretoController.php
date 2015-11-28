@@ -8,6 +8,8 @@ use common\models\search\DepartamentoHasDecretoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\forbiddenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * DepartamentoHasDecretoController implements the CRUD actions for DepartamentoHasDecreto model.
@@ -32,13 +34,17 @@ class DepartamentoHasDecretoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DepartamentoHasDecretoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('departamentoHasDecreto-index'))
+        {    
+            $searchModel = new DepartamentoHasDecretoSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -49,9 +55,14 @@ class DepartamentoHasDecretoController extends Controller
      */
     public function actionView($Departamento_id, $Decreto_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($Departamento_id, $Decreto_id),
-        ]);
+        if(Yii::$app->user->can('departamentoHasDecreto-view'))
+        {    
+            return $this->render('view', [
+                'model' => $this->findModel($Departamento_id, $Decreto_id),
+            ]);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -61,16 +72,20 @@ class DepartamentoHasDecretoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new DepartamentoHasDecreto();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'Departamento_id' => $model->Departamento_id, 'Decreto_id' => $model->Decreto_id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('departamentoHasDecreto-create'))
+        {    
+            $model = new DepartamentoHasDecreto();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Departamento_id' => $model->Departamento_id, 'Decreto_id' => $model->Decreto_id]);
+            } else {
+                return $this->renderAjax('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -82,15 +97,20 @@ class DepartamentoHasDecretoController extends Controller
      */
     public function actionUpdate($Departamento_id, $Decreto_id)
     {
-        $model = $this->findModel($Departamento_id, $Decreto_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Departamento_id' => $model->Departamento_id, 'Decreto_id' => $model->Decreto_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->user->can('departamentoHasDecreto-update'))
+        {    
+            $model = $this->findModel($Departamento_id, $Decreto_id);
+            if ($model->load(Yii::$app->request->post())) {
+                $model->save();
+                return $this->redirect(['view', 'Departamento_id' => $model->Departamento_id, 'Decreto_id' => $model->Decreto_id]);
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -102,9 +122,13 @@ class DepartamentoHasDecretoController extends Controller
      */
     public function actionDelete($Departamento_id, $Decreto_id)
     {
-        $this->findModel($Departamento_id, $Decreto_id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('departamentoHasDecreto-delete'))
+        {    
+            $this->findModel($Departamento_id, $Decreto_id)->delete();
+            return $this->redirect(['index']);
+        }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**

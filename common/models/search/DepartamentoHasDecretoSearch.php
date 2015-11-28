@@ -18,7 +18,7 @@ class DepartamentoHasDecretoSearch extends DepartamentoHasDecreto
     public function rules()
     {
         return [
-            [['Departamento_id', 'Decreto_id'], 'safe'],
+            [['Departamento_id', 'Decreto_id'], 'integer'],
         ];
     }
 

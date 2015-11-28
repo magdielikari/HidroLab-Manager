@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Update'), ['update', 'id' => $model->id, 'General_id' => $model->General_id, 'CostoParametro_id' => $model->CostoParametro_id, 'CostoParametro_Parametros_id' => $model->CostoParametro_Parametros_id, 'CostoMuestra_id' => $model->CostoMuestra_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('models', 'Delete'), ['delete', 'id' => $model->id, 'General_id' => $model->General_id, 'CostoParametro_id' => $model->CostoParametro_id, 'CostoParametro_Parametros_id' => $model->CostoParametro_Parametros_id, 'CostoMuestra_id' => $model->CostoMuestra_id], [
+        <?= Html::a(Yii::t('models', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('models', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('models', 'Are you sure you want to delete this item?'),
@@ -36,9 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'utilidad',
             'rendimiento',
             'General_id',
-            'CostoParametro_id',
-            'CostoParametro_Parametros_id',
-            'CostoMuestra_id',
         ],
     ]) ?>
 

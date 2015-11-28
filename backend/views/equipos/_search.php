@@ -23,12 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'modelo') ?>
 
-    <?= $form->field($model, 'estado') ?>
-
-    <?php // echo $form->field($model, 'propietario') ?>
-
-    <?php // echo $form->field($model, 'equiposcol') ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('models', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('models', 'Reset'), ['class' => 'btn btn-default']) ?>

@@ -11,7 +11,8 @@ use Yii;
  * @property string $General_id
  * @property string $Limites_id
  *
- * @property Costoparametro[] $costoparametros
+ * @property CostopredeterminadosHasParametros[] $costopredeterminadosHasParametros
+ * @property Costopredeterminados[] $costoPredeterminados
  * @property General $general
  * @property Limites $limites
  * @property ParametrosHasMuestras[] $parametrosHasMuestras
@@ -53,9 +54,17 @@ class Parametros extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCostoparametros()
+    public function getCostopredeterminadosHasParametros()
     {
-        return $this->hasMany(Costoparametro::className(), ['Parametros_id' => 'id']);
+        return $this->hasMany(CostopredeterminadosHasParametros::className(), ['Parametros_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCostoPredeterminados()
+    {
+        return $this->hasMany(Costopredeterminados::className(), ['id' => 'CostoPredeterminados_id'])->viaTable('costopredeterminados_has_parametros', ['Parametros_id' => 'id']);
     }
 
     /**
