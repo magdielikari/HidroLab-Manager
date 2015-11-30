@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DecretoSearch */
@@ -16,9 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('models', 'Create Decreto'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('models', 'Create Decreto'), ['value'=>Url::to('create'),
+        'class' => 'btn btn-success modalButton', 'data-title'=>'Create decreto']) ?>
+
     </p>
 
+    <?php Pjax::begin();?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -33,5 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end();?>
 </div>
+<?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>
