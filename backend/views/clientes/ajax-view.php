@@ -12,25 +12,30 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="clientes-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+	<h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::Button('Select', ['class'=>'btn btn-primary buttonSelect', 'data-model'=>$model->attributes]) ?>
-    </p>
+	<p>
+		<?= Html::Button('Select', [
+			'class'=>'btn btn-primary buttonSelect',
+			'data'=>[
+				'model'=>['cliente'=>$model->attributes]
+			]
+		]) ?>
+	</p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nombre',
-            'direccion:ntext',
-            'email:email',
-            'encargado',
-            'nRif',
-            'cRif',
-            'siglas',
-            'contador',
-        ],
-    ]) ?>
+	<?= DetailView::widget([
+		'model' => $model,
+		'attributes' => [
+			'id',
+			'nombre',
+			'direccion:ntext',
+			'email:email',
+			'encargado',
+			'nRif',
+			'cRif',
+			'siglas',
+			'contador',
+		],
+	]) ?>
 
 </div>

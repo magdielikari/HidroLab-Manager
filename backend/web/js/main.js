@@ -1,13 +1,4 @@
 $(function(){
-	// get the click of the create button
-	$('.modalButton').click(function(){
-		var titulo=$(this).attr('data-title');
-		$('.modal-title').text(titulo);
-		$('#modal').modal('show')
-			.find('#modalContent')
-			.load($(this).attr('value'));
-	});
-
 	// Post form in modal and Display the results.
 	$("#modal").on('submit','form', function() {
 		var form_data = $("form").serialize();
@@ -25,6 +16,10 @@ $(function(){
 		return false;
 	});
 
+	$('#modal').on('modal:reload', function(event, url){
+		reloadModal(url);
+	});
+
 	function reloadModal(url){
 		$('#modal').modal('hide');
 
@@ -34,8 +29,4 @@ $(function(){
 				.load(url);
 		},500);
 	}
-
-	$('#modal').on('modal:reload', function(event, url){
-		reloadModal(url);
-	});
 });

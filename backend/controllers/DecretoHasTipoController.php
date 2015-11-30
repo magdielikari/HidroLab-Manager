@@ -42,6 +42,17 @@ class DecretoHasTipoController extends Controller
         ]);
     }
 
+    public function actionSelect()
+    {
+        $searchModel = new DecretoHasTipoSearch();
+        $dataProvider = $searchModel->search(['DecretoHasTipoSearch'=>Yii::$app->request->queryParams]);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single DecretoHasTipo model.
      * @param integer $Decreto_id

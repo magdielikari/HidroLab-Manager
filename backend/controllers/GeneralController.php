@@ -68,7 +68,7 @@ class GeneralController extends Controller
 
     public function actionAjaxView($id)
     {
-        return $this->renderAjax('ajaxView', [
+        return $this->renderAjax('ajax-view', [
             'model' => $this->findModel($id),
         ]);
     }
