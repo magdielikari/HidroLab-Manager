@@ -55,7 +55,7 @@ class CostosController extends Controller
             $searchModel = new CostosSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('select', [
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);

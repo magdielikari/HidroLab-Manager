@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2015 a las 09:29:37
+-- Tiempo de generación: 02-12-2015 a las 11:00:57
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -16,12 +16,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS `hl` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `hl`;
-
 --
 -- Base de datos: `hl`
 --
+CREATE DATABASE IF NOT EXISTS `hl` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hl`;
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,9 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('costopredeterminadosHasPrestaciones-view', 2, 'Permite visualizar un registro costopredeterminadosHasPrestaciones', NULL, NULL, 1446356483, 1446356483),
 ('costos-create', 2, 'Permite crear un registro costos', NULL, NULL, 1446356483, 1446356483),
 ('costos-delete', 2, 'Permite borrar un registro costos', NULL, NULL, 1446356483, 1446356483),
+('costos-establish', 2, 'Permite establecer un registro costos', NULL, NULL, 1449049874, 1449049874),
 ('costos-index', 2, 'Permite visualizar los registros costos', NULL, NULL, 1446356483, 1446356483),
+('costos-select', 2, 'Permite seleccionar un registro costos', NULL, NULL, 1449049893, 1449049893),
 ('costos-update', 2, 'Permite actualizar un registro costos', NULL, NULL, 1446356483, 1446356483),
 ('costos-view', 2, 'Permite visualizar un registro costos', NULL, NULL, 1446356483, 1446356483),
 ('costospredeterminadosHasAdministrativo-establish', 2, 'Permite establecer un costopredeterminadosHasAdministrativo', NULL, NULL, 1449041713, 1449041713),
@@ -194,6 +195,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('equiposHasGeneral-select', 2, 'Permite seleccionar un registro equiposHasGeneral', NULL, NULL, 1449040507, 1449040507),
 ('equiposHasGeneral-update', 2, 'Permite actualizar un registro equiposHasGeneral', NULL, NULL, 1446356483, 1446356483),
 ('equiposHasGeneral-view', 2, 'Permite visualizar un registro equiposHasGeneral', NULL, NULL, 1446356483, 1446356483),
+('general-ajaxview', 2, 'Permite actualizar un registro ajax general', NULL, NULL, 1449049931, 1449049931),
 ('general-create', 2, 'Permite crear un registro general', NULL, NULL, 1446356483, 1446356483),
 ('general-delete', 2, 'Permite borrar un registro general', NULL, NULL, 1446356483, 1446356483),
 ('general-establish', 2, 'Permite establecer un registro general', NULL, NULL, 1449040705, 1449040705),
@@ -419,7 +421,9 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('Admin', 'costopredeterminadosHasPrestaciones-view'),
 ('Admin', 'costos-create'),
 ('Admin', 'costos-delete'),
+('Admin', 'costos-establish'),
 ('Admin', 'costos-index'),
+('Admin', 'costos-select'),
 ('Admin', 'costos-update'),
 ('Admin', 'costos-view'),
 ('Admin', 'costospredeterminadosHasAdministrativo-establish'),
@@ -460,6 +464,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('Admin', 'equiposHasGeneral-select'),
 ('Admin', 'equiposHasGeneral-update'),
 ('Admin', 'equiposHasGeneral-view'),
+('Admin', 'general-ajaxview'),
 ('Admin', 'general-create'),
 ('Admin', 'general-delete'),
 ('Admin', 'general-establish'),
