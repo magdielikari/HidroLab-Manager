@@ -100,11 +100,14 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'label'=>'Sub-Tipos',
 			'content'=>'Se solicita información de Nombre de las Sub-Tipos',
 			'bottom'=>[
-				['name'=>'Seleccionar Sub-Tipos','value'=>['general-has-subtipo/select'],
+				['name'=>'Seleccionar Sub-Tipos','value'=>['tipo-has-subtipo/select'],
 					'options'=>[
 						'class'=>'btn btn-info modalButton',
 						'data'=>[
-							'title'=>'Seleccionar Sub-Tipos'
+							'title'=>'Seleccionar Sub-Tipos',
+							'depends'=>'tipos',
+							'array'=>true,
+							'column'=>'Tipo_id'
 						]
 					]
 				],

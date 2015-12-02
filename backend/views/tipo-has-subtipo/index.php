@@ -17,8 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tipo-has-subtipo-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::button(Yii::t('models', 'Create Tipo Has Subtipo'), ['value'=>Url::to('create'),
         'class' => 'btn btn-success modalButton','data-title'=>'Seleccionar Muestra']) ?>

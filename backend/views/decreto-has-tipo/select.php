@@ -31,7 +31,6 @@ use yii\helpers\Url;
             'tipo.nombre',
             [
                 'class'=>'yii\grid\CheckboxColumn',
-                'contentOptions'=>['class'=>'test']
             ]
         ],
     ]); ?>

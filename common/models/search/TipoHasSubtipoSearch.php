@@ -18,7 +18,7 @@ class TipoHasSubtipoSearch extends TipoHasSubtipo
     public function rules()
     {
         return [
-            [['Tipo_id', 'SubTipo_id'], 'integer'],
+            [['Tipo_id', 'SubTipo_id'], 'each', 'rule'=>['integer']],
         ];
     }
 
