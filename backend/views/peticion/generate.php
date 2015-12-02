@@ -123,9 +123,9 @@ $this->params['breadcrumbs'][] = $this->title;
       'label'=>'Costo Muestra',
       'content'=>'Holllla',
       'bottom'=>[
-        ['name'=>'Seleccionar Costo M.','value'=>['costopredeterminados-has-costomuestra/select'],
+        ['name'=>'Seleccionar Costo M.','value'=>['parametros-has-muestras-has-costopredeterminados/select'],
           'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Costos Muestra']],
-        ['name'=>'Crear Costos M.','value'=>['costopredeterminados-has-costomuestra/establish'],
+        ['name'=>'Crear Costos M.','value'=>['parametros-has-muestras-has-costopredeterminados/establish'],
           'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Costos Muestra']]
       ]
     ])?> 
@@ -135,16 +135,52 @@ $this->params['breadcrumbs'][] = $this->title;
       'label'=>'Costos Parámetro',
       'content'=>'Holllla',
       'bottom'=>[
-        ['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-costoparametro/select'],
+        ['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-parametros/select'],
           'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seccionar Costos Parámetros']],
-        ['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-costoparametro/establish'],
+        ['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-parametros/establish'],
           'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
       ]
     ])?> 
   </div>
+    <div class="col-sm-6 col-md-4">
+    <?= Thumbnail::widget([
+      'label'=>'Costo Muestra',
+      'content'=>'Holllla',
+      'bottom'=>[
+        ['name'=>'Seleccionar Costo M.','value'=>['costopredeterminados-has-prestaciones/select'],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seleccionar Costos Muestra']],
+        ['name'=>'Crear Costos M.','value'=>['costopredeterminados-has-prestaciones/establish'],
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Costos Muestra']]
+      ]
+    ])?> 
+  </div>
 </div>
-  
+
 <div class="row"> 
+  <div class="col-sm-6 col-md-4">
+    <?= Thumbnail::widget([
+      'label'=>'Costos Parámetro',
+      'content'=>'Holllla',
+      'bottom'=>[
+        ['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-administrativos/select'],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Seccionar Costos Parámetros']],
+        ['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-administrativos/establish'],
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Parámetros']]
+      ]
+    ])?> 
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <?= Thumbnail::widget([
+      'label'=>'Petición',
+      'content'=>'Holllla',
+      'bottom'=>[
+        ['name'=>'Seleccionar Petición','value'=>['costos/select'],
+          'options'=>['class'=>'btn btn-info modalButton','data-title'=>'Selecionar Petición']],
+        ['name'=>'Crear Petición','value'=>['costos/establish'],
+          'options'=>['class'=>'btn btn-success modalButton','data-title'=>'Crear Petición']]
+      ]
+    ])?> 
+  </div>
   <div class="col-sm-6 col-md-4">
     <?= Thumbnail::widget([
       'label'=>'Petición',

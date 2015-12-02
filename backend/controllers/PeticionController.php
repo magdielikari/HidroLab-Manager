@@ -53,7 +53,7 @@ class PeticionController extends Controller
         {    
             $searchModel = new PeticionSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('select', [
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
@@ -128,6 +128,8 @@ class PeticionController extends Controller
         {
             return $this->render('generate');
         }
+        else
+            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
 

@@ -53,7 +53,7 @@ class GeneralHasSubtipoController extends Controller
         {    
             $searchModel = new GeneralHasSubtipoSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('select', [
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);

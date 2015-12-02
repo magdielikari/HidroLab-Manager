@@ -53,7 +53,7 @@ class ParametrosHasMuestrasHasCostopredeterminadosController extends Controller
         {
             $searchModel = new ParametrosHasMuestrasHasCostopredeterminadosSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('Select', [
+            return $this->renderAjax('Select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);

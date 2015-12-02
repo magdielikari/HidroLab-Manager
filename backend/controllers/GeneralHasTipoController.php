@@ -53,7 +53,7 @@ class GeneralHasTipoController extends Controller
         {
             $searchModel = new GeneralHasTipoSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('select', [
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
@@ -72,7 +72,7 @@ class GeneralHasTipoController extends Controller
     {
         if(Yii::$app->user->can('generalHasTipo-view'))
         {    
-            return $this->render('view', [
+            return $this->renderAjax('view', [
                 'model' => $this->findModel($General_id, $Tipo_id),
             ]);
         }
