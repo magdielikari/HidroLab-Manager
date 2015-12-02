@@ -180,6 +180,62 @@ class PeticionController extends Controller
             throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
+    public function actionAjaxCookie()
+    {
+        $requestCookies = Yii::$app->request->cookies;
+        $data = Yii::$app->request->get();
+
+        switch($data['action'])
+        {
+            case 'check':
+                if($requestCookies->has($data['name']))
+                {
+                    if($requestCookies->get($data['name'])->value['cliente'])
+                        return json_encode(true);
+
+                    return json_encode(false);
+                }
+
+                else
+                {
+                    $cookies = Yii::$app->response->cookies;
+
+                    $cookies->add(new \yii\web\Cookie([
+                        'name' => $data['name'],
+                        'expire'=>time() + (86400 * 30),
+                        'value' =>[
+                            'cliente'=>null,
+                            'general'=>null,
+                            'tipos'=>null,
+                            'subTipos'=>[],
+                            'ramas'=>[],
+                            'parametros'=>[],
+                            'muestras'=>[],
+                            'equipos'=>[],
+                            'costoMuestra'=>[],
+                            'costoParametro'=>[],
+                            'peticion'=>null
+                        ]
+                    ]));
+
+                    return json_encode(false);
+                }
+                break;
+
+            case 'delete':
+                $cookies = Yii::$app->response->cookies;
+
+                $cookies->remove($data['name']);
+                break;
+
+            case 'verify':
+                return json_encode(['data'=>Yii::$app->response->cookies->has('cliente')]);
+                break;
+        }
+        
+        return json_encode($data);
+    }
+
     /**
      * Finds the Peticion model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

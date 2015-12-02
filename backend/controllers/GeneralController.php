@@ -8,8 +8,7 @@ use common\models\search\GeneralSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\forbiddenHttpException;
-use yii\web\UnauthorizedHttpException;
+use yii\helpers\Url;
 
 /**
  * GeneralController implements the CRUD actions for General model.
@@ -34,33 +33,26 @@ class GeneralController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can('general-index'))
-        {    
-            $searchModel = new GeneralSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
+        $searchModel = new GeneralSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionSelect()
     {
-        if(Yii::$app->user->can('general-select'))
-        {    
-            $searchModel = new GeneralSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->renderAjax('select', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
+        $searchModel = new GeneralSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
+
 
     /**
      * Displays a single General model.
@@ -69,14 +61,16 @@ class GeneralController extends Controller
      */
     public function actionView($id)
     {
-        if(Yii::$app->user->can('general-view'))
-        {    
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-        }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
+        return $this->renderAjax('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionAjaxView($id)
+    {
+        return $this->renderAjax('ajax-view', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**
@@ -86,39 +80,55 @@ class GeneralController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can('general-create'))
-        {    
-            $model = new General();
-            if ($model->load(Yii::$app->request->post())) {
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->renderAjax('create', [
-                    'model' => $model,
-                ]);
+        $model = new General();
+        $data=[
+            'url'=>null,
+            'success'=>false,
+            'error'=>[]
+        ];
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                $data['success']=true;
+                $data['url']=Url::to(['general/view','id'=>$model->id]);
+            }else{
+                $data['error'][]=$model->getErrors();    
             }
+            header('Content-type:application/json');
+            echo json_encode($data);
+            Yii::$app->end();
+        } else {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
         }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     public function actionEstablish()
     {
-        if(Yii::$app->user->can('general-establish'))
-        {    
-            $model = new General();
-            if ($model->load(Yii::$app->request->post())) {
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->renderAjax('establish', [
-                    'model' => $model,
-                ]);
+        $model = new General();
+        $data=[
+            'url'=>null,
+            'success'=>false,
+            'error'=>[]
+        ];
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                $data['success']=true;
+                $data['url']=Url::to(['general/view','id'=>$model->id]);
+            }else{
+                $data['error'][]=$model->getErrors();    
             }
+            header('Content-type:application/json');
+            echo json_encode($data);
+            Yii::$app->end();
+        } else {
+            return $this->renderAjax('establish', [
+                'model' => $model,
+            ]);
         }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
+
+
     /**
      * Updates an existing General model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -127,20 +137,16 @@ class GeneralController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(Yii::$app->user->can('general-update'))
-        {    
-            $model = $this->findModel($id);
-            if ($model->load(Yii::$app->request->post())) {
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->renderAjax('update', [
-                    'model' => $model,
-                ]);
-            }
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->renderAjax('update', [
+                'model' => $model,
+            ]);
         }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
     }
 
     /**
@@ -151,13 +157,9 @@ class GeneralController extends Controller
      */
     public function actionDelete($id)
     {
-        if(Yii::$app->user->can('general-delete'))
-        {    
-            $this->findModel($id)->delete();
-            return $this->redirect(['index']);
-        }
-        else
-            throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
     }
 
     /**

@@ -80,6 +80,18 @@ class ClientesController extends Controller
     }
 
     /**
+     * Displays a single Clientes model in ajax call.
+     * @param  int $id
+     * @return mixed
+     */
+    public function actionAjaxView($id)
+    {
+        return $this->renderAjax('ajax-view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
      * Creates a new Clientes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

@@ -48,6 +48,21 @@ class TipoHasSubtipoController extends Controller
     }
 
     /**
+     * Lists all TipoHasSubtipo models for AJAX calls
+     * @return mixed
+     */
+    public function actionSelect()
+    {
+        $searchModel = new TipoHasSubtipoSearch();
+        $dataProvider = $searchModel->search(['TipoHasSubtipoSearch'=>Yii::$app->request->queryParams]);
+
+        return $this->renderAjax('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single TipoHasSubtipo model.
      * @param integer $Tipo_id
      * @param integer $SubTipo_id
