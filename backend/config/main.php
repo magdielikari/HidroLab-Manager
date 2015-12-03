@@ -22,6 +22,15 @@ return [
 			'enablePrettyUrl'=>true,
 			'showScriptName'=>false
 		],
+		'assetManager'=>[
+			'bundles'=>[
+				'yii\bootstrap\BootstrapAsset'=>[
+					'basePath'=>'@webroot',
+					'baseUrl'=>'@web',
+					'css'=>['css/bootstrap.css']
+				],
+			],
+		],
 		'user' => [
 			'identityClass' => 'common\models\User',
 			'enableAutoLogin' => true,
