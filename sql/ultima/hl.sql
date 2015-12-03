@@ -1500,18 +1500,13 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 -- Estructura de tabla para la tabla `vendedor`
 --
 
-CREATE TABLE IF NOT EXISTS `vendedor` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `Puesto_id` tinyint(3) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
-  `Departamento_id` tinyint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_Vendedor_Puesto_idx` (`Puesto_id`),
-  KEY `fk_Vendedor_user1_idx` (`user_id`),
-  KEY `fk_Vendedor_Departamento1_idx` (`Departamento_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `HL`.`Vendedor` (
+  `id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Puesto_id` TINYINT UNSIGNED NOT NULL,
+  `user_id` INT(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+)ENGINE = InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 
 --
 -- Restricciones para tablas volcadas
@@ -1746,7 +1741,6 @@ ALTER TABLE `track`
 -- Filtros para la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  ADD CONSTRAINT `fk_Vendedor_Departamento1` FOREIGN KEY (`Departamento_id`) REFERENCES `departamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Vendedor_Puesto` FOREIGN KEY (`Puesto_id`) REFERENCES `puesto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Vendedor_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

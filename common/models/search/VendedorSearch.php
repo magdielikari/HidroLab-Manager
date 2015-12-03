@@ -18,8 +18,7 @@ class VendedorSearch extends Vendedor
     public function rules()
     {
         return [
-            [['id', 'Puesto_id', 'user_id', 'Departamento_id'], 'integer'],
-            [['nombre', 'email'], 'safe'],
+            [['id', 'Puesto_id', 'user_id'], 'integer'],
         ];
     }
 
@@ -59,11 +58,7 @@ class VendedorSearch extends Vendedor
             'id' => $this->id,
             'Puesto_id' => $this->Puesto_id,
             'user_id' => $this->user_id,
-            'Departamento_id' => $this->Departamento_id,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }
