@@ -20,13 +20,30 @@ $(function(){
 		reloadModal(url);
 	});
 
+	$(document).on('modal:load', function(event, url){
+		loadModal(url);
+	});
+
+	$('.modalButton').click(function(){
+		var url = $(this).attr('value');
+		var titulo = $(this).data('title');
+
+		$('.modal-title').text(titulo);
+
+		loadModal(url);
+	});
+
+	function loadModal(url){
+		$('#modal').modal('show')
+			.find('#modalContent')
+			.load(url);
+	}
+
 	function reloadModal(url){
 		$('#modal').modal('hide');
 
 		setTimeout(function(){
-			$('#modal').modal('show')
-				.find('#modalContent')
-				.load(url);
+			loadModal(url);
 		},500);
 	}
 });
