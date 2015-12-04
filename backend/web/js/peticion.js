@@ -35,8 +35,6 @@ $(function(){
 			cache[data] = model[data];
 
 		$('#modal').modal('hide');
-
-		// Todo: Save this data in cookie
 	});
 
 	/**
