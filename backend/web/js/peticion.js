@@ -35,6 +35,7 @@ $(function(){
 			cache[data] = model[data];
 
 		$('#modal').modal('hide');
+		console.log(cache);
 	});
 
 	/**
@@ -54,6 +55,7 @@ $(function(){
 		cache[selector] = selected;
 
 		$('#modal').modal('hide');
+		console.log(cache);
 	});
 
 	/**
