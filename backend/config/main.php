@@ -17,6 +17,9 @@ return [
 		]
 	],
 	'components' => [
+		'authManager'=>[
+			'class'=>'yii\rbac\DbManager'
+		],
 		'urlManager'=> [
 			'class'=>'yii\web\UrlManager',
 			'enablePrettyUrl'=>true,
