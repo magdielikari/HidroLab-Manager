@@ -24,7 +24,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Tipos','value'=>['clientes/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Clientes'
 						]
@@ -32,7 +32,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Tipos','value'=>['clientes/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Clientes'
 						]
@@ -49,7 +49,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar General','value'=>['general/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar General'
 						]
@@ -57,7 +57,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear General','value'=>['general/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear General'
 						]
@@ -76,7 +76,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Tipos','value'=>['decreto-has-tipo/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Tipos',
 							'depends'=>'general',
@@ -86,7 +86,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Tipos','value'=>['general-has-tipo/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Tipos'
 						]
@@ -102,7 +102,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Sub-Tipos','value'=>['tipo-has-subtipo/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Sub-Tipos',
 							'depends'=>'tipos',
@@ -113,7 +113,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Sub-Tiposs','value'=>['general-has-subtipo/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Sub-Tipos'
 						]
@@ -129,7 +129,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Ramas','value'=>['rama-has-general/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Ramas'
 						]
@@ -137,7 +137,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Ramas','value'=>['rama-has-general/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Ramas'
 						]
@@ -156,7 +156,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Parámetros','value'=>['parametros/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Parámetros'
 						]
@@ -164,7 +164,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Parámetros','value'=>['parametros/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Parámetros'
 						]
@@ -180,7 +180,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Muestras'
 						]
@@ -188,7 +188,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Muestras','value'=>['muestras/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Muestras'
 						]
@@ -204,7 +204,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Equipos','value'=>['equipos-has-general/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Equipos has General'
 						]
@@ -212,7 +212,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Equipos','value'=>['equipos-has-general/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Equipos has General'
 						]
@@ -231,13 +231,13 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Costo M.','value'=>['parametros-has-muestras-has-costopredeterminados/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>'Seleccionar Costos Muestra'
 					]
 				],
 				['name'=>'Crear Costos M.','value'=>['parametros-has-muestras-has-costopredeterminados/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>'Crear Costos Muestra'
 					]
 				]
@@ -251,7 +251,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-parametros/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seccionar Costos Parámetros'
 						]
@@ -259,7 +259,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-parametros/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Parámetros'
 						]
@@ -275,7 +275,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-prestaciones/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seccionar Costos Parámetros'
 						]
@@ -283,7 +283,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-prestaciones/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Parámetros'
 						]
@@ -302,7 +302,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costopredeterminados-has-administrativos/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Selecionar Petición'
 						]
@@ -310,7 +310,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Petición','value'=>['costopredeterminados-has-administrativos/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Petición'
 						]
@@ -326,7 +326,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costos/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Selecionar Petición'
 						]
@@ -334,7 +334,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Petición','value'=>['costos/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Petición'
 						]
@@ -350,7 +350,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['peticion/select'],
 					'options'=>[
-						'class'=>'btn btn-info modalButton',
+						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Selecionar Petición'
 						]
@@ -358,7 +358,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				],
 				['name'=>'Crear Petición','value'=>['peticion/establish'],
 					'options'=>[
-						'class'=>'btn btn-success modalButton',
+						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Petición'
 						]
