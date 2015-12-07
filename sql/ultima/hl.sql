@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2015 a las 11:00:57
+-- Tiempo de generación: 06-12-2015 a las 12:08:49
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hl`
 --
+
 CREATE DATABASE IF NOT EXISTS `hl` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `hl`;
 
@@ -81,8 +82,6 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-(' costopredeterminadosHasAdministrativos-select', 2, '  Permite seleccionar un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1449040253, 1449040253),
-(' ramaHasGeneral-establish', 2, 'Permite establecer un registro ramaHasGeneral', NULL, NULL, 1449040648, 1449040648),
 ('Admin', 1, 'El rol de administrador', NULL, NULL, 1446447634, 1446447634),
 ('administrativos-create', 2, 'Permite crear un registro administrativos', NULL, NULL, 1446356483, 1446356483),
 ('administrativos-delete', 2, 'Permite borrar un registro administrativos', NULL, NULL, 1446356483, 1446356483),
@@ -133,7 +132,9 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('costopredeterminados-view', 2, 'Permite visualizar un registro costopredeterminados', NULL, NULL, 1446356483, 1446356483),
 ('costopredeterminadosHasAdministrativos-create', 2, 'Permite crear un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1446356483, 1446356483),
 ('costopredeterminadosHasAdministrativos-delete', 2, 'Permite borrar un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1446356483, 1446356483),
+('costopredeterminadosHasAdministrativos-establish', 2, 'Permite establecer un costopredeterminadosHasAdministrativo', NULL, NULL, 1449041713, 1449399504),
 ('costopredeterminadosHasAdministrativos-index', 2, 'Permite visualizar los registros costopredeterminadosHasAdministrativos', NULL, NULL, 1446356483, 1446356483),
+('costopredeterminadosHasAdministrativos-select', 2, '  Permite seleccionar un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1449040253, 1449399474),
 ('costopredeterminadosHasAdministrativos-update', 2, 'Permite actualizar un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1446356483, 1446356483),
 ('costopredeterminadosHasAdministrativos-view', 2, 'Permite visualizar un registro costopredeterminadosHasAdministrativos', NULL, NULL, 1446356483, 1446356483),
 ('costopredeterminadosHasParametros-create', 2, 'Permite crear un registro costopredeterminadosHasParametros', NULL, NULL, 1446356483, 1446356483),
@@ -157,7 +158,6 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('costos-select', 2, 'Permite seleccionar un registro costos', NULL, NULL, 1449049893, 1449049893),
 ('costos-update', 2, 'Permite actualizar un registro costos', NULL, NULL, 1446356483, 1446356483),
 ('costos-view', 2, 'Permite visualizar un registro costos', NULL, NULL, 1446356483, 1446356483),
-('costospredeterminadosHasAdministrativo-establish', 2, 'Permite establecer un costopredeterminadosHasAdministrativo', NULL, NULL, 1449041713, 1449041713),
 ('decreto-create', 2, 'Permite crear un registro decreto', NULL, NULL, 1446356483, 1446356483),
 ('decreto-delete', 2, 'Permite borrar un registro decreto', NULL, NULL, 1446356483, 1446356483),
 ('decreto-index', 2, 'Permite visualizar los registros decreto', NULL, NULL, 1446356483, 1446356483),
@@ -294,6 +294,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('ramaHasCaracterizacion-view', 2, 'Permite visualizar un registro ramaHasCaracterizacion', NULL, NULL, 1446356483, 1446356483),
 ('ramaHasGeneral-create', 2, 'Permite crear un registro ramaHasGeneral', NULL, NULL, 1446356483, 1446356483),
 ('ramaHasGeneral-delete', 2, 'Permite borrar un registro ramaHasGeneral', NULL, NULL, 1446356483, 1446356483),
+('ramaHasGeneral-establish', 2, 'Permite establecer un registro ramaHasGeneral', NULL, NULL, 1449040648, 1449400089),
 ('ramaHasGeneral-index', 2, 'Permite visualizar los registros ramaHasGeneral', NULL, NULL, 1446356483, 1446356483),
 ('ramaHasGeneral-select', 2, ' Permite seleccionar un registro ramaHasGeneral', NULL, NULL, 1449040627, 1449040627),
 ('ramaHasGeneral-update', 2, 'Permite actualizar un registro ramaHasGeneral', NULL, NULL, 1446356483, 1446356483),
@@ -348,8 +349,6 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
-('Admin', ' costopredeterminadosHasAdministrativos-select'),
-('Admin', ' ramaHasGeneral-establish'),
 ('Admin', 'administrativos-create'),
 ('Admin', 'administrativos-delete'),
 ('Admin', 'administrativos-index'),
@@ -402,7 +401,9 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('Admin', 'costopredeterminados-view'),
 ('Admin', 'costopredeterminadosHasAdministrativos-create'),
 ('Admin', 'costopredeterminadosHasAdministrativos-delete'),
+('Admin', 'costopredeterminadosHasAdministrativos-establish'),
 ('Admin', 'costopredeterminadosHasAdministrativos-index'),
+('Admin', 'costopredeterminadosHasAdministrativos-select'),
 ('Admin', 'costopredeterminadosHasAdministrativos-update'),
 ('Admin', 'costopredeterminadosHasAdministrativos-view'),
 ('Admin', 'costopredeterminadosHasParametros-create'),
@@ -426,7 +427,6 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('Admin', 'costos-select'),
 ('Admin', 'costos-update'),
 ('Admin', 'costos-view'),
-('Admin', 'costospredeterminadosHasAdministrativo-establish'),
 ('Admin', 'decreto-create'),
 ('Admin', 'decreto-delete'),
 ('Admin', 'decreto-index'),
@@ -562,6 +562,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('Admin', 'ramaHasCaracterizacion-view'),
 ('Admin', 'ramaHasGeneral-create'),
 ('Admin', 'ramaHasGeneral-delete'),
+('Admin', 'ramaHasGeneral-establish'),
 ('Admin', 'ramaHasGeneral-index'),
 ('Admin', 'ramaHasGeneral-select'),
 ('Admin', 'ramaHasGeneral-update'),
@@ -706,7 +707,15 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `siglas` char(4) NOT NULL,
   `contador` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nombre`, `direccion`, `email`, `encargado`, `nRif`, `cRif`, `siglas`, `contador`) VALUES
+(1, 'Magdiel', 'mi casa', 'magdiel@magdiel.com', 'yo', '17905247', 'j', 'MAG', 0),
+(2, 'asdfg', 'asdfg', 'sdfg@dfghs.com', 'sdfg', '546364', 'g', 'tfg', 1);
 
 -- --------------------------------------------------------
 
@@ -756,6 +765,7 @@ CREATE TABLE IF NOT EXISTS `costopredeterminados` (
   `fechaIngreso` date NOT NULL,
   `vencimiento` tinyint(3) unsigned NOT NULL,
   `Moneda_id` int(10) unsigned NOT NULL,
+  `tipo` ENUM('Administrativo', 'Muestras', 'Parametros', 'Prestaciones') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_CostoPredeterminados_Moneda1_idx` (`Moneda_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -1161,6 +1171,7 @@ CREATE TABLE IF NOT EXISTS `parametros_has_muestras_has_costopredeterminados` (
   `Parametros_has_Muestras_Parametros_id` int(10) unsigned NOT NULL,
   `Parametros_has_Muestras_Muestras_id` int(10) unsigned NOT NULL,
   `CostoPredeterminados_id` int(10) unsigned NOT NULL,
+  `cantidad` FLOAT NOT NULL,
   PRIMARY KEY (`Parametros_has_Muestras_Parametros_id`,`Parametros_has_Muestras_Muestras_id`,`CostoPredeterminados_id`),
   KEY `fk_Parametros_has_Muestras_has_CostoPredeterminados_CostoPr_idx` (`CostoPredeterminados_id`),
   KEY `fk_Parametros_has_Muestras_has_CostoPredeterminados_Paramet_idx` (`Parametros_has_Muestras_Parametros_id`,`Parametros_has_Muestras_Muestras_id`)
@@ -1500,13 +1511,14 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 -- Estructura de tabla para la tabla `vendedor`
 --
 
-CREATE TABLE IF NOT EXISTS `HL`.`Vendedor` (
-  `id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Puesto_id` TINYINT UNSIGNED NOT NULL,
-  `user_id` INT(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`)
-)ENGINE = InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
-
+CREATE TABLE IF NOT EXISTS `vendedor` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `Puesto_id` tinyint(3) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Vendedor_Puesto` (`Puesto_id`),
+  KEY `fk_Vendedor_user1` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas

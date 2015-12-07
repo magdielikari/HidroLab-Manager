@@ -19,6 +19,7 @@ class ParametrosHasMuestrasHasCostopredeterminadosSearch extends ParametrosHasMu
     {
         return [
             [['Parametros_has_Muestras_Parametros_id', 'Parametros_has_Muestras_Muestras_id', 'CostoPredeterminados_id'], 'integer'],
+            [['cantidad'], 'number'],
         ];
     }
 
@@ -58,6 +59,7 @@ class ParametrosHasMuestrasHasCostopredeterminadosSearch extends ParametrosHasMu
             'Parametros_has_Muestras_Parametros_id' => $this->Parametros_has_Muestras_Parametros_id,
             'Parametros_has_Muestras_Muestras_id' => $this->Parametros_has_Muestras_Muestras_id,
             'CostoPredeterminados_id' => $this->CostoPredeterminados_id,
+            'cantidad' => $this->cantidad,
         ]);
 
         return $dataProvider;

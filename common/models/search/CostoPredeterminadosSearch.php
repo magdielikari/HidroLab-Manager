@@ -19,7 +19,7 @@ class CostopredeterminadosSearch extends Costopredeterminados
     {
         return [
             [['id', 'vencimiento', 'Moneda_id'], 'integer'],
-            [['nombre', 'fechaIngreso'], 'safe'],
+            [['nombre', 'fechaIngreso', 'tipo'], 'safe'],
             [['costo'], 'number'],
         ];
     }
@@ -64,7 +64,8 @@ class CostopredeterminadosSearch extends Costopredeterminados
             'Moneda_id' => $this->Moneda_id,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'tipo', $this->tipo]);
 
         return $dataProvider;
     }

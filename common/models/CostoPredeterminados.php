@@ -13,6 +13,7 @@ use Yii;
  * @property string $fechaIngreso
  * @property integer $vencimiento
  * @property string $Moneda_id
+ * @property string $tipo
  *
  * @property Moneda $moneda
  * @property CostopredeterminadosHasAdministrativos[] $costopredeterminadosHasAdministrativos
@@ -39,10 +40,11 @@ class Costopredeterminados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'costo', 'fechaIngreso', 'vencimiento', 'Moneda_id'], 'required'],
+            [['nombre', 'costo', 'fechaIngreso', 'vencimiento', 'Moneda_id', 'tipo'], 'required'],
             [['costo'], 'number'],
             [['fechaIngreso'], 'safe'],
             [['vencimiento', 'Moneda_id'], 'integer'],
+            [['tipo'], 'string'],
             [['nombre'], 'string', 'max' => 45]
         ];
     }
@@ -59,6 +61,7 @@ class Costopredeterminados extends \yii\db\ActiveRecord
             'fechaIngreso' => Yii::t('models', 'Fecha Ingreso'),
             'vencimiento' => Yii::t('models', 'Vencimiento'),
             'Moneda_id' => Yii::t('models', 'Moneda ID'),
+            'tipo' => Yii::t('models', 'Tipo'),
         ];
     }
 

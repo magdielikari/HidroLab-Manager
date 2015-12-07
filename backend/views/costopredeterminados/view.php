@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'fechaIngreso',
             'vencimiento',
             'Moneda_id',
+            'tipo',
         ],
     ]) ?>
 

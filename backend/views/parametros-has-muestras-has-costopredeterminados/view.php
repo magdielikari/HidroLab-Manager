@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Parametros_has_Muestras_Parametros_id',
             'Parametros_has_Muestras_Muestras_id',
             'CostoPredeterminados_id',
+            'cantidad',
         ],
     ]) ?>
 

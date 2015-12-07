@@ -10,9 +10,10 @@ use Yii;
  * @property string $Parametros_has_Muestras_Parametros_id
  * @property string $Parametros_has_Muestras_Muestras_id
  * @property string $CostoPredeterminados_id
+ * @property double $cantidad
  *
- * @property ParametrosHasMuestras $parametrosHasMuestrasParametros
  * @property Costopredeterminados $costoPredeterminados
+ * @property ParametrosHasMuestras $parametrosHasMuestrasParametros
  */
 class ParametrosHasMuestrasHasCostopredeterminados extends \yii\db\ActiveRecord
 {
@@ -30,8 +31,9 @@ class ParametrosHasMuestrasHasCostopredeterminados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Parametros_has_Muestras_Parametros_id', 'Parametros_has_Muestras_Muestras_id', 'CostoPredeterminados_id'], 'required'],
-            [['Parametros_has_Muestras_Parametros_id', 'Parametros_has_Muestras_Muestras_id', 'CostoPredeterminados_id'], 'integer']
+            [['Parametros_has_Muestras_Parametros_id', 'Parametros_has_Muestras_Muestras_id', 'CostoPredeterminados_id', 'cantidad'], 'required'],
+            [['Parametros_has_Muestras_Parametros_id', 'Parametros_has_Muestras_Muestras_id', 'CostoPredeterminados_id'], 'integer'],
+            [['cantidad'], 'number']
         ];
     }
 
@@ -44,15 +46,8 @@ class ParametrosHasMuestrasHasCostopredeterminados extends \yii\db\ActiveRecord
             'Parametros_has_Muestras_Parametros_id' => Yii::t('models', 'Parametros Has  Muestras  Parametros ID'),
             'Parametros_has_Muestras_Muestras_id' => Yii::t('models', 'Parametros Has  Muestras  Muestras ID'),
             'CostoPredeterminados_id' => Yii::t('models', 'Costo Predeterminados ID'),
+            'cantidad' => Yii::t('models', 'Cantidad'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParametrosHasMuestrasParametros()
-    {
-        return $this->hasOne(ParametrosHasMuestras::className(), ['Parametros_id' => 'Parametros_has_Muestras_Parametros_id', 'Muestras_id' => 'Parametros_has_Muestras_Muestras_id']);
     }
 
     /**
@@ -64,11 +59,19 @@ class ParametrosHasMuestrasHasCostopredeterminados extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParametrosHasMuestrasParametros()
+    {
+        return $this->hasOne(ParametrosHasMuestras::className(), ['Parametros_id' => 'Parametros_has_Muestras_Parametros_id', 'Muestras_id' => 'Parametros_has_Muestras_Muestras_id']);
+    }
+
+    /**
      * @inheritdoc
-     * @return \common\models\query\CostopredeterminadosHasQuery the active query used by this AR class.
+     * @return \common\models\query\ParametrosHasMuestrasHasCostopredeterminadosQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\CostopredeterminadosHasQuery(get_called_class());
+        return new \common\models\query\ParametrosHasMuestrasHasCostopredeterminadosQuery(get_called_class());
     }
 }

@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Moneda_id')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'tipo')->dropDownList([ 'Administrativo' => 'Administrativo', 'Muestras' => 'Muestras', 'Parametros' => 'Parametros', 'Prestaciones' => 'Prestaciones', ], ['prompt' => '']) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('models', 'Create') : Yii::t('models', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
