@@ -70,7 +70,7 @@ $(function(){
 	 * 				 this is mandatory for the "depends" data to work
 	 * 		array:   Sets whenever the column value is an array, so the Http request can handle the value as array
 	 */
-	$('.modalSelect').click(function(){
+	$('.modalButton').click(function(){
 		var data   = $(this).data();
 		var titulo = data.title;
 		var url    = $(this).attr('value');
