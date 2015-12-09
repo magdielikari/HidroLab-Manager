@@ -66,9 +66,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			]
 		])?> 
 	</div>
- </div>
-
-<div class="row">
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Tipos',
@@ -95,6 +92,9 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			]
 		])?> 
 	</div>
+ </div>
+
+<div class="row">
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Sub-Tipos',
@@ -146,9 +146,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			]
 		])?> 
 	</div>
- </div>
-
- <div class="row">
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Parámetros',
@@ -167,6 +164,33 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'class'=>'btn btn-success modalSelect',
 						'data'=>[
 							'title'=>'Crear Parámetros'
+						]
+					]
+				]
+			]
+		])?> 
+	</div>
+ </div>
+
+ <div class="row">
+		<div class="col-sm-6 col-md-4">
+		<?= Thumbnail::widget([
+			'label'=>'Muestras',
+			'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
+			'bottom'=>[
+				['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
+					'options'=>[
+						'class'=>'btn btn-info modalSelect',
+						'data'=>[
+							'title'=>'Seleccionar Muestras'
+						]
+					]
+				],
+				['name'=>'Crear Muestras','value'=>['muestras/establish'],
+					'options'=>[
+						'class'=>'btn btn-success modalSelect',
+						'data'=>[
+							'title'=>'Crear Muestras'
 						]
 					]
 				]
