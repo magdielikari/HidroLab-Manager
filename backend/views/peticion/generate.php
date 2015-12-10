@@ -247,11 +247,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	</div>
 </div>
 	
-	<div class="row">  
+<div class="row">  
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
-			'label'=>'Costo Muestra',
-			'content'=>'Holllla',
+			'label'=>'Costo Muestreo',
+			'content'=>'Se seleciona Parametros & las Muestras de acuerdo a la presevaciones para luego asignarles un costo asociado',
 			'bottom'=>[
 				['name'=>'Seleccionar Costo M.','value'=>['parametros-has-muestras-has-costopredeterminados/select'],
 					'options'=>[
@@ -271,7 +271,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Costos Parámetro',
-			'content'=>'Holllla',
+			'content'=>'Se seleciona costos de los Materiales, Equipos y Mano de Obra por cada parametro.',
 			'bottom'=>[
 				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-parametros/select'],
 					'options'=>[
@@ -295,7 +295,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Costos Parámetro',
-			'content'=>'Holllla',
+			'content'=>'Muestra el Costo Labor',
 			'bottom'=>[
 				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-prestaciones/select'],
 					'options'=>[
@@ -321,8 +321,8 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 <div class="row"> 
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
-			'label'=>'Petición',
-			'content'=>'Holllla',
+			'label'=>'Costo Administrativos',
+			'content'=>'Se seleciona los costos administrativos',
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costopredeterminados-has-administrativos/select'],
 					'options'=>[
@@ -345,8 +345,8 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
-			'label'=>'Petición',
-			'content'=>'Holllla',
+			'label'=>'Costos',
+			'content'=>'Se selecciona las variables globales que afectan los costos.',
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costos/select'],
 					'options'=>[
@@ -370,7 +370,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Petición',
-			'content'=>'Holllla',
+			'content'=>'Se guardan datos referente a la peticiones',
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['peticion/select'],
 					'options'=>[
