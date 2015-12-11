@@ -31,3 +31,4 @@ phpunit.phar
 global-acl.xml
 *.InfText
 *.acl
+API migration/node_modules/

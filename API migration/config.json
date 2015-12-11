@@ -4,7 +4,7 @@
 			"host": "localhost",
 			"user": "root",
 			"password": "",
-			"database": "hidro1"
+			"database": "hl"
 		},
 		"table":"schematest",
 		"fields": ["*"]
@@ -20,5 +20,9 @@
 		"rename":{
 			"first_name":"name"
 		}
+	},
+	"file":{
+		"save": true,
+		"destination": "./query.sql"
 	}
 }
