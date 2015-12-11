@@ -1,0 +1,28 @@
+{
+	"source":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hl"
+		},
+		"table":"schematest",
+		"fields": ["*"]
+	},
+	"destiny":{
+		"credentials":{
+			"host": "localhost",
+			"user": "root",
+			"password": "",
+			"database": "hl"
+		},
+		"table":"schema",
+		"rename":{
+			"first_name":"name"
+		}
+	},
+	"file":{
+		"save": true,
+		"destination": "./query.sql"
+	}
+}

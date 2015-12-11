@@ -3,26 +3,38 @@
 		"credentials":{
 			"host": "localhost",
 			"user": "root",
-			"password": "",
-			"database": "hl"
+			"password": "3141",
+			"database": "hidro1"
 		},
-		"table":"schematest",
-		"fields": ["*"]
+		"table":"limites",
+		"fields": [
+		"caracterizacion_id",
+		"liminf",
+		"tipos_id",
+		"limtsup",
+		"departamento_id",
+		"decreto_id",
+		"subtipos_id",
+		"existente"
+		]
 	},
 	"destiny":{
 		"credentials":{
 			"host": "localhost",
 			"user": "root",
-			"password": "",
+			"password": "3141",
 			"database": "hl"
 		},
-		"table":"schema",
+		"table":"limites",
 		"rename":{
-			"first_name":"name"
+			"liminf":"liminf",
+			"limtsup":"limsup",
+			"existente":"existente",
+			"departamento_id":"departamento_id",
+			"decreto_id":"decreto_id",
+			"tipos_id":"tipo_id",
+			"subtipos_id":"subtipo_id",
+			"caracterizacion_id":"caracterizacion_id"
 		}
-	},
-	"file":{
-		"save": true,
-		"destination": "./query.sql"
 	}
 }
