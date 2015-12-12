@@ -7,11 +7,20 @@ $(function(){
 		ramas: null,
 		parametros: null,
 		muestras: null,
+		muestreo: null,
 		equiposGeneral: null,
+		costo: null,
+		costoAdministrativo: null,
 		costoMuestra: null,
 		costoParametro: null,
 		peticion: null
 	};
+
+	var state = 0;
+
+	$(document).ready(function(){
+		$(this).trigger('toggleStates');
+	});
 
 	/**
 	 * Whenever an element with the class ".gridrow" is clicked, it will close the current modal
@@ -35,6 +44,7 @@ $(function(){
 			cache[data] = model[data];
 
 		$('#modal').modal('hide');
+		$(document).trigger('toggleStates');
 		console.log(cache);
 	});
 
@@ -55,6 +65,7 @@ $(function(){
 		cache[selector] = selected;
 
 		$('#modal').modal('hide');
+		$(document).trigger('toggleStates');
 		console.log(cache);
 	});
 
@@ -70,7 +81,7 @@ $(function(){
 	 * 				 this is mandatory for the "depends" data to work
 	 * 		array:   Sets whenever the column value is an array, so the Http request can handle the value as array
 	 */
-	$('.modalSelect').click(function(){
+	$('body').on('click', '.modalSelect', function(){
 		var data   = $(this).data();
 		var titulo = data.title;
 		var url    = $(this).attr('value');
@@ -100,6 +111,13 @@ $(function(){
 	});
 
 	/**
+	 * Change the tracking state of the process
+	 */
+	$(document).on('toggleStates', function(event){
+		toggleStates();
+	});
+
+	/**
 	 * Creates a new url with the provided url and the params to parse
 	 * The params are used to parse as query string
 	 * 
@@ -112,5 +130,28 @@ $(function(){
 			return url + '?' + params;
 
 		return url + '?' + jQuery.param(params);
+	}
+
+	/**
+	 * Disables or enables all buttons depending of the container's dependecy
+	 */
+	function toggleStates(){
+		$('.thumbnail').each(function(index, element){
+			var data = $(element).data();
+
+			if(data.depends){
+				if(!cache[data.depends]){
+					$(element).find('button').each(function(index, elem){
+						$(elem).prop('disabled', true);
+					});
+				}
+
+				else{
+					$(element).find('button').each(function(index, elem){
+						$(elem).prop('disabled', false);
+					});
+				}
+			}
+		});
 	}
 });

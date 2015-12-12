@@ -21,6 +21,9 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Clientes',
 			'content'=>'Se solicita información de Nombre de los Clientes',
+			'htmlOptions'=>[
+				'data'=>['name'=>'cliente']
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Tipos','value'=>['clientes/select'],
 					'options'=>[
@@ -46,6 +49,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'label'=>'General',
 			'content'=>'Se solicita información de: Numero de Copias del informe, Si tiene Caudal, si tiene Analisis, 
 									cual departamento Departamento para que Decreto y cual clientes',
+			'htmlOptions'=>[
+				'data'=>['name'=>'general',
+					'depends'=>'cliente'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar General','value'=>['general/select'],
 					'options'=>[
@@ -70,6 +78,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Tipos',
 			'content'=>'Se solicita información de Nombre de las Tipos',
+			'htmlOptions'=>[
+				'data'=>['name'=>'tipos',
+					'depends'=>'general'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Tipos','value'=>['decreto-has-tipo/select'],
 					'options'=>[
@@ -99,6 +112,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Sub-Tipos',
 			'content'=>'Se solicita información de Nombre de las Sub-Tipos',
+			'htmlOptions'=>[
+				'data'=>['name'=>'subTipos',
+					'depends'=>'tipos'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Sub-Tipos','value'=>['tipo-has-subtipo/select'],
 					'options'=>[
@@ -126,6 +144,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Ramas',
 			'content'=>'Se solicita información de Nombre de las Ramas',
+			'htmlOptions'=>[
+				'data'=>['name'=>'ramas',
+					'depends'=>'subTipos'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Ramas','value'=>['rama-has-general/select'],
 					'options'=>[
@@ -150,6 +173,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Parámetros',
 			'content'=>'Se solicita información de los parámetros',
+			'htmlOptions'=>[
+				'data'=>['name'=>'parametros',
+					'depends'=>'ramas'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Parámetros','value'=>['parametros/select'],
 					'options'=>[
@@ -177,6 +205,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Muestras',
 			'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
+			'htmlOptions'=>[
+				'data'=>['name'=>'muestras',
+					'depends'=>'parametros'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
 					'options'=>[
@@ -201,6 +234,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Muestras',
 			'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
+			'htmlOptions'=>[
+				'data'=>['name'=>'muestreo',
+					'depends'=>'muestras'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
 					'options'=>[
@@ -225,6 +263,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Equipos has General',
 			'content'=>'Se solicita información de Nombre de las Equipos has General, su tipo, la hora de muestreo',
+			'htmlOptions'=>[
+				'data'=>['name'=>'equiposGeneral',
+					'depends'=>'muestreo'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Equipos','value'=>['equipos-has-general/select'],
 					'options'=>[
@@ -252,6 +295,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Costo Muestreo',
 			'content'=>'Se seleciona Parametros & las Muestras de acuerdo a la presevaciones para luego asignarles un costo asociado',
+			'htmlOptions'=>[
+				'data'=>['name'=>'costoMuestreo',
+					'depends'=>'equiposGeneral'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Costo M.','value'=>['parametros-has-muestras-has-costopredeterminados/select'],
 					'options'=>[
@@ -272,6 +320,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Costos Parámetro',
 			'content'=>'Se seleciona costos de los Materiales, Equipos y Mano de Obra por cada parametro.',
+			'htmlOptions'=>[
+				'data'=>['name'=>'costoParametro',
+					'depends'=>'costoMuestreo'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-parametros/select'],
 					'options'=>[
@@ -292,37 +345,17 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			]
 		])?> 
 	</div>
-	<div class="col-sm-6 col-md-4">
-		<?= Thumbnail::widget([
-			'label'=>'Costos Parámetro',
-			'content'=>'Muestra el Costo Labor',
-			'bottom'=>[
-				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-prestaciones/select'],
-					'options'=>[
-						'class'=>'btn btn-info modalSelect',
-						'data'=>[
-							'title'=>'Seccionar Costos Parámetros'
-						]
-					]
-				],
-				['name'=>'Crear Costos P.','value'=>['costopredeterminados-has-prestaciones/establish'],
-					'options'=>[
-						'class'=>'btn btn-success modalSelect',
-						'data'=>[
-							'title'=>'Crear Parámetros'
-						]
-					]
-				]
-			]
-		])?> 
-	</div>
-</div>
 	
 <div class="row"> 
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
 			'label'=>'Costo Administrativos',
 			'content'=>'Se seleciona los costos administrativos',
+			'htmlOptions'=>[
+				'data'=>['name'=>'costoAdministrativo',
+					'depends'=>'costoParametro'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costopredeterminados-has-administrativos/select'],
 					'options'=>[
@@ -347,6 +380,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Costos',
 			'content'=>'Se selecciona las variables globales que afectan los costos.',
+			'htmlOptions'=>[
+				'data'=>['name'=>'costo',
+					'depends'=>'costoAdministrativo'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['costos/select'],
 					'options'=>[
@@ -371,6 +409,11 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 		<?= Thumbnail::widget([
 			'label'=>'Petición',
 			'content'=>'Se guardan datos referente a la peticiones',
+			'htmlOptions'=>[
+				'data'=>['name'=>'peticion',
+					'depends'=>'costo'
+				]
+			],
 			'bottom'=>[
 				['name'=>'Seleccionar Petición','value'=>['peticion/select'],
 					'options'=>[
