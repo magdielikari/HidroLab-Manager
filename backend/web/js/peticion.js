@@ -147,11 +147,33 @@ $(function(){
 				}
 
 				else{
-					$(element).find('button').each(function(index, elem){
-						$(elem).prop('disabled', false);
-					});
+					var dat = $(element).data();
+
+					if(dat.name == 'ramas'){
+						$(element).find('button').each(function(index, elem){
+							$(elem).prop('disabled', checkDepartment(data));
+						});
+					}
+
+					else{
+						$(element).find('button').each(function(index, elem){
+							$(elem).prop('disabled', false);
+						});
+					}
 				}
 			}
 		});
+	}
+
+	function checkDepartment(data){
+		var general = cache.general;
+
+		if(general.Departamento_id == data.ignore){
+			cache.ramas = true;
+
+			return true;
+		}
+
+		return false;
 	}
 });

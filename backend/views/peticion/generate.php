@@ -114,7 +114,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'content'=>'Se solicita información de Nombre de las Sub-Tipos',
 			'htmlOptions'=>[
 				'data'=>['name'=>'subTipos',
-					'depends'=>'tipos'
+					'depends'=>'tipos',
 				]
 			],
 			'bottom'=>[
@@ -146,7 +146,8 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 			'content'=>'Se solicita información de Nombre de las Ramas',
 			'htmlOptions'=>[
 				'data'=>['name'=>'ramas',
-					'depends'=>'subTipos'
+					'depends'=>'subTipos',
+					'ignore'=>'1'
 				]
 			],
 			'bottom'=>[
