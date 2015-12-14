@@ -89,8 +89,9 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Tipos',
-							'depends'=>'general',
-							'column'=>'Decreto_id'
+							'depends'=>[
+								'general'=>['Decreto_id']
+							]
 						]
 					]
 				],
@@ -123,9 +124,9 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'class'=>'btn btn-info modalSelect',
 						'data'=>[
 							'title'=>'Seleccionar Sub-Tipos',
-							'depends'=>'tipos',
-							'array'=>true,
-							'column'=>'Tipo_id'
+							'depends'=>[
+								'tipos'=>['Tipo_id']
+							]
 						]
 					]
 				],
@@ -180,11 +181,16 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				]
 			],
 			'bottom'=>[
-				['name'=>'Seleccionar Parámetros','value'=>['parametros/select'],
+				['name'=>'Seleccionar Parámetros','value'=>['limites/select'],
 					'options'=>[
 						'class'=>'btn btn-info modalSelect',
 						'data'=>[
-							'title'=>'Seleccionar Parámetros'
+							'title'=>'Seleccionar Parámetros',
+							'depends'=>[
+								'general'=>['Departamento_id', 'Decreto_id'],
+								'tipos'=>['Tipo_id'],
+								'subTipos'=>['SubTipo_id']
+							]
 						]
 					]
 				],

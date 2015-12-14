@@ -44,6 +44,22 @@ class LimitesController extends Controller
             ]);
         }
     }
+    /**
+     * Lists all Limites models in AJAX call.
+     * @return mixed
+     */
+    public function actionSelect()
+    {
+        if(Yii::$app->user->can('limites-index'))
+        {    
+            $searchModel = new LimitesSearch();
+            $dataProvider = $searchModel->search(['LimitesSearch'=>Yii::$app->request->queryParams]);
+            return $this->renderAjax('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+    }
 
     /**
      * Displays a single Limites model.

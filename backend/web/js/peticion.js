@@ -59,7 +59,7 @@ $(function(){
 		var selector = $('table').data('selector');
 
 		$('.grid-view').find('input:checked').each(function(i){
-			selected.push(jQuery.parseJSON($(this).val()));
+			selected.push($.parseJSON($(this).val()));
 		});
 
 		cache[selector] = selected;
@@ -90,19 +90,28 @@ $(function(){
 		{
 			var query = {};
 
-			if(data.array){
-				var summary = [];
+			$.map(data.depends, function(val, i){
+				for(ar in val){
+					if($.isArray(cache[i])){
+						var summary = [];
 
-				for(e in cache[data.depends]){
-					summary.push(data.column + '[]=' + cache[data.depends][e][data.column]);
+						for(index in cache[i])
+							summary.push(val[ar] + '[]=' + cache[i][index][val[ar]]);
+
+						var result = summary.join('&');
+
+						if($.isEmptyObject(query))
+							query = result;
+
+						else
+							query = mergeToQueryString(query, result);
+					}
+
+					else
+						query[val[ar]] = cache[i][val[ar]];
 				}
-
-				query = summary.join('&');
-			}
-
-			else
-				query[data.column] = cache[data.depends][data.column];
-
+			});
+			console.log(query);
 			url = mergeParam(url, query);
 		}
 
@@ -129,7 +138,7 @@ $(function(){
 		if(typeof params === 'string')
 			return url + '?' + params;
 
-		return url + '?' + jQuery.param(params);
+		return url + '?' + $.param(params);
 	}
 
 	/**
@@ -175,5 +184,11 @@ $(function(){
 		}
 
 		return false;
+	}
+
+	function mergeToQueryString(obj, string){
+		var objParams = $.param(obj);
+
+		return $.grep([objParams, string], Boolean).join('&');
 	}
 });

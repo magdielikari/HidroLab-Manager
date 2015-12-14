@@ -18,7 +18,8 @@ class LimitesSearch extends Limites
     public function rules()
     {
         return [
-            [['id', 'Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'integer'],
+            [['id', 'Departamento_id', 'Decreto_id', 'Caracterizacion_id'], 'integer'],
+            [['Tipo_id', 'SubTipo_id', 'Rama_id'], 'each', 'rule'=>['integer']],
             [['liminf', 'limsup'], 'number'],
             [['existente'], 'safe'],
         ];
