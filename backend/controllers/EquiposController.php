@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\forbiddenHttpException;
 use yii\web\UnauthorizedHttpException;
+use yii\helpers\Url;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -74,10 +75,30 @@ class EquiposController extends Controller
         if(Yii::$app->user->can('equipos-create'))
         {    
             $model = new Equipos();
-            if ($model->load(Yii::$app->request->post())) {
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
+
+            $data = [
+                'url'=>null,
+                'success'=>false,
+                'error'=>[]
+            ];
+
+            if ($model->load(Yii::$app->request->post()))
+            {
+                if($model->save())
+                {
+                    $data['success'] = true;
+                    $data['url'] = Url::to(['equipos/view', 'id'=>$model->id]);
+                }
+
+                else
+                    $data['error'][] = $model->getErrors();
+
+                header('Content-type:application/json');
+                echo json_encode($data);
+            }
+
+            else
+            {
                 return $this->renderAjax('create', [
                     'model' => $model,
                 ]);

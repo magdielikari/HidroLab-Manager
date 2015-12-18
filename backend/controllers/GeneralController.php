@@ -130,27 +130,27 @@ class GeneralController extends Controller
     {
         if(Yii::$app->user->can('general-establish'))
         {    
-        $model = new General();
-        $data=[
-            'url'=>null,
-            'success'=>false,
-            'error'=>[]
-        ];
-        if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                $data['success']=true;
-                $data['url']=Url::to(['general/view','id'=>$model->id]);
-            }else{
-                $data['error'][]=$model->getErrors();    
+            $model = new General();
+            $data=[
+                'url'=>null,
+                'success'=>false,
+                'error'=>[]
+            ];
+            if ($model->load(Yii::$app->request->post())) {
+                if($model->save()){
+                    $data['success']=true;
+                    $data['url']=Url::to(['general/view','id'=>$model->id]);
+                }else{
+                    $data['error'][]=$model->getErrors();    
+                }
+                header('Content-type:application/json');
+                echo json_encode($data);
+                Yii::$app->end();
+            } else {
+                return $this->renderAjax('establish', [
+                    'model' => $model,
+                ]);
             }
-            header('Content-type:application/json');
-            echo json_encode($data);
-            Yii::$app->end();
-        } else {
-            return $this->renderAjax('establish', [
-                'model' => $model,
-            ]);
-        }
         }
         else
             throw new UnauthorizedHttpException(Yii::t('app', 'You are not authorized to access this view.'));
