@@ -21,7 +21,7 @@ class LimitesSearch extends Limites
             [['id', 'Departamento_id', 'Decreto_id', 'Caracterizacion_id'], 'integer'],
             [['Tipo_id', 'SubTipo_id', 'Rama_id'], 'each', 'rule'=>['integer']],
             [['liminf', 'limsup'], 'number'],
-            [['existente'], 'safe'],
+            [['rama','caracterizacion','subTipo','tipo','decreto','departamento','existente'], 'safe'],
         ];
     }
 

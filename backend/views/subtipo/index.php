@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
-
+use common\models\helpers\ModelUtility;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\SubtipoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -29,8 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [
+                'attribute'=>'Tipo',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'tipos', 'nombre');
+                },
+                'options'=>['class'=>'text-center'],
+            ],
             'nombre',
+            [
+                'attribute'=>'Limite',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'limites', 'Caracterizacion_id');
+                },
+                'options'=>['class'=>'text-center'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

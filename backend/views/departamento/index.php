@@ -29,9 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nombre',
             'contador',
+            [
+                'attribute'=>'decretos',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'decretos', 'nombre');
+                },
+                'options'=>['class'=>'text-center'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

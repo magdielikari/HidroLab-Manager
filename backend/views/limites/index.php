@@ -29,16 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'liminf',
             'limsup',
-            'existente',
-            'Departamento_id',
-            // 'Decreto_id',
-            // 'Tipo_id',
-            // 'SubTipo_id',
-            // 'Caracterizacion_id',
-            // 'Rama_id',
+            [
+                'attribute'=>'departamento_id',
+                'value'=>'departamento.nombre',
+            ],
+            [
+                'attribute'=>'decreto_id',
+                'value'=>'decreto.nombre',
+            ],
+            [
+                'attribute'=>'tipo_id',
+                'value'=>'tipo.nombre',
+            ],
+            [
+                'attribute'=>'subTipo_id',
+                'value'=>'subTipo.nombre'
+            ],
+            [
+                'attribute'=>'caracterizacion_id',
+                'value'=>'caracterizacion.nombre'
+            ],
+            [
+                'attribute'=>'rama_id',
+                'value'=>'rama.nombre'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -46,3 +62,4 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end();?>
 </div>
 <?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>
+

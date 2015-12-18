@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
-
+use common\models\helpers\ModelUtility;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\DecretoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,10 +30,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
+            [
+                'attribute'=>'Departamento',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'departamentos', 'nombre');
+                },
+                'options'=>['class'=>'text-center'],
+            ],
             'nombre',
             'gaceta',
             'fecha',
+            [
+                'attribute'=>'tipos',
+                'format'=>'raw',
+                'value'=>function($data){
+                    return ModelUtility::handler($data, 'tipos', 'nombre');
+                },
+                'options'=>['class'=>'text-center'],
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
