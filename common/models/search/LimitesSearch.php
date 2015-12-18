@@ -12,6 +12,8 @@ use common\models\Limites;
  */
 class LimitesSearch extends Limites
 {
+    public $caracterizacion, $subTipo, $tipo; 
+    public $decreto, $departamento, $rama;
     /**
      * @inheritdoc
      */
