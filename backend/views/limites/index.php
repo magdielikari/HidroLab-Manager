@@ -32,27 +32,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'liminf',
             'limsup',
             [
-                'attribute'=>'departamento_id',
+                'attribute'=>'departamento',
                 'value'=>'departamento.nombre',
             ],
             [
-                'attribute'=>'decreto_id',
+                'attribute'=>'decreto',
                 'value'=>'decreto.nombre',
             ],
             [
-                'attribute'=>'tipo_id',
+                'attribute'=>'tipo',
                 'value'=>'tipo.nombre',
             ],
             [
-                'attribute'=>'subTipo_id',
+                'attribute'=>'subTipo',
                 'value'=>'subTipo.nombre'
             ],
             [
-                'attribute'=>'caracterizacion_id',
+                'attribute'=>'caracterizacion',
                 'value'=>'caracterizacion.nombre'
             ],
             [
-                'attribute'=>'rama_id',
+                'attribute'=>'rama',
                 'value'=>'rama.nombre'
             ],
 

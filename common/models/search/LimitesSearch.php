@@ -12,6 +12,8 @@ use common\models\Limites;
  */
 class LimitesSearch extends Limites
 {
+    public $departamento, $decreto, $tipo, $subTipo, $caracterizacion, $rama;
+
     /**
      * @inheritdoc
      */
@@ -45,6 +47,8 @@ class LimitesSearch extends Limites
     {
         $query = Limites::find();
 
+        $query->joinWith(['departamento', 'decreto', 'tipo', 'subTipo', 'caracterizacion', 'rama']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -70,6 +74,12 @@ class LimitesSearch extends Limites
         ]);
 
         $query->andFilterWhere(['like', 'existente', $this->existente]);
+        $query->andFilterWhere(['like', 'departamento.nombre', $this->departamento]);
+        $query->andFilterWhere(['like', 'decreto.nombre', $this->decreto]);
+        $query->andFilterWhere(['like', 'tipo.nombre', $this->tipo]);
+        $query->andFilterWhere(['like', 'subTipo.nombre', $this->subTipo]);
+        $query->andFilterWhere(['like', 'caracterizacion.nombre', $this->caracterizacion]);
+        $query->andFilterWhere(['like', 'rama.nombre', $this->rama]);
 
         return $dataProvider;
     }
