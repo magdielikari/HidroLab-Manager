@@ -57,7 +57,7 @@ class EquiposController extends Controller
     {
         if(Yii::$app->user->can('equipos-view'))
         {    
-            return $this->render('view', [
+            return $this->renderAjax('view', [
                 'model' => $this->findModel($id),
             ]);
         }

@@ -42,7 +42,7 @@ class Limites extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['liminf', 'limsup', 'existente', 'Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'required'],
+            [['existente', 'Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'required'],
             [['liminf', 'limsup'], 'number'],
             [['existente'], 'string'],
             [['Departamento_id', 'Decreto_id', 'Tipo_id', 'SubTipo_id', 'Caracterizacion_id', 'Rama_id'], 'integer']
