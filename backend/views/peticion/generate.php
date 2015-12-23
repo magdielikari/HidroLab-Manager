@@ -95,14 +95,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						]
 					]
 				],
-				['name'=>'Crear Tipos','value'=>['general-has-tipo/establish'],
-					'options'=>[
-						'class'=>'btn btn-success modalSelect',
-						'data'=>[
-							'title'=>'Crear Tipos'
-						]
-					]
-				]
 			]
 		])?> 
 	</div>
@@ -130,14 +122,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						]
 					]
 				],
-				['name'=>'Crear Sub-Tiposs','value'=>['general-has-subtipo/establish'],
-					'options'=>[
-						'class'=>'btn btn-success modalSelect',
-						'data'=>[
-							'title'=>'Crear Sub-Tipos'
-						]
-					]
-				]
 			]
 		])?> 
 	</div>
@@ -160,14 +144,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						]
 					]
 				],
-				['name'=>'Crear Ramas','value'=>['rama-has-general/establish'],
-					'options'=>[
-						'class'=>'btn btn-success modalSelect',
-						'data'=>[
-							'title'=>'Crear Ramas'
-						]
-					]
-				]
 			]
 		])?> 
 	</div>
@@ -194,14 +170,6 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						]
 					]
 				],
-				['name'=>'Crear Parámetros','value'=>['parametros/establish'],
-					'options'=>[
-						'class'=>'btn btn-success modalSelect',
-						'data'=>[
-							'title'=>'Crear Parámetros'
-						]
-					]
-				]
 			]
 		])?> 
 	</div>
@@ -239,7 +207,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 	</div>
 		<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
-			'label'=>'Muestras',
+			'label'=>'Muestreo',
 			'content'=>'Se solicita información de Nombre de las Muestras, su tipo, la hora de muestreo',
 			'htmlOptions'=>[
 				'data'=>['name'=>'muestreo',
@@ -350,9 +318,31 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 					]
 				]
 			]
-		])?> 
+		])?>
+	</div>	 
+	<div class="col-sm-6 col-md-4">
+		<?= Thumbnail::widget([
+			'label'=>'Costos Parámetro',
+			'content'=>'Se seleciona costos de los Materiales, Equipos y Mano de Obra por cada parametro.',
+			'htmlOptions'=>[
+				'data'=>['name'=>'costoParametro',
+				'depends'=>'costoMuestreo'
+				]
+			],
+			'bottom'=>[
+				['name'=>'Seleccionar Costos P.','value'=>['costopredeterminados-has-parametros/select'],
+					'options'=>[
+						'class'=>'btn btn-info modalSelect',
+						'data'=>[
+							'title'=>'Seccionar Costos Parámetros'
+						]
+					]
+				],
+			],
+		]);?>
 	</div>
-	
+</div>
+
 <div class="row"> 
 	<div class="col-sm-6 col-md-4">
 		<?= Thumbnail::widget([
