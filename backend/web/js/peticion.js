@@ -187,8 +187,16 @@ $(function(){
 	}
 
 	function mergeToQueryString(obj, string){
-		var objParams = $.param(obj);
+		var objParams, result;
 
-		return $.grep([objParams, string], Boolean).join('&');
+		if(typeof obj === 'string')
+			objParams = obj;
+
+		else
+			objParams = $.param(obj)
+
+		result = $.grep([objParams, string], Boolean).join('&');
+
+		return result;
 	}
 });

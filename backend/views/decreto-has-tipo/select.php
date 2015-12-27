@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\GeneralHasTipoSearch */
@@ -31,6 +32,9 @@ use yii\helpers\Url;
             'tipo.nombre',
             [
                 'class'=>'yii\grid\CheckboxColumn',
+                'checkboxOptions'=>function($model, $key, $index, $column){
+                    return ['value'=>Json::encode($model->relatedRecords['tipo'])];
+                }
             ]
         ],
     ]); ?>

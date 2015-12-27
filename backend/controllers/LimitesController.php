@@ -54,7 +54,7 @@ class LimitesController extends Controller
         {    
             $searchModel = new LimitesSearch();
             $dataProvider = $searchModel->search(['LimitesSearch'=>Yii::$app->request->queryParams]);
-            return $this->renderAjax('index', [
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
