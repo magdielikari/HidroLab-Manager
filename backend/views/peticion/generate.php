@@ -90,7 +90,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'data'=>[
 							'title'=>'Seleccionar Tipos',
 							'depends'=>[
-								'general'=>['Decreto_id']
+								'general'=>['Decreto_id'=>'Decreto_id']
 							]
 						]
 					]
@@ -117,7 +117,7 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'data'=>[
 							'title'=>'Seleccionar Sub-Tipos',
 							'depends'=>[
-								'tipos'=>['Tipo_id']
+								'tipos'=>['Tipo_id'=>'id']
 							]
 						]
 					]
@@ -163,9 +163,9 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 						'data'=>[
 							'title'=>'Seleccionar Parámetros',
 							'depends'=>[
-								'general'=>['Departamento_id', 'Decreto_id'],
-								'tipos'=>['Tipo_id'],
-								'subTipos'=>['SubTipo_id']
+								'general'=>['Departamento_id'=>'Departamento_id', 'Decreto_id'=>'Decreto_id'],
+								'tipos'=>['Tipo_id'=>'id'],
+								'subTipos'=>['SubTipo_id'=>'id']
 							]
 						]
 					]

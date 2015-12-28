@@ -96,7 +96,7 @@ $(function(){
 						var summary = [];
 
 						for(index in cache[i])
-							summary.push(val[ar] + '[]=' + cache[i][index][val[ar]]);
+							summary.push(ar + '[]=' + cache[i][index][val[ar]]);
 
 						var result = summary.join('&');
 
