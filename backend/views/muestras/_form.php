@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tipo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tipo')->dropDownList([ 'Puntual' => 'Puntual', 'Compuesta' => 'Compuesta', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'horas')->textInput() ?>
 

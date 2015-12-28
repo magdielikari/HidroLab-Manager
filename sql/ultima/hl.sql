@@ -2623,8 +2623,8 @@ CREATE TABLE IF NOT EXISTS `moneda` (
 CREATE TABLE IF NOT EXISTS `muestras` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `tipo` binary(1) NOT NULL,
-  `horas` tinyint(4) NOT NULL,
+  `tipo` ENUM('Puntual', 'Compuesta') NOT NULL,
+  `horas` tinyint(4) NULL,
   `General_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Muestras_General1_idx` (`General_id`)
