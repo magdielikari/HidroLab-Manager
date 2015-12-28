@@ -34,10 +34,10 @@ class Muestras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'tipo', 'horas', 'General_id'], 'required'],
+            [['nombre', 'tipo', 'General_id'], 'required'],
+            [['tipo'], 'string'],
             [['horas', 'General_id'], 'integer'],
-            [['nombre'], 'string', 'max' => 45],
-            [['tipo'], 'string', 'max' => 1]
+            [['nombre'], 'string', 'max' => 45]
         ];
     }
 
