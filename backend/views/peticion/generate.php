@@ -190,7 +190,10 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 					'options'=>[
 						'class'=>'btn btn-info modalSelect',
 						'data'=>[
-							'title'=>'Seleccionar Muestras'
+							'title'=>'Seleccionar Muestras',
+							'depends'=>[
+								'general'=>['General_id'=>'id']
+							]
 						]
 					]
 				],

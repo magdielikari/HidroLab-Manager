@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\MuestrasSearch */
@@ -23,6 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions'=>[
+            'class'=>'table table-striped table-bordered table-hover',
+            'data'=>[
+                'selector'=>'muestras'
+            ]
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -32,8 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'horas',
             'General_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'checkboxOptions'=>function($model, $key, $index, $column){
+                    return ['value'=>Json::encode($model->attributes)];
+                }
+            ],
         ],
     ]); ?>
     <?php Pjax::end();?>
+    
+    <p><?= Html::button(Yii::t('app', 'Select'), ['class'=>'btn btn-primary buttonSelectMultiple'])   ?></p>
 </div>

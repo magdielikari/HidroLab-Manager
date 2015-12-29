@@ -22,6 +22,17 @@ $(function(){
 		$(this).trigger('toggleStates');
 	});
 
+	$(document).ajaxComplete(function(){
+		var element = $('#modal').find('input[data-get]');
+		var data    = element.data();
+
+		if(data){
+			$.map(data.get, function(val, i){
+				element.val(cache[i][val]);
+			});
+		}
+	});
+
 	/**
 	 * Whenever an element with the class ".gridrow" is clicked, it will close the current modal
 	 * and load the new url with the stored url data
@@ -108,10 +119,9 @@ $(function(){
 					}
 
 					else
-						query[val[ar]] = cache[i][val[ar]];
+						query[ar] = cache[i][val[ar]];
 				}
 			});
-			console.log(query);
 			url = mergeParam(url, query);
 		}
 
