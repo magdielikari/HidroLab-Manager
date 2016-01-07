@@ -47,14 +47,21 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'class' => 'yii\grid\CheckboxColumn',
 				'checkboxOptions'=>function($model, $key, $index, $column){
-					return ['value'=>Json::encode($model->relatedRecords)];
+					$data = $model->relatedRecords;
+					$data['id'] = $model->id;
+
+					return ['value'=>Json::encode($data)];
 				}
 			],
 		],
 	]); ?>
 	<?php Pjax::end();?>
 
-	<p><?= Html::button(Yii::t('app', 'Select'), ['class'=>'btn btn-primary buttonSelectMultiple'])   ?></p>
+	<p><?= Html::button(Yii::t('app', 'Select'), ['class'=>'btn btn-primary buttonSelectMultiple', 'data'=>[
+		'save'=>'true',
+		'url'=>Url::to(['parametros/create']),
+		'from'=>'Limites_id'
+	]])   ?></p>
 </div>
 <?php echo $this->renderFile('@backend/views/herramientas/modal.php'); ?>
 

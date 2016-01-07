@@ -67,6 +67,7 @@ $(function(){
 	 */
 	$('#modal').on('click', '.buttonSelectMultiple', function(){
 		var selected = [];
+		var data 	 = $(this).data();
 		var selector = $('table').data('selector');
 
 		$('.grid-view').find('input:checked').each(function(i){
@@ -74,6 +75,13 @@ $(function(){
 		});
 
 		cache[selector] = selected;
+
+		if(typeof data.save !== 'undefined' && data.save){
+			var dat = {};
+			dat[selector] = mergeWithGeneral(selected, data.from);
+			
+			saveToServer(data.url, dat);
+		}
 
 		$('#modal').modal('hide');
 		$(document).trigger('toggleStates');
@@ -206,6 +214,39 @@ $(function(){
 			objParams = $.param(obj)
 
 		result = $.grep([objParams, string], Boolean).join('&');
+
+		return result;
+	}
+
+	function saveToServer(url, data){
+		$.ajax({
+			url: url,
+			method: 'POST',
+			dataType: 'JSON',
+			data: data,
+			success: function(data, status, XHtmlMessage){
+				console.log('success', data);
+			},
+			error: function(XHtmlError, status, errorThrown){
+				console.log(XHtmlError);
+			}
+		});
+	}
+
+	function mergeWithGeneral(data, target){
+		var general = cache.general;
+
+		var result = [];
+
+		for(dat in data){
+			var obj = {
+				General_id: general.id
+			};
+
+			obj[target] = data[dat].id;
+
+			result.push(obj);
+		}
 
 		return result;
 	}
