@@ -53,7 +53,8 @@ class ParametrosHasMuestrasController extends Controller
         {    
             $searchModel = new ParametrosHasMuestrasSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return $this->render('select', [
+            var_dump(Yii::$app->request->queryParams);
+            return $this->renderAjax('select', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);

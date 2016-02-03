@@ -218,11 +218,16 @@ $this->registerJsFile('@web/js/peticion.js', ['depends'=>\yii\web\JqueryAsset::c
 				]
 			],
 			'bottom'=>[
-				['name'=>'Seleccionar Muestras','value'=>['muestras/select'],
+				['name'=>'Seleccionar Muestras','value'=>['parametros-has-muestras/select'],
 					'options'=>[
 						'class'=>'btn btn-info modalSelect',
 						'data'=>[
-							'title'=>'Seleccionar Muestras'
+							'title'=>'Seleccionar Muestras',
+							'depends'=>[
+								'general'=>['General_id'=>'id'],
+								'parametros'=>['Limites_id'=>'id'],
+								'muestras'=>['Muestras_id'=>'id'],
+							]
 						]
 					]
 				],

@@ -139,7 +139,7 @@ class GeneralController extends Controller
             if ($model->load(Yii::$app->request->post())) {
                 if($model->save()){
                     $data['success']=true;
-                    $data['url']=Url::to(['general/view','id'=>$model->id]);
+                    $data['url']=Url::to(['general/ajax-view','id'=>$model->id]);
                 }else{
                     $data['error'][]=$model->getErrors();    
                 }
